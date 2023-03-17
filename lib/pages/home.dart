@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lashamezvrishvili/main.dart';
@@ -37,41 +38,82 @@ class _HomePageState extends State<HomePage> {
                   });
                 },
                 borderRadius: BorderRadius.circular(6),
-                child: Hero(
-                  tag: MyApp.routes_list.elementAt(index),
-                  createRectTween: (begin, end) {
-                    return MaterialRectCenterArcTween(begin: begin, end: end);
-                  },
-                  flightShuttleBuilder: (flightContext, animation,
-                      flightDirection, fromHeroContext, toHeroContext) {
-                    return AnimatedBuilder(
-                      animation: CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.easeInOutCubicEmphasized),
-                      builder: (context, child) {
-                        return ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(6 + 96 * (animation.value)),
-                          child: child,
-                        );
-                      },
-                      child: toHeroContext.widget,
-                    );
-                  },
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOutCubicEmphasized,
-                    height: /*hovering[index] ? 110 : */ 100,
-                    width: 105,
-                    decoration: BoxDecoration(
-                        boxShadow: hovering[index] ? smoothBoxShadow : [],
-                        borderRadius: BorderRadius.circular(6),
-                        image: const DecorationImage(
-                          image: NetworkImage(
-                            'https://lh3.googleusercontent.com/gK__LLaM4jqISqweP0_fxKpBhJuJgSJPqb7wuwRyqMwSBRnj1RJtgXrw69gdLsy2lyH33idBUO5whDJl1TYaHT50hMZc-tj1L49Iq0ctbynuU-0FbFk=w960',
-                          ),
-                          fit: BoxFit.cover,
-                        )),
+                child: SizedBox(
+                  height: 100,
+                  width: 120,
+                  child: Stack(
+                    children: [
+                      Hero(
+                        tag: MyApp.routes_list.elementAt(index),
+                        createRectTween: (begin, end) {
+                          return MaterialRectCenterArcTween(
+                              begin: begin, end: end);
+                        },
+                        flightShuttleBuilder: (flightContext, animation,
+                            flightDirection, fromHeroContext, toHeroContext) {
+                          return AnimatedBuilder(
+                            animation: CurvedAnimation(
+                                parent: animation,
+                                curve: Curves.easeInOutCubicEmphasized),
+                            builder: (context, child) {
+                              return ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                    6 + 90 * (animation.value)),
+                                child: Material(
+                                  child: Ink.image(
+                                    image: const NetworkImage(
+                                        'https://lh3.googleusercontent.com/gK__LLaM4jqISqweP0_fxKpBhJuJgSJPqb7wuwRyqMwSBRnj1RJtgXrw69gdLsy2lyH33idBUO5whDJl1TYaHT50hMZc-tj1L49Iq0ctbynuU-0FbFk=w960'),
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                      child: DefaultTextStyle(
+                                          style: const TextStyle(
+                                              fontFamily: 'Neue',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 50),
+                                          child: Text(
+                                            " ${MyApp.routes_names.elementAt(index)}",
+                                            softWrap: false,
+                                            overflow: TextOverflow.fade,
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: toHeroContext.widget,
+                          );
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOutCubicEmphasized,
+                          height: /*hovering[index] ? 110 : */ 100,
+                          width: 120,
+                          decoration: BoxDecoration(
+                              boxShadow: hovering[index] ? smoothBoxShadow : [],
+                              borderRadius: BorderRadius.circular(6),
+                              image: const DecorationImage(
+                                image: NetworkImage(
+                                  'https://lh3.googleusercontent.com/gK__LLaM4jqISqweP0_fxKpBhJuJgSJPqb7wuwRyqMwSBRnj1RJtgXrw69gdLsy2lyH33idBUO5whDJl1TYaHT50hMZc-tj1L49Iq0ctbynuU-0FbFk=w960',
+                                ),
+                                fit: BoxFit.cover,
+                              )),
+                        ),
+                      ),
+                      Center(
+                        child: DefaultTextStyle(
+                            style: const TextStyle(
+                                fontFamily: 'Neue',
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 50),
+                            child: Text(
+                              " ${MyApp.routes_names.elementAt(index)}",
+                              softWrap: false,
+                              overflow: TextOverflow.fade,
+                            )),
+                      ),
+                    ],
                   ),
                 ),
               ));
