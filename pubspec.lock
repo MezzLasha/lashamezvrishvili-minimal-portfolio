@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  dismissible_page:
+    dependency: "direct main"
+    description:
+      name: dismissible_page
+      sha256: "5cec709b6a8dc517382640ed2c62edfa4e8d566901ef4fa48c941e999ca39cb5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -215,4 +223,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.19.3 <4.0.0"
-  flutter: ">=2.5.0"
+  flutter: ">=2.8.0"

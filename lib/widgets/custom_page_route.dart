@@ -23,7 +23,7 @@ class CustomRoute extends PageRouteBuilder {
                 opacity: CurvedAnimation(
                     parent: animation,
                     curve: Curves.easeInOutCubicEmphasized,
-                    reverseCurve: Curves.easeInOutCubicEmphasized),
+                    reverseCurve: Curves.easeInOutCubicEmphasized.flipped),
                 child: child,
               ),
             );

@@ -1,8 +1,19 @@
+import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:overscroll_pop/overscroll_pop.dart';
 import 'package:smooth_corner/smooth_corner.dart';
+
+const vacancies_screenshots = {
+  'assets/images/vacancies/1.png',
+  'assets/images/vacancies/2.png',
+  'assets/images/vacancies/3.png',
+  'assets/images/vacancies/4.png',
+  'assets/images/vacancies/5.png',
+  'assets/images/vacancies/6.png',
+  'assets/images/vacancies/7.png',
+};
 
 class VacanciesPage extends StatefulWidget {
   const VacanciesPage({super.key});
@@ -32,6 +43,8 @@ class _VacanciesPageState extends State<VacanciesPage>
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
+      physics:
+          const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(
         children: [
           Container(
@@ -180,61 +193,28 @@ class _VacanciesPageState extends State<VacanciesPage>
                         const SizedBox(
                           height: 48,
                         ),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('SCREENSHOTS.',
-                              style: TextStyle(
-                                  fontFamily: 'Neue',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 80)),
+                        const HeaderWidget(
+                          title: 'SCREENSHOTS.',
                         ),
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Divider(),
+                        _buildScreenshotsList(),
+                        const SizedBox(
+                          height: 48,
                         ),
-                        SizedBox(
-                          height: 150,
-                          width: double.infinity,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                physics: const BouncingScrollPhysics(
-                                    parent: AlwaysScrollableScrollPhysics()),
-                                children: List.generate(
-                                    10,
-                                    (index) => Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 8),
-                                          child: Material(
-                                            shape: SmoothRectangleBorder(
-                                                smoothness: 0.6,
-                                                borderRadius:
-                                                    BorderRadius.circular(8)),
-                                            child: InkWell(
-                                              onTap: () {},
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: Ink(
-                                                height: 150,
-                                                width: 150,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                    image: const DecorationImage(
-                                                        image: NetworkImage(
-                                                            'https://i.ebayimg.com/images/g/6wQAAOSw1~ZjRl2N/s-l500.jpg'),
-                                                        fit: BoxFit.cover)),
-                                              ),
-                                            ),
-                                          ),
-                                        ))),
-                          ),
+                        const HeaderWidget(
+                          title: 'DESCRIPTION.',
                         ),
                         const SizedBox(
-                          height: 1000,
+                          height: 16,
+                        ),
+                        const Text(
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl. Sed euismod, nunc ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl.',
+                          style: TextStyle(
+                              fontFamily: 'Neue',
+                              color: Colors.white,
+                              fontSize: 16),
+                        ),
+                        const SizedBox(
+                          height: 800,
                         ),
                       ],
                     ),
@@ -246,5 +226,133 @@ class _VacanciesPageState extends State<VacanciesPage>
         ],
       ),
     ));
+  }
+
+  SizedBox _buildScreenshotsList() {
+    return SizedBox(
+      height: 250,
+      width: double.infinity,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: ListView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()),
+            children: List.generate(vacancies_screenshots.length, (index) {
+              // print(index);
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Hero(
+                  tag: 'screenshot$index',
+                  createRectTween: (begin, end) {
+                    return MaterialRectCenterArcTween(begin: begin, end: end);
+                  },
+                  child: Material(
+                    shape: SmoothRectangleBorder(
+                        smoothness: 0.6,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: InkWell(
+                      onTap: () {
+                        print(index);
+                        context.pushTransparentRoute(
+                          PageView(
+                            physics: const BouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics()),
+                            // padEnds: true,
+                            controller: PageController(
+                                initialPage: index, viewportFraction: 1),
+                            children: List.generate(
+                              vacancies_screenshots.length,
+                              (index2) => ExpandedImageWidget(index2),
+                            ),
+                          ),
+                        );
+                      },
+                      borderRadius: BorderRadius.circular(8),
+                      child: Ink(
+                        width: 150,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    vacancies_screenshots.elementAt(index)),
+                                fit: BoxFit.cover)),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            })),
+      ),
+    );
+  }
+}
+
+class ExpandedImageWidget extends StatelessWidget {
+  const ExpandedImageWidget(
+    this.index, {
+    super.key,
+  });
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return DismissiblePage(
+      onDismissed: () {
+        Navigator.pop(context);
+      },
+      startingOpacity: 0.5,
+      isFullScreen: false,
+      backgroundColor: Colors.black,
+      child: Center(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height / 1.2,
+          width: 400,
+          child: Hero(
+            tag: 'screenshot$index',
+            createRectTween: (begin, end) {
+              return MaterialRectCenterArcTween(begin: begin, end: end);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                      image: AssetImage(vacancies_screenshots.elementAt(index)),
+                      fit: BoxFit.cover)),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HeaderWidget extends StatelessWidget {
+  const HeaderWidget({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(title,
+              style: const TextStyle(
+                  fontFamily: 'Neue',
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 80)),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Divider(),
+        ),
+      ],
+    );
   }
 }
