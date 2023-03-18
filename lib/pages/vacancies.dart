@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:overscroll_pop/overscroll_pop.dart';
 
-class VacanciesPage extends StatelessWidget {
+class VacanciesPage extends StatefulWidget {
   const VacanciesPage({super.key});
+
+  @override
+  State<VacanciesPage> createState() => _VacanciesPageState();
+}
+
+class _VacanciesPageState extends State<VacanciesPage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    _animation = CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOutCubicEmphasized,
+        reverseCurve: Curves.easeInOutCubicEmphasized);
+    _controller.forward();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   toolbarHeight: 300,
-        //   centerTitle: true,
-        //   title:
-        //   // expandedHeight: 300,
-        //   automaticallyImplyLeading: false,
-        // ),
         body: SingleChildScrollView(
       child: Column(
         children: [
@@ -102,7 +117,10 @@ class VacanciesPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 48.0),
                           child: IconButton(
-                              onPressed: () {
+                              onPressed: () async {
+                                _controller.reverse();
+                                await Future.delayed(
+                                    const Duration(milliseconds: 200));
                                 Navigator.pop(context);
                               },
                               icon: const Icon(Icons.arrow_back)),
@@ -139,15 +157,16 @@ class VacanciesPage extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               constraints: const BoxConstraints(maxWidth: 750),
-              child: Animate(
-                effects: [
-                  SlideEffect(
-                      begin: const Offset(0, 0.5),
-                      duration: const Duration(milliseconds: 800),
-                      curve: Curves.easeInOutCubicEmphasized),
-                ],
+              child: AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(0, 1000 * (1 - _animation.value)),
+                    child: child,
+                  );
+                },
                 child: Card(
-                  color: Color(0xff1c1c1c),
+                  color: const Color(0xff1c1c1c),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(96)),
                   child: Padding(
@@ -155,7 +174,7 @@ class VacanciesPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 48,
                         ),
                         const Align(
@@ -171,7 +190,7 @@ class VacanciesPage extends StatelessWidget {
                           padding: EdgeInsets.all(8.0),
                           child: Divider(),
                         ),
-                        Container(
+                        SizedBox(
                           height: 150,
                           width: double.infinity,
                           child: ClipRRect(
@@ -207,7 +226,7 @@ class VacanciesPage extends StatelessWidget {
                                         ))),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 1000,
                         ),
                       ],
