@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:overscroll_pop/overscroll_pop.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class VacanciesPage extends StatefulWidget {
   const VacanciesPage({super.key});
@@ -49,7 +50,8 @@ class _VacanciesPageState extends State<VacanciesPage>
                       parent: animation,
                       curve: Curves.easeInOutCubicEmphasized),
                   builder: (context, child) {
-                    return ClipRRect(
+                    return SmoothClipRRect(
+                      smoothness: 0.6,
                       borderRadius:
                           BorderRadius.circular(6 + 90 * animation.value),
                       child: Stack(
@@ -104,7 +106,8 @@ class _VacanciesPageState extends State<VacanciesPage>
                   child: fromHeroContext.widget,
                 );
               },
-              child: ClipRRect(
+              child: SmoothClipRRect(
+                smoothness: 0.6,
                 borderRadius: BorderRadius.circular(96),
                 child: Material(
                   child: Ink.image(
@@ -167,8 +170,8 @@ class _VacanciesPageState extends State<VacanciesPage>
                 },
                 child: Card(
                   color: const Color(0xff1c1c1c),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(96)),
+                  shape: SmoothRectangleBorder(
+                      smoothness: 0.6, borderRadius: BorderRadius.circular(96)),
                   child: Padding(
                     padding: const EdgeInsets.all(24.0),
                     child: Column(
@@ -205,6 +208,10 @@ class _VacanciesPageState extends State<VacanciesPage>
                                           padding:
                                               const EdgeInsets.only(right: 8),
                                           child: Material(
+                                            shape: SmoothRectangleBorder(
+                                                smoothness: 0.6,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
                                             child: InkWell(
                                               onTap: () {},
                                               borderRadius:

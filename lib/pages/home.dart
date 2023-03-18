@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lashamezvrishvili/main.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 import '../widgets/misc.dart';
 
@@ -56,7 +57,8 @@ class _HomePageState extends State<HomePage> {
                                 parent: animation,
                                 curve: Curves.easeInOutCubicEmphasized),
                             builder: (context, child) {
-                              return ClipRRect(
+                              return SmoothClipRRect(
+                                smoothness: 0.6,
                                 borderRadius: BorderRadius.circular(
                                     6 + 90 * (animation.value)),
                                 child: Material(
