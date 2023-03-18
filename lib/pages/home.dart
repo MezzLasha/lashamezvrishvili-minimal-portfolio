@@ -63,8 +63,8 @@ class _HomePageState extends State<HomePage> {
                                     6 + 90 * (animation.value)),
                                 child: Material(
                                   child: Ink.image(
-                                    image: const NetworkImage(
-                                        'https://lh3.googleusercontent.com/gK__LLaM4jqISqweP0_fxKpBhJuJgSJPqb7wuwRyqMwSBRnj1RJtgXrw69gdLsy2lyH33idBUO5whDJl1TYaHT50hMZc-tj1L49Iq0ctbynuU-0FbFk=w960'),
+                                    image: AssetImage(
+                                        'assets/images${MyApp.routes_list.elementAt(index)}.png'),
                                     fit: BoxFit.cover,
                                     child: Center(
                                       child: DefaultTextStyle(
@@ -94,10 +94,9 @@ class _HomePageState extends State<HomePage> {
                           decoration: BoxDecoration(
                               boxShadow: hovering[index] ? smoothBoxShadow : [],
                               borderRadius: BorderRadius.circular(6),
-                              image: const DecorationImage(
-                                image: NetworkImage(
-                                  'https://lh3.googleusercontent.com/gK__LLaM4jqISqweP0_fxKpBhJuJgSJPqb7wuwRyqMwSBRnj1RJtgXrw69gdLsy2lyH33idBUO5whDJl1TYaHT50hMZc-tj1L49Iq0ctbynuU-0FbFk=w960',
-                                ),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/images${MyApp.routes_list.elementAt(index)}.png'),
                                 fit: BoxFit.cover,
                               )),
                         ),

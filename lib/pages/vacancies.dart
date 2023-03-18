@@ -50,7 +50,7 @@ class _VacanciesPageState extends State<VacanciesPage>
           Container(
             constraints: const BoxConstraints(maxWidth: 800),
             height: 250,
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
             child: Hero(
               tag: '/vacancies',
               createRectTween: (begin, end) {
@@ -124,8 +124,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                 borderRadius: BorderRadius.circular(96),
                 child: Material(
                   child: Ink.image(
-                    image: const NetworkImage(
-                        'https://lh3.googleusercontent.com/gK__LLaM4jqISqweP0_fxKpBhJuJgSJPqb7wuwRyqMwSBRnj1RJtgXrw69gdLsy2lyH33idBUO5whDJl1TYaHT50hMZc-tj1L49Iq0ctbynuU-0FbFk=w960'),
+                    image: const AssetImage('assets/images/vacancies.png'),
                     fit: BoxFit.cover,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,17 +140,20 @@ class _VacanciesPageState extends State<VacanciesPage>
                               },
                               icon: const Icon(Icons.arrow_back)),
                         ),
-                        const DefaultTextStyle(
-                            style: TextStyle(
-                                fontFamily: 'Neue',
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 50),
-                            child: Text(
-                              " Vacancies",
-                              softWrap: false,
-                              overflow: TextOverflow.fade,
-                            )),
+                        const Flexible(
+                          child: DefaultTextStyle(
+                              style: TextStyle(
+                                  fontFamily: 'Neue',
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 50),
+                              child: Text(
+                                " Vacancies",
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.fade,
+                              )),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(right: 48.0),
                           child: IconButton(
@@ -172,7 +174,7 @@ class _VacanciesPageState extends State<VacanciesPage>
           Center(
             child: Container(
               alignment: Alignment.center,
-              constraints: const BoxConstraints(maxWidth: 750),
+              constraints: const BoxConstraints(maxWidth: 800),
               child: AnimatedBuilder(
                 animation: _animation,
                 builder: (context, child) {
@@ -183,6 +185,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                 },
                 child: Card(
                   color: const Color(0xff1c1c1c),
+                  margin: const EdgeInsets.all(16),
                   shape: SmoothRectangleBorder(
                       smoothness: 0.6, borderRadius: BorderRadius.circular(96)),
                   child: Padding(
