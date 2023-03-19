@@ -99,11 +99,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_web_plugins:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   js:
     dependency: transitive
     description:
@@ -144,14 +139,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
-  overscroll_pop:
-    dependency: "direct main"
-    description:
-      name: overscroll_pop
-      sha256: "397bcdb2ca1bdfa6ac6192c893a2cf681d2f821f7901c301c7667c1931a1fda2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.9"
   path:
     dependency: transitive
     description:

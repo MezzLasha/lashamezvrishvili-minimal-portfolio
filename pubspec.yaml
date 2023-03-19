@@ -34,7 +34,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_animate: ^4.1.0
-  overscroll_pop: ^0.0.9
+  # overscroll_pop: ^0.0.9
   smooth_corner: ^1.1.0
 
 dev_dependencies:
@@ -56,7 +56,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/
-    - assets/images/vacancies/
+    - assets/images/vacancies_images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
@@ -75,15 +75,15 @@ flutter:
           weight: 400
         - asset: assets\fonts\NeueMachina-Ultrabold.otf
           weight: 700
-    - family: Uber
-      fonts:
-        - asset: assets\fonts\UberMove-Light.ttf
-          weight: 300
-        - asset: assets\fonts\UberMove-Regular.ttf
-          weight: 400
-        - asset: assets\fonts\UberMoveMedium.otf
-          weight: 600
-        - asset: assets\fonts\UberMoveBold.otf
-          weight: 700
+    # - family: Uber
+    #   fonts:
+    #     - asset: assets\fonts\UberMove-Light.ttf
+    #       weight: 300
+    #     - asset: assets\fonts\UberMove-Regular.ttf
+    #       weight: 400
+    #     - asset: assets\fonts\UberMoveMedium.otf
+    #       weight: 600
+    #     - asset: assets\fonts\UberMoveBold.otf
+    #       weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

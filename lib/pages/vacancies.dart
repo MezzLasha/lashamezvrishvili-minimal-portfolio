@@ -1,18 +1,16 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:overscroll_pop/overscroll_pop.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-const vacancies_screenshots = {
-  'assets/images/vacancies/1.png',
-  'assets/images/vacancies/2.png',
-  'assets/images/vacancies/3.png',
-  'assets/images/vacancies/4.png',
-  'assets/images/vacancies/5.png',
-  'assets/images/vacancies/6.png',
-  'assets/images/vacancies/7.png',
+const vacanciesScreenshots = {
+  'assets/images/vacancies_images/1.png',
+  'assets/images/vacancies_images/2.png',
+  'assets/images/vacancies_images/3.png',
+  'assets/images/vacancies_images/4.png',
+  'assets/images/vacancies_images/5.png',
+  'assets/images/vacancies_images/6.png',
+  'assets/images/vacancies_images/7.png',
 };
 
 class VacanciesPage extends StatefulWidget {
@@ -341,7 +339,7 @@ class _VacanciesPageState extends State<VacanciesPage>
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics()),
-            children: List.generate(vacancies_screenshots.length, (index) {
+            children: List.generate(vacanciesScreenshots.length, (index) {
               // print(index);
               return Padding(
                 padding: const EdgeInsets.only(right: 8),
@@ -365,7 +363,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                             controller: PageController(
                                 initialPage: index, viewportFraction: 1),
                             children: List.generate(
-                              vacancies_screenshots.length,
+                              vacanciesScreenshots.length,
                               (index2) => ExpandedImageWidget(index2),
                             ),
                           ),
@@ -378,7 +376,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                             borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
                                 image: AssetImage(
-                                    vacancies_screenshots.elementAt(index)),
+                                    vacanciesScreenshots.elementAt(index)),
                                 fit: BoxFit.cover)),
                       ),
                     ),
@@ -420,7 +418,7 @@ class ExpandedImageWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
-                      image: AssetImage(vacancies_screenshots.elementAt(index)),
+                      image: AssetImage(vacanciesScreenshots.elementAt(index)),
                       fit: BoxFit.cover)),
             ),
           ),
