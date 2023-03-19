@@ -70,7 +70,16 @@ class _VacanciesPageState extends State<VacanciesPage>
                         smoothness: 0.6,
                         borderRadius: mdof.size.aspectRatio > 0.5625
                             ? BorderRadius.circular(6 + 90 * animation.value)
-                            : BorderRadius.circular(6 - 6 * animation.value),
+                            : BorderRadius.only(
+                                topLeft:
+                                    Radius.circular(6 + 42 * animation.value),
+                                topRight:
+                                    Radius.circular(6 + 42 * animation.value),
+                                bottomLeft:
+                                    Radius.circular((6 - 6 * animation.value)),
+                                bottomRight:
+                                    Radius.circular((6 - 6 * animation.value)),
+                              ),
                         child: mdof.size.aspectRatio > 0.5625
                             ? Material(
                                 child: Stack(
