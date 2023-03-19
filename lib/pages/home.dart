@@ -59,114 +59,120 @@ class _HomePageState extends State<HomePage> {
                                 curve: Curves.easeInOutCubicEmphasized),
                             builder: (context, child) {
                               return SmoothClipRRect(
-                                smoothness: 0.6,
-                                borderRadius: mdof.size.aspectRatio > 0.5625
-                                    ? BorderRadius.circular(
-                                        6 + 90 * animation.value)
-                                    : BorderRadius.circular(
-                                        6 - 6 * animation.value),
-                                child: mdof.size.aspectRatio > 0.5625
-                                    ? Material(
-                                        child: Stack(
-                                          fit: StackFit.expand,
-                                          children: [
-                                            toHeroContext.widget,
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Flexible(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 48.0),
-                                                    child: IconButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        icon: const Icon(
-                                                            Icons.arrow_back)),
-                                                  ),
-                                                ),
-                                                const Spacer(),
-                                                Flexible(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 48.0),
-                                                    child: IconButton(
-                                                        onPressed: () {
-                                                          //copy link to clipboard
-                                                          Clipboard.setData(
-                                                              const ClipboardData(
-                                                                  text:
-                                                                      'https://www.google.com'));
-                                                        },
-                                                        icon: const Icon(
-                                                            Icons.copy)),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            const Center(
-                                              child: DefaultTextStyle(
-                                                  style: TextStyle(
-                                                      fontFamily: 'Neue',
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 50),
-                                                  child: Text(
-                                                    " Vacancies",
-                                                    softWrap: false,
-                                                    overflow: TextOverflow.fade,
-                                                  )),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    : Material(
-                                        child: Ink.image(
-                                          image: const AssetImage(
-                                              'assets/images/vacancies.png'),
-                                          fit: BoxFit.cover,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                  smoothness: 0.6,
+                                  borderRadius: mdof.size.aspectRatio > 0.5625
+                                      ? BorderRadius.circular(
+                                          6 + 90 * animation.value)
+                                      : BorderRadius.circular(
+                                          6 - 6 * animation.value),
+                                  child: mdof.size.aspectRatio > 0.5625
+                                      ? Material(
+                                          child: Stack(
+                                            fit: StackFit.expand,
                                             children: [
-                                              Flexible(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 16.0),
-                                                  child: IconButton(
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      icon: const Icon(
-                                                          Icons.arrow_back)),
+                                              toHeroContext.widget,
+                                              Opacity(
+                                                opacity: animation.value,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 48.0),
+                                                      child: IconButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          icon: const Icon(Icons
+                                                              .arrow_back)),
+                                                    ),
+                                                    const Spacer(),
+                                                    Flexible(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                right: 48.0),
+                                                        child: IconButton(
+                                                            onPressed: () {
+                                                              //copy link to clipboard
+                                                              Clipboard.setData(
+                                                                  const ClipboardData(
+                                                                      text:
+                                                                          'https://www.google.com'));
+                                                            },
+                                                            icon: const Icon(
+                                                                Icons.copy)),
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
                                               ),
-                                              const DefaultTextStyle(
-                                                  style: TextStyle(
-                                                      fontFamily: 'Neue',
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 50),
-                                                  child: Text(
-                                                    " Vacancies",
-                                                    softWrap: false,
-                                                    overflow: TextOverflow.fade,
-                                                  )),
-                                              const SizedBox.shrink(),
+                                              const Center(
+                                                child: DefaultTextStyle(
+                                                    style: TextStyle(
+                                                        fontFamily: 'Neue',
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 50),
+                                                    child: Text(
+                                                      " Vacancies",
+                                                      softWrap: false,
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                    )),
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                      ),
-                              );
+                                        )
+                                      : Material(
+                                          child: Stack(
+                                            fit: StackFit.expand,
+                                            children: [
+                                              child ?? toHeroContext.widget,
+                                              Opacity(
+                                                opacity: animation.value,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 16.0),
+                                                      child: IconButton(
+                                                          onPressed: () {},
+                                                          icon: const Icon(Icons
+                                                              .arrow_back)),
+                                                    ),
+                                                    const Spacer(),
+                                                  ],
+                                                ),
+                                              ),
+                                              const Center(
+                                                child: DefaultTextStyle(
+                                                    style: TextStyle(
+                                                        fontFamily: 'Neue',
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 50),
+                                                    child: Text(
+                                                      " Vacancies",
+                                                      softWrap: false,
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                        ));
                             },
                             child: toHeroContext.widget,
                           );
@@ -195,21 +201,18 @@ class _HomePageState extends State<HomePage> {
                               )),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Center(
-                          child: DefaultTextStyle(
-                              style: const TextStyle(
-                                  fontFamily: 'Neue',
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 50),
-                              child: Text(
-                                MyApp.routes_names.elementAt(index),
-                                softWrap: false,
-                                overflow: TextOverflow.fade,
-                              )),
-                        ),
+                      Center(
+                        child: DefaultTextStyle(
+                            style: const TextStyle(
+                                fontFamily: 'Neue',
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 50),
+                            child: Text(
+                              ' ${MyApp.routes_names.elementAt(index)}',
+                              softWrap: false,
+                              overflow: TextOverflow.fade,
+                            )),
                       ),
                     ],
                   ),

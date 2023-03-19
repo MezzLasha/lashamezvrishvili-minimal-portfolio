@@ -67,98 +67,114 @@ class _VacanciesPageState extends State<VacanciesPage>
                       curve: Curves.easeInOutCubicEmphasized),
                   builder: (context, child) {
                     return SmoothClipRRect(
-                      smoothness: 0.6,
-                      borderRadius: mdof.size.aspectRatio > 0.5625
-                          ? BorderRadius.circular(6 + 90 * animation.value)
-                          : BorderRadius.circular(6 - 6 * animation.value),
-                      child: mdof.size.aspectRatio > 0.5625
-                          ? Stack(
-                              fit: StackFit.expand,
-                              children: [
-                                fromHeroContext.widget,
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                        smoothness: 0.6,
+                        borderRadius: mdof.size.aspectRatio > 0.5625
+                            ? BorderRadius.circular(6 + 90 * animation.value)
+                            : BorderRadius.circular(6 - 6 * animation.value),
+                        child: mdof.size.aspectRatio > 0.5625
+                            ? Material(
+                                child: Stack(
+                                  fit: StackFit.expand,
                                   children: [
-                                    Flexible(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 48.0),
-                                        child: IconButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            icon: const Icon(Icons.arrow_back)),
+                                    // toHeroContext.widget,
+
+                                    Ink.image(
+                                      image: const AssetImage(
+                                          'assets/images/vacancies.png'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Opacity(
+                                      opacity: animation.value,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 48.0),
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                icon: const Icon(
+                                                    Icons.arrow_back)),
+                                          ),
+                                          const Spacer(),
+                                          Flexible(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 48.0),
+                                              child: IconButton(
+                                                  onPressed: () {
+                                                    //copy link to clipboard
+                                                    Clipboard.setData(
+                                                        const ClipboardData(
+                                                            text:
+                                                                'https://www.google.com'));
+                                                  },
+                                                  icon: const Icon(Icons.copy)),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    const Spacer(),
-                                    Flexible(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 48.0),
-                                        child: IconButton(
-                                            onPressed: () {
-                                              //copy link to clipboard
-                                              Clipboard.setData(const ClipboardData(
-                                                  text:
-                                                      'https://www.google.com'));
-                                            },
-                                            icon: const Icon(Icons.copy)),
-                                      ),
-                                    )
+                                    const Center(
+                                      child: DefaultTextStyle(
+                                          style: TextStyle(
+                                              fontFamily: 'Neue',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 50),
+                                          child: Text(
+                                            " Vacancies",
+                                            softWrap: false,
+                                            overflow: TextOverflow.fade,
+                                          )),
+                                    ),
                                   ],
                                 ),
-                                const Center(
-                                  child: DefaultTextStyle(
-                                      style: TextStyle(
-                                          fontFamily: 'Neue',
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 50),
-                                      child: Text(
-                                        " Vacancies",
-                                        softWrap: false,
-                                        overflow: TextOverflow.fade,
-                                      )),
-                                ),
-                              ],
-                            )
-                          : Stack(
-                              fit: StackFit.expand,
-                              children: [
-                                fromHeroContext.widget,
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              )
+                            : Material(
+                                child: Stack(
+                                  fit: StackFit.expand,
                                   children: [
-                                    Flexible(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 16.0),
-                                        child: IconButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            icon: const Icon(Icons.arrow_back)),
+                                    child ?? toHeroContext.widget,
+                                    Opacity(
+                                      opacity: animation.value,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Flexible(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 16.0),
+                                              child: IconButton(
+                                                  onPressed: () {},
+                                                  icon: const Icon(
+                                                      Icons.arrow_back)),
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                        ],
                                       ),
                                     ),
-                                    const DefaultTextStyle(
-                                        style: TextStyle(
-                                            fontFamily: 'Neue',
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 50),
-                                        child: Text(
-                                          " Vacancies",
-                                          softWrap: false,
-                                          overflow: TextOverflow.fade,
-                                        )),
-                                    const SizedBox.shrink(),
+                                    const Center(
+                                      child: DefaultTextStyle(
+                                          style: TextStyle(
+                                              fontFamily: 'Neue',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 50),
+                                          child: Text(
+                                            " Vacancies",
+                                            softWrap: false,
+                                            overflow: TextOverflow.fade,
+                                          )),
+                                    ),
                                   ],
                                 ),
-                              ],
-                            ),
-                    );
+                              ));
                   },
                   child: fromHeroContext.widget,
                 );
@@ -177,23 +193,44 @@ class _VacanciesPageState extends State<VacanciesPage>
                   child: Ink.image(
                     image: const AssetImage('assets/images/vacancies.png'),
                     fit: BoxFit.cover,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Stack(
+                      fit: StackFit.expand,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left:
-                                  mdof.size.aspectRatio > 0.5625 ? 48.0 : 16.0),
-                          child: IconButton(
-                              onPressed: () async {
-                                _controller.reverse();
-                                await Future.delayed(
-                                    const Duration(milliseconds: 200));
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(Icons.arrow_back)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: mdof.size.aspectRatio > 0.5625
+                                      ? 48.0
+                                      : 16.0),
+                              child: IconButton(
+                                  onPressed: () async {
+                                    _controller.reverse();
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 200));
+                                    Navigator.pop(context);
+                                  },
+                                  icon: const Icon(Icons.arrow_back)),
+                            ),
+                            mdof.size.aspectRatio > 0.5625
+                                ? Padding(
+                                    padding: EdgeInsets.only(
+                                        right: mdof.size.aspectRatio > 0.5625
+                                            ? 48.0
+                                            : 16.0),
+                                    child: IconButton(
+                                        onPressed: () {
+                                          //copy link to clipboard
+                                          Clipboard.setData(const ClipboardData(
+                                              text: 'https://www.google.com'));
+                                        },
+                                        icon: const Icon(Icons.copy)),
+                                  )
+                                : const SizedBox.shrink(),
+                          ],
                         ),
-                        const Flexible(
+                        const Center(
                           child: DefaultTextStyle(
                               style: TextStyle(
                                   fontFamily: 'Neue',
@@ -207,21 +244,6 @@ class _VacanciesPageState extends State<VacanciesPage>
                                 overflow: TextOverflow.fade,
                               )),
                         ),
-                        mdof.size.aspectRatio > 0.5625
-                            ? Padding(
-                                padding: EdgeInsets.only(
-                                    right: mdof.size.aspectRatio > 0.5625
-                                        ? 48.0
-                                        : 16.0),
-                                child: IconButton(
-                                    onPressed: () {
-                                      //copy link to clipboard
-                                      Clipboard.setData(const ClipboardData(
-                                          text: 'https://www.google.com'));
-                                    },
-                                    icon: const Icon(Icons.copy)),
-                              )
-                            : const SizedBox.shrink(),
                       ],
                     ),
                   ),
