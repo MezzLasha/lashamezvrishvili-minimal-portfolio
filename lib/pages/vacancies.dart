@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:dismissible_page/dismissible_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 const vacanciesScreenshots = {
@@ -311,17 +315,113 @@ class _VacanciesPageState extends State<VacanciesPage>
                               fontSize: 30,
                               fontWeight: FontWeight.w900),
                         ),
-                        InkWell(
-                          onTap: () {},
-                          child: Ink.image(
-                            height: 300, //TODO fix to correct sizing
-                            width: double.infinity,
-                            image: AssetImage(
-                                'assets/images/vacancies_images/link_google_play_preview.png'),
-                          ),
-                        ),
                         const SizedBox(
-                          height: 800,
+                          height: 16,
+                        ),
+                        AspectRatio(
+                            aspectRatio: 1.734,
+                            child: InkWell(
+                              onTap: () async {
+                                await launch(
+                                    'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy');
+                              },
+                              customBorder: SmoothRectangleBorder(
+                                smoothness: 0.6,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Positioned.fill(
+                                    child: Ink(
+                                      decoration: BoxDecoration(
+                                        borderRadius: SmoothRectangleBorder(
+                                          smoothness: 0.6,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ).borderRadius,
+                                        image: const DecorationImage(
+                                            image: AssetImage(
+                                                'assets/images/vacancies_images/link_google_play_preview.png'),
+                                            fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: SmoothRectangleBorder(
+                                        smoothness: 0.6,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ).borderRadius,
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.black.withOpacity(0.2),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: const [
+                                          Icon(
+                                            Icons.link,
+                                            color: Colors.black,
+                                          ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text(
+                                            'play.google.com',
+                                            style: TextStyle(
+                                                fontFamily: 'Neue',
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        SizedBox(
+                          height: 55,
+                          child: OutlinedButton(
+                              onPressed: () {
+                                _controller.reverse();
+                                Future.delayed(
+                                        const Duration(milliseconds: 200))
+                                    .then((value) => Navigator.pop(context));
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Icon(Icons.arrow_back_ios,
+                                      color: Colors.white, size: 16),
+                                  // const SizedBox(
+                                  //   width: 8,
+                                  // ),
+                                  Text(
+                                    'Back',
+                                    style: TextStyle(
+                                      fontFamily: 'Neue',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              )),
                         ),
                       ],
                     ),
