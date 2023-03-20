@@ -228,9 +228,10 @@ class _VacanciesPageState extends State<VacanciesPage>
                                             : 16.0),
                                     child: IconButton(
                                         onPressed: () {
-                                          //copy link to clipboard
+                                          //TODO OPEN SHARE MENU
                                           Clipboard.setData(const ClipboardData(
-                                              text: 'https://www.google.com'));
+                                              text:
+                                                  'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy'));
                                         },
                                         icon: const Icon(Icons.copy)),
                                   )
@@ -291,28 +292,33 @@ class _VacanciesPageState extends State<VacanciesPage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(
-                          height: 48,
-                        ),
-                        const HeaderWidget(
-                          title: 'SCREENSHOTS.',
+                        SizedBox(
+                          height: mdof.size.aspectRatio > 0.5625 ? 48 : 0,
                         ),
                         _buildScreenshotsList(),
                         const SizedBox(
                           height: 48,
                         ),
-                        const HeaderWidget(
-                          title: 'DESCRIPTION.',
-                        ),
+                        _buildDescription(),
                         const SizedBox(
-                          height: 16,
+                          height: 48,
                         ),
-                        const Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl. Sed euismod, nunc ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl.',
+                        const HeaderWidget(
+                          title: 'Check it out on\nGoogle Play Store.',
                           style: TextStyle(
                               fontFamily: 'Neue',
-                              color: Colors.white,
-                              fontSize: 16),
+                              color: Color(0xffd5fcc1),
+                              fontSize: 30,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Ink.image(
+                            height: 300, //TODO fix to correct sizing
+                            width: double.infinity,
+                            image: AssetImage(
+                                'assets/images/vacancies_images/link_google_play_preview.png'),
+                          ),
                         ),
                         const SizedBox(
                           height: 800,
@@ -329,62 +335,111 @@ class _VacanciesPageState extends State<VacanciesPage>
     ));
   }
 
-  SizedBox _buildScreenshotsList() {
-    return SizedBox(
-      height: 250,
-      width: double.infinity,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: ListView(
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics()),
-            children: List.generate(vacanciesScreenshots.length, (index) {
-              // print(index);
-              return Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: Hero(
-                  tag: 'screenshot$index',
-                  createRectTween: (begin, end) {
-                    return MaterialRectCenterArcTween(begin: begin, end: end);
-                  },
-                  child: Material(
-                    shape: SmoothRectangleBorder(
-                        smoothness: 0.6,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: InkWell(
-                      onTap: () {
-                        print(index);
-                        context.pushTransparentRoute(
-                          PageView(
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            // padEnds: true,
-                            controller: PageController(
-                                initialPage: index, viewportFraction: 1),
-                            children: List.generate(
-                              vacanciesScreenshots.length,
-                              (index2) => ExpandedImageWidget(index2),
-                            ),
-                          ),
-                        );
+  Column _buildDescription() {
+    return Column(
+      children: [
+        const HeaderWidget(
+          title: 'DESCRIPTION.',
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        RichText(
+          text: TextSpan(
+            style: const TextStyle(
+                fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+            children: [
+              const TextSpan(
+                  text:
+                      'The Vacancies app is a mobile application that can be downloaded from the Google Play Store for Android users. It\'s designed to help you find and apply to your dream job with ease. \n\n'),
+              const TextSpan(
+                  text:
+                      'The app supports automatic resume attachments, allowing you to apply to multiple job openings without having to search through multiple websites. The app uses web scraping technology to gather all the latest job advertisements from other websites and present them to you in one convenient location. \n\n'),
+              const TextSpan(
+                  text:
+                      'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the "'),
+              TextSpan(
+                  text: 'Material You',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w200,
+                      color: Theme.of(context).colorScheme.onPrimary)),
+              const TextSpan(
+                  text:
+                      '" design language, ensuring a modern and intuitive interface for our users. \n\n'),
+              const TextSpan(
+                  text:
+                      'Whether you\'re a seasoned professional or just starting out, the Vacancies app is the perfect tool to help you land your dream job. Give it a try today!'),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildScreenshotsList() {
+    return Column(
+      children: [
+        const HeaderWidget(
+          title: 'SCREENSHOTS.',
+        ),
+        SizedBox(
+          height: 250,
+          width: double.infinity,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: ListView(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                children: List.generate(vacanciesScreenshots.length, (index) {
+                  // print(index);
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Hero(
+                      tag: 'screenshot$index',
+                      createRectTween: (begin, end) {
+                        return MaterialRectCenterArcTween(
+                            begin: begin, end: end);
                       },
-                      borderRadius: BorderRadius.circular(8),
-                      child: Ink(
-                        width: 150,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    vacanciesScreenshots.elementAt(index)),
-                                fit: BoxFit.cover)),
+                      child: Material(
+                        shape: SmoothRectangleBorder(
+                            smoothness: 0.6,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: InkWell(
+                          onTap: () {
+                            print(index);
+                            context.pushTransparentRoute(
+                              PageView(
+                                physics: const BouncingScrollPhysics(
+                                    parent: AlwaysScrollableScrollPhysics()),
+                                // padEnds: true,
+                                controller: PageController(
+                                    initialPage: index, viewportFraction: 1),
+                                children: List.generate(
+                                  vacanciesScreenshots.length,
+                                  (index2) => ExpandedImageWidget(index2),
+                                ),
+                              ),
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(8),
+                          child: Ink(
+                            width: 150,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        vacanciesScreenshots.elementAt(index)),
+                                    fit: BoxFit.cover)),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              );
-            })),
-      ),
+                  );
+                })),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -432,9 +487,11 @@ class HeaderWidget extends StatelessWidget {
   const HeaderWidget({
     super.key,
     required this.title,
+    this.style,
   });
 
   final String title;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -443,11 +500,12 @@ class HeaderWidget extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(title,
-              style: const TextStyle(
-                  fontFamily: 'Neue',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 80)),
+              style: style ??
+                  const TextStyle(
+                      fontFamily: 'Neue',
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 80)),
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
