@@ -28,12 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  auto_size_text: ^3.0.0
-  cupertino_icons: ^1.0.2
+  # auto_size_text: ^3.0.0
+  # cupertino_icons: ^1.0.2
   dismissible_page: ^1.0.1
   flutter:
     sdk: flutter
-  flutter_animate: ^4.1.0
+  # flutter_animate: ^4.1.0
   flutter_custom_tabs: ^1.0.4
   smooth_corner: ^1.1.0
 
@@ -75,15 +75,15 @@ flutter:
           weight: 400
         - asset: assets\fonts\NeueMachina-Ultrabold.otf
           weight: 700
-    - family: Uber
-      fonts:
-        - asset: assets\fonts\UberMove-Light.ttf
-          weight: 300
-        - asset: assets\fonts\UberMove-Regular.ttf
-          weight: 400
-        - asset: assets\fonts\UberMoveMedium.otf
-          weight: 600
-        - asset: assets\fonts\UberMoveBold.otf
-          weight: 700
+    # - family: Uber
+    #   fonts:
+    #     - asset: assets\fonts\UberMove-Light.ttf
+    #       weight: 300
+    #     - asset: assets\fonts\UberMove-Regular.ttf
+    #       weight: 400
+    #     - asset: assets\fonts\UberMoveMedium.otf
+    #       weight: 600
+    #     - asset: assets\fonts\UberMoveBold.otf
+    #       weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

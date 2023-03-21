@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                                           child: Stack(
                                             fit: StackFit.expand,
                                             children: [
-                                              child ?? toHeroContext.widget,
+                                              toHeroContext.widget,
                                               Opacity(
                                                 opacity: animation.value,
                                                 child: Row(
