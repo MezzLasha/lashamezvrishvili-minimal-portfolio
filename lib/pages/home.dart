@@ -38,9 +38,11 @@ class _HomePageState extends State<HomePage> {
                   });
                 },
                 borderRadius: BorderRadius.circular(6),
-                child: SizedBox(
-                  height: 100,
-                  width: 120,
+                child: AnimatedContainer(
+                  width: hovering[index] ? 160 : 120,
+                  duration: const Duration(milliseconds: 700),
+                  curve: Curves.easeInOutCubicEmphasized,
+                  height: 120,
                   child: Stack(
                     children: [
                       Hero(
@@ -118,21 +120,7 @@ class _HomePageState extends State<HomePage> {
                                                   ],
                                                 ),
                                               ),
-                                              const Center(
-                                                child: DefaultTextStyle(
-                                                    style: TextStyle(
-                                                        fontFamily: 'Neue',
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 50),
-                                                    child: Text(
-                                                      " Vacancies",
-                                                      softWrap: false,
-                                                      overflow:
-                                                          TextOverflow.fade,
-                                                    )),
-                                              ),
+                                              child!,
                                             ],
                                           ),
                                         )
@@ -161,33 +149,30 @@ class _HomePageState extends State<HomePage> {
                                                   ],
                                                 ),
                                               ),
-                                              const Center(
-                                                child: DefaultTextStyle(
-                                                    style: TextStyle(
-                                                        fontFamily: 'Neue',
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 50),
-                                                    child: Text(
-                                                      " Vacancies",
-                                                      softWrap: false,
-                                                      overflow:
-                                                          TextOverflow.fade,
-                                                    )),
-                                              ),
+                                              child!
                                             ],
                                           ),
                                         ));
                             },
-                            child: toHeroContext.widget,
+                            child: Center(
+                              child: DefaultTextStyle(
+                                  style: const TextStyle(
+                                      fontFamily: 'Neue',
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 50),
+                                  child: Text(
+                                    " ${MyApp.routes_names.elementAt(index)}",
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
+                                  )),
+                            ),
                           );
                         },
                         child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
+                          // width: 120,
+                          duration: const Duration(milliseconds: 1000),
                           curve: Curves.easeInOutCubicEmphasized,
-                          height: /*hovering[index] ? 110 : */ 100,
-                          width: 120,
                           decoration: BoxDecoration(
                               boxShadow: hovering[index]
                                   ? smoothBoxShadow
