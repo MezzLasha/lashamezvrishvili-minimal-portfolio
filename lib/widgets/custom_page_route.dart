@@ -11,21 +11,12 @@ class CustomRoute extends PageRouteBuilder {
               Animation<double> animation,
               Animation<double> secondaryAnimation,
               Widget child) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0.0, 1.0),
-                end: Offset.zero,
-              ).animate(CurvedAnimation(
+            return FadeTransition(
+              opacity: CurvedAnimation(
                   parent: animation,
                   curve: Curves.easeInOutCubicEmphasized,
-                  reverseCurve: Curves.easeInOutCubicEmphasized)),
-              child: FadeTransition(
-                opacity: CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.easeInOutCubicEmphasized,
-                    reverseCurve: Curves.easeInOutCubicEmphasized.flipped),
-                child: child,
-              ),
+                  reverseCurve: Curves.easeInOutCubicEmphasized.flipped),
+              child: child,
             );
           },
           pageBuilder: (BuildContext context, Animation<double> animation,

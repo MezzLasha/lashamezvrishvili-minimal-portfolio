@@ -104,6 +104,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
+                                                color: Colors.black,
                                                 icon: const Icon(
                                                     Icons.arrow_back)),
                                           ),
@@ -120,6 +121,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                                                             text:
                                                                 'https://www.google.com'));
                                                   },
+                                                  color: Colors.black,
                                                   icon: const Icon(Icons.copy)),
                                             ),
                                           )
@@ -159,6 +161,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                                                   left: 16.0),
                                               child: IconButton(
                                                   onPressed: () {},
+                                                  color: Colors.black,
                                                   icon: const Icon(
                                                       Icons.arrow_back)),
                                             ),
@@ -219,7 +222,10 @@ class _VacanciesPageState extends State<VacanciesPage>
                                         const Duration(milliseconds: 200));
                                     Navigator.pop(context);
                                   },
-                                  icon: const Icon(Icons.arrow_back)),
+                                  color: Colors.black,
+                                  icon: const Icon(
+                                    Icons.arrow_back,
+                                  )),
                             ),
                             mdof.size.aspectRatio > 0.5625
                                 ? Padding(
@@ -228,13 +234,12 @@ class _VacanciesPageState extends State<VacanciesPage>
                                             ? 48.0
                                             : 16.0),
                                     child: IconButton(
-                                        onPressed: () {
-                                          //TODO OPEN SHARE MENU
-                                          Clipboard.setData(const ClipboardData(
-                                              text:
-                                                  'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy'));
+                                        onPressed: () async {
+                                          await launch(
+                                              'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy');
                                         },
-                                        icon: const Icon(Icons.copy)),
+                                        color: Colors.black,
+                                        icon: const Icon(Icons.open_in_new)),
                                   )
                                 : const SizedBox.shrink(),
                           ],
@@ -273,7 +278,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                   );
                 },
                 child: Card(
-                  color: const Color(0xff1c1c1c),
+                  color: const Color(0xff0a0a0a),
                   margin: mdof.size.aspectRatio > 0.5625
                       ? const EdgeInsets.all(16)
                       : EdgeInsets.zero,
@@ -454,15 +459,16 @@ class _VacanciesPageState extends State<VacanciesPage>
                       'The app supports automatic resume attachments, allowing you to apply to multiple job openings without having to search through multiple websites. The app uses web scraping technology to gather all the latest job advertisements from other websites and present them to you in one convenient location. \n\n'),
               const TextSpan(
                   text:
-                      'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the "'),
+                      'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the '),
               TextSpan(
                   text: 'Material You',
                   style: TextStyle(
                       fontWeight: FontWeight.w200,
-                      color: Theme.of(context).colorScheme.onPrimary)),
+                      fontStyle: FontStyle.italic,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant)),
               const TextSpan(
                   text:
-                      '" design language, ensuring a modern and intuitive interface for our users. \n\n'),
+                      ' design language, ensuring a modern and intuitive interface for our users. \n\n'),
               const TextSpan(
                   text:
                       'Whether you\'re a seasoned professional or just starting out, the Vacancies app is the perfect tool to help you land your dream job. Give it a try today!'),
@@ -504,7 +510,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                             borderRadius: BorderRadius.circular(8)),
                         child: InkWell(
                           onTap: () {
-                            print(index);
+                            // print(index);
                             context.pushTransparentRoute(
                               PageView(
                                 physics: const BouncingScrollPhysics(
@@ -566,12 +572,23 @@ class ExpandedImageWidget extends StatelessWidget {
             createRectTween: (begin, end) {
               return MaterialRectCenterArcTween(begin: begin, end: end);
             },
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                      image: AssetImage(vacanciesScreenshots.elementAt(index)),
-                      fit: BoxFit.cover)),
+            child: Material(
+              color: Colors.transparent,
+              shape: SmoothRectangleBorder(
+                  smoothness: 0.6, borderRadius: BorderRadius.circular(8)),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Ink(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                          image:
+                              AssetImage(vacanciesScreenshots.elementAt(index)),
+                          fit: BoxFit.cover)),
+                ),
+              ),
             ),
           ),
         ),
