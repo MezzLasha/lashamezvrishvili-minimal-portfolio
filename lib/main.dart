@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lashamezvrishvili/pages/aggregate.dart';
 import 'package:lashamezvrishvili/pages/home.dart';
-import 'package:lashamezvrishvili/pages/landing.dart';
 import 'package:lashamezvrishvili/pages/terminal.dart';
 import 'package:lashamezvrishvili/pages/vacancies.dart';
 import 'package:lashamezvrishvili/widgets/custom_page_route.dart';
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
         Widget page;
         switch (settings.name) {
           case '/':
-            page = const LandingPage();
+            page = const HomePage();
             break;
           case '/vacancies':
             page = const VacanciesPage();
