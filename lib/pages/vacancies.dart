@@ -301,7 +301,9 @@ class _VacanciesPageState extends State<VacanciesPage>
                         SizedBox(
                           height: mdof.size.aspectRatio > 0.5625 ? 48 : 0,
                         ),
-                        _buildScreenshotsList(),
+                        const ScreenshotsListWidget(
+                          screenshots: vacanciesScreenshots,
+                        ),
                         const SizedBox(
                           height: 48,
                         ),
@@ -478,8 +480,18 @@ class _VacanciesPageState extends State<VacanciesPage>
       ],
     );
   }
+}
 
-  Widget _buildScreenshotsList() {
+class ScreenshotsListWidget extends StatelessWidget {
+  const ScreenshotsListWidget({
+    super.key,
+    required this.screenshots,
+  });
+
+  final Set<String> screenshots;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         const HeaderWidget(
@@ -494,7 +506,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
-                children: List.generate(vacanciesScreenshots.length, (index) {
+                children: List.generate(screenshots.length, (index) {
                   // print(index);
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
@@ -519,7 +531,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                                 controller: PageController(
                                     initialPage: index, viewportFraction: 1),
                                 children: List.generate(
-                                  vacanciesScreenshots.length,
+                                  screenshots.length,
                                   (index2) => ExpandedImageWidget(index2),
                                 ),
                               ),
@@ -532,7 +544,7 @@ class _VacanciesPageState extends State<VacanciesPage>
                                 borderRadius: BorderRadius.circular(8),
                                 image: DecorationImage(
                                     image: AssetImage(
-                                        vacanciesScreenshots.elementAt(index)),
+                                        screenshots.elementAt(index)),
                                     fit: BoxFit.cover)),
                           ),
                         ),

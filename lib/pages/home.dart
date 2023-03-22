@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lashamezvrishvili/main.dart';
 import 'package:smooth_corner/smooth_corner.dart';
-
 import '../widgets/misc.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,9 +18,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final mdof = MediaQuery.of(context);
-    return Scaffold(
-      backgroundColor: Color(0xff121212),
-      body: Center(
+    return SizedBox(
+      height: mdof.size.height,
+      width: mdof.size.width,
+      child: Center(
         child: Wrap(
           spacing: 10,
           runSpacing: 10,
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                             curve: Curves.easeInOutCubicEmphasized,
                             decoration: BoxDecoration(
                                 boxShadow: hovering[index]
-                                    ? smoothBoxShadow
+                                    ? darkSmoothBoxShadow
                                     : const [
                                         BoxShadow(
                                             color:

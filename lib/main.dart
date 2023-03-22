@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lashamezvrishvili/pages/aggregate.dart';
 import 'package:lashamezvrishvili/pages/home.dart';
+import 'package:lashamezvrishvili/pages/landing.dart';
 import 'package:lashamezvrishvili/pages/terminal.dart';
 import 'package:lashamezvrishvili/pages/vacancies.dart';
 import 'package:lashamezvrishvili/widgets/custom_page_route.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       darkTheme: ThemeData.dark(useMaterial3: true),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.mouse,
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         Widget page;
         switch (settings.name) {
           case '/':
-            page = const HomePage();
+            page = const LandingPage();
             break;
           case '/vacancies':
             page = const VacanciesPage();
