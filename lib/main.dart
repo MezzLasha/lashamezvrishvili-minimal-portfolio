@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:lashamezvrishvili/pages/about_page.dart';
 import 'package:lashamezvrishvili/pages/aggregate.dart';
 import 'package:lashamezvrishvili/pages/home.dart';
 import 'package:lashamezvrishvili/pages/terminal.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark(useMaterial3: true),
       themeMode: ThemeMode.light,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
@@ -61,6 +63,7 @@ class MyApp extends StatelessWidget {
           case '/terminal':
             page = const TerminalPage();
             break;
+
           // Add more cases for additional named routes
           default:
             return null;
