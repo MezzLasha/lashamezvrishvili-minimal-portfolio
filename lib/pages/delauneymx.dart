@@ -90,6 +90,19 @@ class _DelauneyPageState extends State<DelauneyPage>
                                           'assets/images/delauneymx.png'),
                                       fit: BoxFit.cover,
                                     ),
+                                    const Center(
+                                      child: DefaultTextStyle(
+                                          style: TextStyle(
+                                              fontFamily: 'Neue',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 50),
+                                          child: Text(
+                                            " Delauney.mx",
+                                            softWrap: false,
+                                            overflow: TextOverflow.fade,
+                                          )),
+                                    ),
                                     Opacity(
                                       opacity: animation.value,
                                       child: Row(
@@ -125,6 +138,14 @@ class _DelauneyPageState extends State<DelauneyPage>
                                         ],
                                       ),
                                     ),
+                                  ],
+                                ),
+                              )
+                            : Material(
+                                child: Stack(
+                                  fit: StackFit.expand,
+                                  children: [
+                                    child ?? toHeroContext.widget,
                                     const Center(
                                       child: DefaultTextStyle(
                                           style: TextStyle(
@@ -138,14 +159,6 @@ class _DelauneyPageState extends State<DelauneyPage>
                                             overflow: TextOverflow.fade,
                                           )),
                                     ),
-                                  ],
-                                ),
-                              )
-                            : Material(
-                                child: Stack(
-                                  fit: StackFit.expand,
-                                  children: [
-                                    child ?? toHeroContext.widget,
                                     Opacity(
                                       opacity: animation.value,
                                       child: Row(
@@ -166,19 +179,6 @@ class _DelauneyPageState extends State<DelauneyPage>
                                           const Spacer(),
                                         ],
                                       ),
-                                    ),
-                                    const Center(
-                                      child: DefaultTextStyle(
-                                          style: TextStyle(
-                                              fontFamily: 'Neue',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 50),
-                                          child: Text(
-                                            " Delauney.mx",
-                                            softWrap: false,
-                                            overflow: TextOverflow.fade,
-                                          )),
                                     ),
                                   ],
                                 ),
@@ -204,6 +204,20 @@ class _DelauneyPageState extends State<DelauneyPage>
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
+                        const Center(
+                          child: DefaultTextStyle(
+                              style: TextStyle(
+                                  fontFamily: 'Neue',
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 50),
+                              child: Text(
+                                " Delauney.mx",
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.fade,
+                              )),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -240,20 +254,6 @@ class _DelauneyPageState extends State<DelauneyPage>
                                   )
                                 : const SizedBox.shrink(),
                           ],
-                        ),
-                        const Center(
-                          child: DefaultTextStyle(
-                              style: TextStyle(
-                                  fontFamily: 'Neue',
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 50),
-                              child: Text(
-                                " Delauney.mx",
-                                maxLines: 2,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.fade,
-                              )),
                         ),
                       ],
                     ),

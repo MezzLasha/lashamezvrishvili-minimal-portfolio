@@ -201,6 +201,20 @@ class _AggregatePageState extends State<AggregatePage>
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
+                        const Center(
+                          child: DefaultTextStyle(
+                              style: TextStyle(
+                                  fontFamily: 'Neue',
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 50),
+                              child: Text(
+                                " Aggregate",
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.fade,
+                              )),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -237,20 +251,6 @@ class _AggregatePageState extends State<AggregatePage>
                                   )
                                 : const SizedBox.shrink(),
                           ],
-                        ),
-                        const Center(
-                          child: DefaultTextStyle(
-                              style: TextStyle(
-                                  fontFamily: 'Neue',
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 50),
-                              child: Text(
-                                " Aggregate",
-                                maxLines: 2,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.fade,
-                              )),
                         ),
                       ],
                     ),

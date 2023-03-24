@@ -39,174 +39,211 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       body: Stack(
         children: [
           mdof.size.aspectRatio > 0.5625
-              ? const Positioned(top: 24, left: 12, child: LogoWidget())
-              : const Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 24.0, right: 24),
-                    child: LogoWidget(),
-                  )),
-          Center(
-            child: Wrap(spacing: 10, runSpacing: 10, children: [
-              ...List.generate(MyApp.routes_list.length, (index) {
-                return Animate(
-                  effects: [
-                    ScaleEffect(
-                      curve: Curves.easeInOutCubicEmphasized,
-                      delay: Duration(milliseconds: 100 * index),
-                    ),
-                    FlipEffect(
-                      curve: Curves.easeInOutCubicEmphasized,
-                      delay: Duration(milliseconds: 100 * index),
-                    )
-                  ],
-                  controller: _controller,
-                  child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, MyApp.routes_list.elementAt(index));
-                        },
-                        onHover: (value) {
-                          setState(() {
-                            hovering[index] = value;
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(6),
-                        child: AnimatedContainer(
-                          width: hovering[index] ? 200 : 160,
-                          duration: const Duration(milliseconds: 700),
-                          curve: Curves.easeInOutCubicEmphasized,
-                          height: 160,
-                          child: Stack(
-                            children: [
-                              Hero(
-                                tag: MyApp.routes_list.elementAt(index),
-                                createRectTween: (begin, end) {
-                                  return MaterialRectCenterArcTween(
-                                      begin: begin, end: end);
-                                },
-                                flightShuttleBuilder: (flightContext,
-                                    animation,
-                                    flightDirection,
-                                    fromHeroContext,
-                                    toHeroContext) {
-                                  return AnimatedBuilder(
-                                    animation: CurvedAnimation(
-                                        parent: animation,
-                                        curve: Curves.easeInOutCubicEmphasized),
-                                    builder: (context, child) {
-                                      return SmoothClipRRect(
-                                          smoothness: 0.6,
-                                          borderRadius: mdof.size.aspectRatio >
-                                                  0.5625
-                                              ? BorderRadius.circular(
-                                                  6 + 90 * animation.value)
-                                              : BorderRadius.only(
-                                                  topLeft: Radius.circular(
-                                                      6 + 42 * animation.value),
-                                                  topRight: Radius.circular(
-                                                      6 + 42 * animation.value),
-                                                  bottomLeft: Radius.circular(
-                                                      (6 -
-                                                          6 * animation.value)),
-                                                  bottomRight: Radius.circular(
-                                                      (6 -
-                                                          6 * animation.value)),
-                                                ),
-                                          child: mdof.size.aspectRatio > 0.5625
-                                              ? Material(
-                                                  child: Stack(
-                                                    fit: StackFit.expand,
-                                                    children: [
-                                                      toHeroContext.widget,
-                                                      Opacity(
-                                                        opacity:
-                                                            animation.value,
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left:
-                                                                          48.0),
-                                                              child: IconButton(
-                                                                  onPressed:
-                                                                      () {},
-                                                                  color: Colors
-                                                                      .black,
-                                                                  icon: const Icon(
-                                                                      Icons
-                                                                          .arrow_back)),
-                                                            ),
-                                                            const Spacer(),
-                                                            Flexible(
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        right:
-                                                                            48.0),
-                                                                child: IconButton(
-                                                                    onPressed:
-                                                                        () {},
-                                                                    color: Colors
-                                                                        .black,
-                                                                    icon: const Icon(
-                                                                        Icons
-                                                                            .open_in_new)),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
+              ? Center(
+                  child: Wrap(spacing: 10, runSpacing: 10, children: [
+                    ...List.generate(MyApp.routes_list.length, (index) {
+                      return Animate(
+                        effects: [
+                          ScaleEffect(
+                            curve: Curves.easeInOutCubicEmphasized,
+                            delay: Duration(milliseconds: 100 * index),
+                          ),
+                          FlipEffect(
+                            curve: Curves.easeInOutCubicEmphasized,
+                            delay: Duration(milliseconds: 100 * index),
+                          )
+                        ],
+                        controller: _controller,
+                        child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context,
+                                    MyApp.routes_list.elementAt(index));
+                              },
+                              onHover: (value) {
+                                setState(() {
+                                  hovering[index] = value;
+                                });
+                              },
+                              borderRadius: BorderRadius.circular(6),
+                              child: AnimatedContainer(
+                                width: hovering[index] ? 200 : 160,
+                                duration: const Duration(milliseconds: 700),
+                                curve: Curves.easeInOutCubicEmphasized,
+                                height: 160,
+                                child: Stack(
+                                  children: [
+                                    Hero(
+                                      tag: MyApp.routes_list.elementAt(index),
+                                      createRectTween: (begin, end) {
+                                        return MaterialRectCenterArcTween(
+                                            begin: begin, end: end);
+                                      },
+                                      flightShuttleBuilder: (flightContext,
+                                          animation,
+                                          flightDirection,
+                                          fromHeroContext,
+                                          toHeroContext) {
+                                        return AnimatedBuilder(
+                                          animation: CurvedAnimation(
+                                              parent: animation,
+                                              curve: Curves
+                                                  .easeInOutCubicEmphasized),
+                                          builder: (context, child) {
+                                            return SmoothClipRRect(
+                                                smoothness: 0.6,
+                                                borderRadius: mdof
+                                                            .size.aspectRatio >
+                                                        0.5625
+                                                    ? BorderRadius.circular(6 +
+                                                        90 * animation.value)
+                                                    : BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(6 +
+                                                                42 *
+                                                                    animation
+                                                                        .value),
+                                                        topRight:
+                                                            Radius.circular(6 +
+                                                                42 *
+                                                                    animation
+                                                                        .value),
+                                                        bottomLeft:
+                                                            Radius.circular((6 -
+                                                                6 *
+                                                                    animation
+                                                                        .value)),
+                                                        bottomRight:
+                                                            Radius.circular((6 -
+                                                                6 *
+                                                                    animation
+                                                                        .value)),
                                                       ),
-                                                      child!,
-                                                    ],
-                                                  ),
-                                                )
-                                              : Material(
-                                                  child: Stack(
-                                                    fit: StackFit.expand,
-                                                    children: [
-                                                      toHeroContext.widget,
-                                                      Opacity(
-                                                        opacity:
-                                                            animation.value,
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left:
-                                                                          16.0),
-                                                              child: IconButton(
-                                                                  onPressed:
-                                                                      () {},
-                                                                  color: Colors
-                                                                      .black,
-                                                                  icon: const Icon(
-                                                                      Icons
-                                                                          .arrow_back)),
+                                                child:
+                                                    mdof.size.aspectRatio >
+                                                            0.5625
+                                                        ? Material(
+                                                            child: Stack(
+                                                              fit: StackFit
+                                                                  .expand,
+                                                              children: [
+                                                                toHeroContext
+                                                                    .widget,
+                                                                Opacity(
+                                                                  opacity:
+                                                                      animation
+                                                                          .value,
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.only(left: 48.0),
+                                                                        child: IconButton(
+                                                                            onPressed:
+                                                                                () {},
+                                                                            color:
+                                                                                Colors.black,
+                                                                            icon: const Icon(Icons.arrow_back)),
+                                                                      ),
+                                                                      const Spacer(),
+                                                                      Flexible(
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(right: 48.0),
+                                                                          child: IconButton(
+                                                                              onPressed: () {},
+                                                                              color: Colors.black,
+                                                                              icon: const Icon(Icons.open_in_new)),
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                child!,
+                                                              ],
                                                             ),
-                                                            const Spacer(),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      child!
-                                                    ],
-                                                  ),
-                                                ));
-                                    },
-                                    child: Center(
+                                                          )
+                                                        : Material(
+                                                            child: Stack(
+                                                              fit: StackFit
+                                                                  .expand,
+                                                              children: [
+                                                                toHeroContext
+                                                                    .widget,
+                                                                Opacity(
+                                                                  opacity:
+                                                                      animation
+                                                                          .value,
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.only(left: 16.0),
+                                                                        child: IconButton(
+                                                                            onPressed:
+                                                                                () {},
+                                                                            color:
+                                                                                Colors.black,
+                                                                            icon: const Icon(Icons.arrow_back)),
+                                                                      ),
+                                                                      const Spacer(),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                child!
+                                                              ],
+                                                            ),
+                                                          ));
+                                          },
+                                          child: Center(
+                                            child: DefaultTextStyle(
+                                                style: const TextStyle(
+                                                    fontFamily: 'Neue',
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 50),
+                                                child: Text(
+                                                  " ${MyApp.routes_names.elementAt(index)}",
+                                                  softWrap: false,
+                                                  overflow: TextOverflow.fade,
+                                                )),
+                                          ),
+                                        );
+                                      },
+                                      child: AnimatedContainer(
+                                        // width: 120,
+                                        duration:
+                                            const Duration(milliseconds: 1000),
+                                        curve: Curves.easeInOutCubicEmphasized,
+                                        decoration: BoxDecoration(
+                                            boxShadow: hovering[index]
+                                                ? darkSmoothBoxShadow
+                                                : const [
+                                                    BoxShadow(
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.0197),
+                                                        spreadRadius: 0,
+                                                        offset: Offset(0, 2.77),
+                                                        blurRadius: 2.21),
+                                                  ],
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/images${MyApp.routes_list.elementAt(index)}.png'),
+                                              fit: BoxFit.cover,
+                                            )),
+                                      ),
+                                    ),
+                                    Center(
                                       child: DefaultTextStyle(
                                           style: const TextStyle(
                                               fontFamily: 'Neue',
@@ -214,127 +251,425 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               fontWeight: FontWeight.bold,
                                               fontSize: 50),
                                           child: Text(
-                                            " ${MyApp.routes_names.elementAt(index)}",
+                                            ' ${MyApp.routes_names.elementAt(index)}',
                                             softWrap: false,
                                             overflow: TextOverflow.fade,
                                           )),
                                     ),
-                                  );
-                                },
-                                child: AnimatedContainer(
-                                  // width: 120,
-                                  duration: const Duration(milliseconds: 1000),
-                                  curve: Curves.easeInOutCubicEmphasized,
-                                  decoration: BoxDecoration(
-                                      boxShadow: hovering[index]
-                                          ? darkSmoothBoxShadow
-                                          : const [
-                                              BoxShadow(
-                                                  color: Color.fromRGBO(
-                                                      0, 0, 0, 0.0197),
-                                                  spreadRadius: 0,
-                                                  offset: Offset(0, 2.77),
-                                                  blurRadius: 2.21),
-                                            ],
-                                      borderRadius: BorderRadius.circular(6),
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images${MyApp.routes_list.elementAt(index)}.png'),
-                                        fit: BoxFit.cover,
-                                      )),
+                                  ],
                                 ),
                               ),
-                              Center(
-                                child: DefaultTextStyle(
-                                    style: const TextStyle(
-                                        fontFamily: 'Neue',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 50),
-                                    child: Text(
-                                      ' ${MyApp.routes_names.elementAt(index)}',
-                                      softWrap: false,
-                                      overflow: TextOverflow.fade,
-                                    )),
-                              ),
-                            ],
-                          ),
+                            )),
+                      );
+                    }),
+                    Animate(
+                      effects: [
+                        ScaleEffect(
+                          curve: Curves.easeInOutCubicEmphasized,
+                          delay: Duration(
+                              milliseconds:
+                                  100 * (MyApp.routes_list.length + 1)),
                         ),
-                      )),
-                );
-              }),
-              Animate(
-                effects: [
-                  ScaleEffect(
-                    curve: Curves.easeInOutCubicEmphasized,
-                    delay: Duration(
-                        milliseconds: 100 * (MyApp.routes_list.length + 1)),
-                  ),
-                  FlipEffect(
-                    curve: Curves.easeInOutCubicEmphasized,
-                    delay: Duration(
-                        milliseconds: 100 * (MyApp.routes_list.length + 1)),
-                  )
-                ],
-                controller: _controller,
-                child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: InkWell(
-                      onTap: () {
-                        openAboutMePage();
-                      },
-                      onHover: (value) {
-                        setState(() {
-                          hoveringAddProject = value;
-                        });
-                      },
-                      borderRadius: BorderRadius.circular(6),
-                      child: AnimatedContainer(
-                        width: hoveringAddProject ? 165 : 160,
-                        duration: const Duration(milliseconds: 700),
-                        curve: Curves.easeInOutCubicEmphasized,
-                        height: 160,
-                        child: Stack(
-                          children: [
-                            Hero(
-                              tag: 'AddProjectHero',
-                              createRectTween: (begin, end) {
-                                return MaterialRectCenterArcTween(
-                                    begin: begin, end: end);
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 1000),
-                                curve: Curves.easeInOutCubicEmphasized,
-                                decoration: BoxDecoration(
+                        FlipEffect(
+                          curve: Curves.easeInOutCubicEmphasized,
+                          delay: Duration(
+                              milliseconds:
+                                  100 * (MyApp.routes_list.length + 1)),
+                        )
+                      ],
+                      controller: _controller,
+                      child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: InkWell(
+                            onTap: () {
+                              openAboutMePage();
+                            },
+                            onHover: (value) {
+                              setState(() {
+                                hoveringAddProject = value;
+                              });
+                            },
+                            borderRadius: BorderRadius.circular(6),
+                            child: AnimatedContainer(
+                              width: hoveringAddProject ? 165 : 160,
+                              duration: const Duration(milliseconds: 700),
+                              curve: Curves.easeInOutCubicEmphasized,
+                              height: 160,
+                              child: Stack(
+                                children: [
+                                  Hero(
+                                    tag: 'AddProjectHero',
+                                    createRectTween: (begin, end) {
+                                      return MaterialRectCenterArcTween(
+                                          begin: begin, end: end);
+                                    },
+                                    child: AnimatedContainer(
+                                      duration:
+                                          const Duration(milliseconds: 1000),
+                                      curve: Curves.easeInOutCubicEmphasized,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          color: const Color.fromARGB(
+                                              255, 241, 241, 241)),
+                                    ),
+                                  ),
+                                  const Center(
+                                    child: DefaultTextStyle(
+                                        style: TextStyle(
+                                            color: Colors.black45,
+                                            fontWeight: FontWeight.w400,
+                                            fontStyle: FontStyle.italic,
+                                            height: 1.1,
+                                            shadows: [
+                                              ...darkSmoothBoxShadow,
+                                            ],
+                                            fontSize: 50),
+                                        child: Text(
+                                          '+',
+                                          softWrap: false,
+                                          overflow: TextOverflow.fade,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                    ),
+                  ]),
+                )
+              : SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 128, bottom: 128) +
+                          const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Column(
+                        children: [
+                          ...List.generate(MyApp.routes_list.length, (index) {
+                            return Animate(
+                              effects: [
+                                ScaleEffect(
+                                  curve: Curves.easeInOutCubicEmphasized,
+                                  delay: Duration(milliseconds: 100 * index),
+                                ),
+                                FlipEffect(
+                                  curve: Curves.easeInOutCubicEmphasized,
+                                  delay: Duration(milliseconds: 100 * index),
+                                )
+                              ],
+                              controller: _controller,
+                              child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(context,
+                                          MyApp.routes_list.elementAt(index));
+                                    },
+                                    onHover: (value) {
+                                      setState(() {
+                                        hovering[index] = value;
+                                      });
+                                    },
                                     borderRadius: BorderRadius.circular(6),
-                                    color: const Color.fromARGB(
-                                        255, 241, 241, 241)),
-                              ),
-                            ),
-                            const Center(
-                              child: DefaultTextStyle(
-                                  style: TextStyle(
-                                      color: Colors.black45,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.italic,
-                                      height: 1.1,
-                                      shadows: [
-                                        ...darkSmoothBoxShadow,
-                                      ],
-                                      fontSize: 50),
-                                  child: Text(
-                                    '+',
-                                    softWrap: false,
-                                    overflow: TextOverflow.fade,
+                                    child: AnimatedContainer(
+                                      width: hovering[index] ? 200 : 160,
+                                      duration:
+                                          const Duration(milliseconds: 700),
+                                      curve: Curves.easeInOutCubicEmphasized,
+                                      height: 160,
+                                      child: Stack(
+                                        children: [
+                                          Hero(
+                                            tag: MyApp.routes_list
+                                                .elementAt(index),
+                                            createRectTween: (begin, end) {
+                                              return MaterialRectCenterArcTween(
+                                                  begin: begin, end: end);
+                                            },
+                                            flightShuttleBuilder:
+                                                (flightContext,
+                                                    animation,
+                                                    flightDirection,
+                                                    fromHeroContext,
+                                                    toHeroContext) {
+                                              return AnimatedBuilder(
+                                                animation: CurvedAnimation(
+                                                    parent: animation,
+                                                    curve: Curves
+                                                        .easeInOutCubicEmphasized),
+                                                builder: (context, child) {
+                                                  return SmoothClipRRect(
+                                                      smoothness: 0.6,
+                                                      borderRadius: mdof.size
+                                                                  .aspectRatio >
+                                                              0.5625
+                                                          ? BorderRadius
+                                                              .circular(6 +
+                                                                  90 *
+                                                                      animation
+                                                                          .value)
+                                                          : BorderRadius.only(
+                                                              topLeft: Radius
+                                                                  .circular(6 +
+                                                                      42 *
+                                                                          animation
+                                                                              .value),
+                                                              topRight: Radius
+                                                                  .circular(6 +
+                                                                      42 *
+                                                                          animation
+                                                                              .value),
+                                                              bottomLeft: Radius
+                                                                  .circular((6 -
+                                                                      6 *
+                                                                          animation
+                                                                              .value)),
+                                                              bottomRight: Radius
+                                                                  .circular((6 -
+                                                                      6 *
+                                                                          animation
+                                                                              .value)),
+                                                            ),
+                                                      child: mdof.size
+                                                                  .aspectRatio >
+                                                              0.5625
+                                                          ? Material(
+                                                              child: Stack(
+                                                                fit: StackFit
+                                                                    .expand,
+                                                                children: [
+                                                                  toHeroContext
+                                                                      .widget,
+                                                                  Opacity(
+                                                                    opacity:
+                                                                        animation
+                                                                            .value,
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(left: 48.0),
+                                                                          child: IconButton(
+                                                                              onPressed: () {},
+                                                                              color: Colors.black,
+                                                                              icon: const Icon(Icons.arrow_back)),
+                                                                        ),
+                                                                        const Spacer(),
+                                                                        Flexible(
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.only(right: 48.0),
+                                                                            child: IconButton(
+                                                                                onPressed: () {},
+                                                                                color: Colors.black,
+                                                                                icon: const Icon(Icons.open_in_new)),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  child!,
+                                                                ],
+                                                              ),
+                                                            )
+                                                          : Material(
+                                                              child: Stack(
+                                                                fit: StackFit
+                                                                    .expand,
+                                                                children: [
+                                                                  toHeroContext
+                                                                      .widget,
+                                                                  Opacity(
+                                                                    opacity:
+                                                                        animation
+                                                                            .value,
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(left: 16.0),
+                                                                          child: IconButton(
+                                                                              onPressed: () {},
+                                                                              color: Colors.black,
+                                                                              icon: const Icon(Icons.arrow_back)),
+                                                                        ),
+                                                                        const Spacer(),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  child!
+                                                                ],
+                                                              ),
+                                                            ));
+                                                },
+                                                child: Center(
+                                                  child: DefaultTextStyle(
+                                                      style: const TextStyle(
+                                                          fontFamily: 'Neue',
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 50),
+                                                      child: Text(
+                                                        " ${MyApp.routes_names.elementAt(index)}",
+                                                        softWrap: false,
+                                                        overflow:
+                                                            TextOverflow.fade,
+                                                      )),
+                                                ),
+                                              );
+                                            },
+                                            child: AnimatedContainer(
+                                              // width: 120,
+                                              duration: const Duration(
+                                                  milliseconds: 1000),
+                                              curve: Curves
+                                                  .easeInOutCubicEmphasized,
+                                              decoration: BoxDecoration(
+                                                  boxShadow: hovering[index]
+                                                      ? darkSmoothBoxShadow
+                                                      : const [
+                                                          BoxShadow(
+                                                              color:
+                                                                  Color.fromRGBO(
+                                                                      0,
+                                                                      0,
+                                                                      0,
+                                                                      0.0197),
+                                                              spreadRadius: 0,
+                                                              offset: Offset(
+                                                                  0, 2.77),
+                                                              blurRadius: 2.21),
+                                                        ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(6),
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        'assets/images${MyApp.routes_list.elementAt(index)}.png'),
+                                                    fit: BoxFit.cover,
+                                                  )),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: DefaultTextStyle(
+                                                style: const TextStyle(
+                                                    fontFamily: 'Neue',
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 50),
+                                                child: Text(
+                                                  ' ${MyApp.routes_names.elementAt(index)}',
+                                                  softWrap: false,
+                                                  overflow: TextOverflow.fade,
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   )),
-                            ),
-                          ],
-                        ),
+                            );
+                          }),
+                          Animate(
+                            effects: [
+                              ScaleEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                delay: Duration(
+                                    milliseconds:
+                                        100 * (MyApp.routes_list.length + 1)),
+                              ),
+                              FlipEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                delay: Duration(
+                                    milliseconds:
+                                        100 * (MyApp.routes_list.length + 1)),
+                              )
+                            ],
+                            controller: _controller,
+                            child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: InkWell(
+                                  onTap: () {
+                                    openAboutMePage();
+                                  },
+                                  onHover: (value) {
+                                    setState(() {
+                                      hoveringAddProject = value;
+                                    });
+                                  },
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: AnimatedContainer(
+                                    width: hoveringAddProject ? 165 : 160,
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.easeInOutCubicEmphasized,
+                                    height: 160,
+                                    child: Stack(
+                                      children: [
+                                        Hero(
+                                          tag: 'AddProjectHero',
+                                          createRectTween: (begin, end) {
+                                            return MaterialRectCenterArcTween(
+                                                begin: begin, end: end);
+                                          },
+                                          child: AnimatedContainer(
+                                            duration: const Duration(
+                                                milliseconds: 1000),
+                                            curve:
+                                                Curves.easeInOutCubicEmphasized,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(6),
+                                                color: const Color.fromARGB(
+                                                    255, 241, 241, 241)),
+                                          ),
+                                        ),
+                                        const Center(
+                                          child: DefaultTextStyle(
+                                              style: TextStyle(
+                                                  color: Colors.black45,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontStyle: FontStyle.italic,
+                                                  height: 1.1,
+                                                  shadows: [
+                                                    ...darkSmoothBoxShadow,
+                                                  ],
+                                                  fontSize: 50),
+                                              child: Text(
+                                                '+',
+                                                softWrap: false,
+                                                overflow: TextOverflow.fade,
+                                              )),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                          ),
+                        ],
                       ),
-                    )),
-              ),
-            ]),
+                    ),
+                  ),
+                ),
+          const SizedBox(
+            height: 100,
+            width: double.infinity,
+            child: Material(),
           ),
+          mdof.size.aspectRatio > 0.5625
+              ? const Positioned(top: 24, left: 12, child: LogoWidget())
+              : const Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 24.0, right: 24),
+                    child: LogoWidget(),
+                  )),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
