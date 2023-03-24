@@ -1,11 +1,11 @@
 {
-    "name": "lashamezvrishvili",
-    "short_name": "lashamezvrishvili",
+    "name": "Lasha Mezvrishvili",
+    "short_name": "Mezvrishvili",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Lasha Mezvrishvili",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
