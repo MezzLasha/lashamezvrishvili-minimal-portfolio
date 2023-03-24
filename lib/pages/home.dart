@@ -1,7 +1,5 @@
 import 'package:dismissible_page/dismissible_page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lashamezvrishvili/main.dart';
 import 'package:lashamezvrishvili/pages/about_page.dart';
@@ -20,7 +18,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       List.generate(MyApp.routes_list.length, (index) => false);
 
   late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -30,14 +27,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 500),
     );
-
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOutCubicEmphasized,
-    );
   }
 
   bool hoveringAbout = false;
+  bool hoveringAddProject = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +47,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: LogoWidget(),
                   )),
           Center(
-            child: Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: List.generate(MyApp.routes_list.length, (index) {
+            child: Wrap(spacing: 10, runSpacing: 10, children: [
+              ...List.generate(MyApp.routes_list.length, (index) {
                 return Animate(
                   effects: [
                     ScaleEffect(
@@ -84,7 +75,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         },
                         borderRadius: BorderRadius.circular(6),
                         child: AnimatedContainer(
-                          width: hovering[index] ? 320 : 160,
+                          width: hovering[index] ? 200 : 160,
                           duration: const Duration(milliseconds: 700),
                           curve: Curves.easeInOutCubicEmphasized,
                           height: 160,
@@ -146,10 +137,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                                           48.0),
                                                               child: IconButton(
                                                                   onPressed:
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  },
+                                                                      () {},
                                                                   color: Colors
                                                                       .black,
                                                                   icon: const Icon(
@@ -164,18 +152,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                                             .only(
                                                                         right:
                                                                             48.0),
-                                                                child:
-                                                                    IconButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          //copy link to clipboard
-                                                                          Clipboard.setData(
-                                                                              const ClipboardData(text: 'https://www.google.com'));
-                                                                        },
-                                                                        color: Colors
-                                                                            .black,
-                                                                        icon: const Icon(
-                                                                            Icons.copy)),
+                                                                child: IconButton(
+                                                                    onPressed:
+                                                                        () {},
+                                                                    color: Colors
+                                                                        .black,
+                                                                    icon: const Icon(
+                                                                        Icons
+                                                                            .open_in_new)),
                                                               ),
                                                             )
                                                           ],
@@ -279,7 +263,77 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       )),
                 );
               }),
-            ),
+              Animate(
+                effects: [
+                  ScaleEffect(
+                    curve: Curves.easeInOutCubicEmphasized,
+                    delay: Duration(
+                        milliseconds: 100 * (MyApp.routes_list.length + 1)),
+                  ),
+                  FlipEffect(
+                    curve: Curves.easeInOutCubicEmphasized,
+                    delay: Duration(
+                        milliseconds: 100 * (MyApp.routes_list.length + 1)),
+                  )
+                ],
+                controller: _controller,
+                child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap: () {
+                        openAboutMePage();
+                      },
+                      onHover: (value) {
+                        setState(() {
+                          hoveringAddProject = value;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(6),
+                      child: AnimatedContainer(
+                        width: hoveringAddProject ? 165 : 160,
+                        duration: const Duration(milliseconds: 700),
+                        curve: Curves.easeInOutCubicEmphasized,
+                        height: 160,
+                        child: Stack(
+                          children: [
+                            Hero(
+                              tag: 'AddProjectHero',
+                              createRectTween: (begin, end) {
+                                return MaterialRectCenterArcTween(
+                                    begin: begin, end: end);
+                              },
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 1000),
+                                curve: Curves.easeInOutCubicEmphasized,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(6),
+                                    color: const Color.fromARGB(
+                                        255, 241, 241, 241)),
+                              ),
+                            ),
+                            const Center(
+                              child: DefaultTextStyle(
+                                  style: TextStyle(
+                                      color: Colors.black45,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.italic,
+                                      height: 1.1,
+                                      shadows: [
+                                        ...darkSmoothBoxShadow,
+                                      ],
+                                      fontSize: 50),
+                                  child: Text(
+                                    '+',
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+              ),
+            ]),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -288,11 +342,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: SizedBox(
                 height: 40,
                 child: InkWell(
-                  onTap: () async {
-                    _controller.reverse();
-                    await Future.delayed(const Duration(milliseconds: 300));
-                    // print('sdf');
-                    context.pushTransparentRoute(AboutMePage(_controller));
+                  onTap: () {
+                    openAboutMePage();
                   },
                   onHover: (value) {
                     setState(() {
@@ -327,6 +378,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ],
       ),
     );
+  }
+
+  void openAboutMePage() async {
+    _controller.reverse();
+    await Future.delayed(const Duration(milliseconds: 300));
+    // print('sdf');
+    context.pushTransparentRoute(AboutMePage(_controller));
   }
 }
 

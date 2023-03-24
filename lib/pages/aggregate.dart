@@ -1,6 +1,5 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
@@ -114,15 +113,10 @@ class _AggregatePageState extends State<AggregatePage>
                                               padding: const EdgeInsets.only(
                                                   right: 48.0),
                                               child: IconButton(
-                                                  onPressed: () {
-                                                    //copy link to clipboard
-                                                    Clipboard.setData(
-                                                        const ClipboardData(
-                                                            text:
-                                                                'https://www.google.com'));
-                                                  },
+                                                  onPressed: () {},
                                                   color: Colors.black,
-                                                  icon: const Icon(Icons.copy)),
+                                                  icon: const Icon(
+                                                      Icons.open_in_new)),
                                             ),
                                           )
                                         ],

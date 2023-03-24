@@ -1,27 +1,26 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-const terminalScreenshots = {
-  'assets/images/terminal_images/1.png',
-  'assets/images/terminal_images/2.png',
-  'assets/images/terminal_images/3.png',
-  'assets/images/terminal_images/4.png',
-  'assets/images/terminal_images/5.png',
-  'assets/images/terminal_images/6.png',
-  'assets/images/terminal_images/7.png',
+const delauneyScreenshots = {
+  'assets/images/delauneymx_images/1.png',
+  'assets/images/delauneymx_images/2.png',
+  'assets/images/delauneymx_images/3.png',
+  'assets/images/delauneymx_images/4.png',
+  'assets/images/delauneymx_images/5.png',
+  'assets/images/delauneymx_images/6.png',
+  'assets/images/delauneymx_images/7.png',
 };
 
-class TerminalPage extends StatefulWidget {
-  const TerminalPage({super.key});
+class DelauneyPage extends StatefulWidget {
+  const DelauneyPage({super.key});
 
   @override
-  State<TerminalPage> createState() => _TerminalPageState();
+  State<DelauneyPage> createState() => _DelauneyPageState();
 }
 
-class _TerminalPageState extends State<TerminalPage>
+class _DelauneyPageState extends State<DelauneyPage>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
@@ -54,7 +53,7 @@ class _TerminalPageState extends State<TerminalPage>
                 ? const EdgeInsets.fromLTRB(16, 16, 16, 0)
                 : EdgeInsets.zero,
             child: Hero(
-              tag: '/terminal',
+              tag: '/delauneymx',
               createRectTween: (begin, end) {
                 return MaterialRectCenterArcTween(begin: begin, end: end);
               },
@@ -88,7 +87,7 @@ class _TerminalPageState extends State<TerminalPage>
 
                                     Ink.image(
                                       image: const AssetImage(
-                                          'assets/images/terminal.png'),
+                                          'assets/images/delauneymx.png'),
                                       fit: BoxFit.cover,
                                     ),
                                     Opacity(
@@ -114,15 +113,13 @@ class _TerminalPageState extends State<TerminalPage>
                                               padding: const EdgeInsets.only(
                                                   right: 48.0),
                                               child: IconButton(
-                                                  onPressed: () {
-                                                    //copy link to clipboard
-                                                    Clipboard.setData(
-                                                        const ClipboardData(
-                                                            text:
-                                                                'https://www.google.com'));
+                                                  onPressed: () async {
+                                                    await launch(
+                                                        'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy');
                                                   },
                                                   color: Colors.black,
-                                                  icon: const Icon(Icons.copy)),
+                                                  icon: const Icon(
+                                                      Icons.open_in_new)),
                                             ),
                                           )
                                         ],
@@ -136,7 +133,7 @@ class _TerminalPageState extends State<TerminalPage>
                                               fontWeight: FontWeight.bold,
                                               fontSize: 50),
                                           child: Text(
-                                            " Terminal",
+                                            " Delauney.mx",
                                             softWrap: false,
                                             overflow: TextOverflow.fade,
                                           )),
@@ -178,7 +175,7 @@ class _TerminalPageState extends State<TerminalPage>
                                               fontWeight: FontWeight.bold,
                                               fontSize: 50),
                                           child: Text(
-                                            " Terminal",
+                                            " Delauney.mx",
                                             softWrap: false,
                                             overflow: TextOverflow.fade,
                                           )),
@@ -202,7 +199,7 @@ class _TerminalPageState extends State<TerminalPage>
                       ),
                 child: Material(
                   child: Ink.image(
-                    image: const AssetImage('assets/images/terminal.png'),
+                    image: const AssetImage('assets/images/delauneymx.png'),
                     fit: BoxFit.cover,
                     child: Stack(
                       fit: StackFit.expand,
@@ -252,7 +249,7 @@ class _TerminalPageState extends State<TerminalPage>
                                   fontWeight: FontWeight.bold,
                                   fontSize: 50),
                               child: Text(
-                                " Terminal",
+                                " Delauney.mx",
                                 maxLines: 2,
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.fade,
@@ -343,7 +340,7 @@ class _TerminalPageState extends State<TerminalPage>
                                         ).borderRadius,
                                         image: const DecorationImage(
                                             image: AssetImage(
-                                                'assets/images/terminal_images/link_google_play_preview.png'),
+                                                'assets/images/delauneymx_images/link_google_play_preview.png'),
                                             fit: BoxFit.cover),
                                       ),
                                     ),
@@ -494,7 +491,7 @@ class _TerminalPageState extends State<TerminalPage>
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
-                children: List.generate(terminalScreenshots.length, (index) {
+                children: List.generate(delauneyScreenshots.length, (index) {
                   // print(index);
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
@@ -519,7 +516,7 @@ class _TerminalPageState extends State<TerminalPage>
                                 controller: PageController(
                                     initialPage: index, viewportFraction: 1),
                                 children: List.generate(
-                                  terminalScreenshots.length,
+                                  delauneyScreenshots.length,
                                   (index2) => ExpandedImageWidget(index2),
                                 ),
                               ),
@@ -532,7 +529,7 @@ class _TerminalPageState extends State<TerminalPage>
                                 borderRadius: BorderRadius.circular(8),
                                 image: DecorationImage(
                                     image: AssetImage(
-                                        terminalScreenshots.elementAt(index)),
+                                        delauneyScreenshots.elementAt(index)),
                                     fit: BoxFit.cover)),
                           ),
                         ),
@@ -585,7 +582,7 @@ class ExpandedImageWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
                           image:
-                              AssetImage(terminalScreenshots.elementAt(index)),
+                              AssetImage(delauneyScreenshots.elementAt(index)),
                           fit: BoxFit.cover)),
                 ),
               ),

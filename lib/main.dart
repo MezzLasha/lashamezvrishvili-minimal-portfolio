@@ -1,10 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:lashamezvrishvili/pages/about_page.dart';
 import 'package:lashamezvrishvili/pages/aggregate.dart';
 import 'package:lashamezvrishvili/pages/home.dart';
-import 'package:lashamezvrishvili/pages/terminal.dart';
+import 'package:lashamezvrishvili/pages/delauneymx.dart';
 import 'package:lashamezvrishvili/pages/vacancies.dart';
 import 'package:lashamezvrishvili/widgets/custom_page_route.dart';
 
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
   static const routes_list = {
     '/vacancies',
     '/aggregate',
-    '/terminal',
+    '/delauneymx',
   };
 
   //Names of the routes
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
   static const routes_names = {
     'Vacancies',
     'Aggregate',
-    'Terminal',
+    'Delauney.mx',
   };
 
   @override
@@ -60,8 +59,8 @@ class MyApp extends StatelessWidget {
           case '/aggregate':
             page = const AggregatePage();
             break;
-          case '/terminal':
-            page = const TerminalPage();
+          case '/delauneymx':
+            page = const DelauneyPage();
             break;
 
           // Add more cases for additional named routes
