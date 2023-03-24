@@ -33,7 +33,7 @@ dependencies:
   dismissible_page: ^1.0.1
   flutter:
     sdk: flutter
-  # flutter_animate: ^4.1.0
+  flutter_animate: ^4.1.0
   flutter_custom_tabs: ^1.0.4
   smooth_corner: ^1.1.0
 
