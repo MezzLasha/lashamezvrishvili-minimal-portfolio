@@ -39,6 +39,28 @@ class _AboutMePageState extends State<AboutMePage>
   Widget build(BuildContext context) {
     final mdof = MediaQuery.of(context);
     return Scaffold(
+      appBar: AppBar(
+        title: const LogoWidget(),
+        centerTitle: true,
+        titleSpacing: 0,
+        toolbarHeight: 100,
+        automaticallyImplyLeading: false,
+        actions: [
+          Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 24.0, right: 24),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                  ),
+                ),
+              )),
+        ],
+      ),
       body: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -48,8 +70,7 @@ class _AboutMePageState extends State<AboutMePage>
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 800),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 128) +
-                      const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
@@ -263,32 +284,6 @@ class _AboutMePageState extends State<AboutMePage>
               ),
             ),
           ),
-          const SizedBox(
-            height: 100,
-            width: double.infinity,
-            child: Material(),
-          ),
-          mdof.size.aspectRatio > 0.5625
-              ? const Positioned(top: 24, left: 12, child: LogoWidget())
-              : const Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 24.0, right: 24),
-                    child: LogoWidget(),
-                  )),
-          Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 24.0, right: 24),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                  ),
-                ),
-              )),
         ],
       ),
     );
