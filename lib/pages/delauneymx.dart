@@ -4,6 +4,8 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:lashamezvrishvili/widgets/project_page_skeleton.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
+import '../widgets/project_widgets.dart';
+
 const delauneyScreenshots = {
   'assets/images/delauneymx_images/1.png',
   'assets/images/delauneymx_images/2.png',
@@ -14,29 +16,8 @@ const delauneyScreenshots = {
   'assets/images/delauneymx_images/7.png',
 };
 
-class DelauneyPage extends StatefulWidget {
+class DelauneyPage extends StatelessWidget {
   const DelauneyPage({super.key});
-
-  @override
-  State<DelauneyPage> createState() => _DelauneyPageState();
-}
-
-class _DelauneyPageState extends State<DelauneyPage>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _animation;
-
-  @override
-  void initState() {
-    _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    _animation = CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOutCubicEmphasized,
-        reverseCurve: Curves.easeInOutCubicEmphasized);
-    _controller.forward();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +33,119 @@ class _DelauneyPageState extends State<DelauneyPage>
             SizedBox(
               height: mdof.size.aspectRatio > 0.5625 ? 48 : 0,
             ),
-            _buildScreenshotsList(),
+            Column(
+              children: [
+                const HeaderWidget(
+                  title: 'SCREENSHOTS.',
+                ),
+                SizedBox(
+                  height: 250,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()),
+                        children:
+                            List.generate(delauneyScreenshots.length, (index) {
+                          // print(index);
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Hero(
+                              tag: 'screenshot$index',
+                              createRectTween: (begin, end) {
+                                return MaterialRectCenterArcTween(
+                                    begin: begin, end: end);
+                              },
+                              child: Material(
+                                shape: SmoothRectangleBorder(
+                                    smoothness: 0.6,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: InkWell(
+                                  onTap: () {
+                                    // print(index);
+                                    context.pushTransparentRoute(
+                                      PageView(
+                                        physics: const BouncingScrollPhysics(
+                                            parent:
+                                                AlwaysScrollableScrollPhysics()),
+                                        // padEnds: true,
+                                        controller: PageController(
+                                            initialPage: index,
+                                            viewportFraction: 1),
+                                        children: List.generate(
+                                          delauneyScreenshots.length,
+                                          (index2) => ExpandedScreenshotWidget(
+                                              index2, delauneyScreenshots),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Ink(
+                                    width: 150,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                delauneyScreenshots
+                                                    .elementAt(index)),
+                                            fit: BoxFit.cover)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        })),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 48,
             ),
-            _buildDescription(),
+            Column(
+              children: [
+                const HeaderWidget(
+                  title: 'DESCRIPTION.',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(
+                        fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                    children: [
+                      const TextSpan(
+                          text:
+                              'The Vacancies app is a mobile application that can be downloaded from the Google Play Store for Android users. It\'s designed to help you find and apply to your dream job with ease. \n\n'),
+                      const TextSpan(
+                          text:
+                              'The app supports automatic resume attachments, allowing you to apply to multiple job openings without having to search through multiple websites. The app uses web scraping technology to gather all the latest job advertisements from other websites and present them to you in one convenient location. \n\n'),
+                      const TextSpan(
+                          text:
+                              'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the '),
+                      TextSpan(
+                          text: 'Material You',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w200,
+                              fontStyle: FontStyle.italic,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant)),
+                      const TextSpan(
+                          text:
+                              ' design language, ensuring a modern and intuitive interface for our users. \n\n'),
+                      const TextSpan(
+                          text:
+                              'Whether you\'re a seasoned professional or just starting out, the Vacancies app is the perfect tool to help you land your dream job. Give it a try today!'),
+                    ],
+                  ),
+                )
+              ],
+            ),
             const SizedBox(
               height: 48,
             ),
@@ -149,197 +238,5 @@ class _DelauneyPageState extends State<DelauneyPage>
             ),
           ],
         ));
-  }
-
-  Column _buildDescription() {
-    return Column(
-      children: [
-        const HeaderWidget(
-          title: 'DESCRIPTION.',
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        RichText(
-          text: TextSpan(
-            style: const TextStyle(
-                fontFamily: 'Neue', color: Colors.white, fontSize: 16),
-            children: [
-              const TextSpan(
-                  text:
-                      'The Vacancies app is a mobile application that can be downloaded from the Google Play Store for Android users. It\'s designed to help you find and apply to your dream job with ease. \n\n'),
-              const TextSpan(
-                  text:
-                      'The app supports automatic resume attachments, allowing you to apply to multiple job openings without having to search through multiple websites. The app uses web scraping technology to gather all the latest job advertisements from other websites and present them to you in one convenient location. \n\n'),
-              const TextSpan(
-                  text:
-                      'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the '),
-              TextSpan(
-                  text: 'Material You',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w200,
-                      fontStyle: FontStyle.italic,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant)),
-              const TextSpan(
-                  text:
-                      ' design language, ensuring a modern and intuitive interface for our users. \n\n'),
-              const TextSpan(
-                  text:
-                      'Whether you\'re a seasoned professional or just starting out, the Vacancies app is the perfect tool to help you land your dream job. Give it a try today!'),
-            ],
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _buildScreenshotsList() {
-    return Column(
-      children: [
-        const HeaderWidget(
-          title: 'SCREENSHOTS.',
-        ),
-        SizedBox(
-          height: 250,
-          width: double.infinity,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: ListView(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                children: List.generate(delauneyScreenshots.length, (index) {
-                  // print(index);
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: Hero(
-                      tag: 'screenshot$index',
-                      createRectTween: (begin, end) {
-                        return MaterialRectCenterArcTween(
-                            begin: begin, end: end);
-                      },
-                      child: Material(
-                        shape: SmoothRectangleBorder(
-                            smoothness: 0.6,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: InkWell(
-                          onTap: () {
-                            // print(index);
-                            context.pushTransparentRoute(
-                              PageView(
-                                physics: const BouncingScrollPhysics(
-                                    parent: AlwaysScrollableScrollPhysics()),
-                                // padEnds: true,
-                                controller: PageController(
-                                    initialPage: index, viewportFraction: 1),
-                                children: List.generate(
-                                  delauneyScreenshots.length,
-                                  (index2) => ExpandedImageWidget(index2),
-                                ),
-                              ),
-                            );
-                          },
-                          borderRadius: BorderRadius.circular(8),
-                          child: Ink(
-                            width: 150,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        delauneyScreenshots.elementAt(index)),
-                                    fit: BoxFit.cover)),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                })),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ExpandedImageWidget extends StatelessWidget {
-  const ExpandedImageWidget(
-    this.index, {
-    super.key,
-  });
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return DismissiblePage(
-      onDismissed: () {
-        Navigator.pop(context);
-      },
-      startingOpacity: 0.5,
-      isFullScreen: false,
-      backgroundColor: Colors.black,
-      child: Center(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 1.2,
-          width: 400,
-          child: Hero(
-            tag: 'screenshot$index',
-            createRectTween: (begin, end) {
-              return MaterialRectCenterArcTween(begin: begin, end: end);
-            },
-            child: Material(
-              color: Colors.transparent,
-              shape: SmoothRectangleBorder(
-                  smoothness: 0.6, borderRadius: BorderRadius.circular(8)),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Ink(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                          image:
-                              AssetImage(delauneyScreenshots.elementAt(index)),
-                          fit: BoxFit.cover)),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({
-    super.key,
-    required this.title,
-    this.style,
-  });
-
-  final String title;
-  final TextStyle? style;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(title,
-              style: style ??
-                  const TextStyle(
-                      fontFamily: 'Neue',
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 80)),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Divider(),
-        ),
-      ],
-    );
   }
 }

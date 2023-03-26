@@ -1,6 +1,4 @@
-import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:lashamezvrishvili/widgets/project_page_skeleton.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -17,19 +15,8 @@ const vacanciesScreenshots = {
   'assets/images/vacancies_images/7.png',
 };
 
-class VacanciesPage extends StatefulWidget {
+class VacanciesPage extends StatelessWidget {
   const VacanciesPage({super.key});
-
-  @override
-  State<VacanciesPage> createState() => _VacanciesPageState();
-}
-
-class _VacanciesPageState extends State<VacanciesPage>
-    with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +38,47 @@ class _VacanciesPageState extends State<VacanciesPage>
             const SizedBox(
               height: 48,
             ),
-            _buildDescription(),
+            Column(
+              children: [
+                const HeaderWidget(
+                  title: 'DESCRIPTION.',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(
+                        fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                    children: [
+                      const TextSpan(
+                          text:
+                              'The Vacancies app is a mobile application that can be downloaded from the Google Play Store for Android users. It\'s designed to help you find and apply to your dream job with ease. \n\n'),
+                      const TextSpan(
+                          text:
+                              'The app supports automatic resume attachments, allowing you to apply to multiple job openings without having to search through multiple websites. The app uses web scraping technology to gather all the latest job advertisements from other websites and present them to you in one convenient location. \n\n'),
+                      const TextSpan(
+                          text:
+                              'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the '),
+                      TextSpan(
+                          text: 'Material You',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w200,
+                              fontStyle: FontStyle.italic,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant)),
+                      const TextSpan(
+                          text:
+                              ' design language, ensuring a modern and intuitive interface for our users. \n\n'),
+                      const TextSpan(
+                          text:
+                              'Whether you\'re a seasoned professional or just starting out, the Vacancies app is the perfect tool to help you land your dream job. Give it a try today!'),
+                    ],
+                  ),
+                )
+              ],
+            ),
             const SizedBox(
               height: 48,
             ),
@@ -144,47 +171,5 @@ class _VacanciesPageState extends State<VacanciesPage>
             ),
           ],
         ));
-  }
-
-  Column _buildDescription() {
-    return Column(
-      children: [
-        const HeaderWidget(
-          title: 'DESCRIPTION.',
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        RichText(
-          text: TextSpan(
-            style: const TextStyle(
-                fontFamily: 'Neue', color: Colors.white, fontSize: 16),
-            children: [
-              const TextSpan(
-                  text:
-                      'The Vacancies app is a mobile application that can be downloaded from the Google Play Store for Android users. It\'s designed to help you find and apply to your dream job with ease. \n\n'),
-              const TextSpan(
-                  text:
-                      'The app supports automatic resume attachments, allowing you to apply to multiple job openings without having to search through multiple websites. The app uses web scraping technology to gather all the latest job advertisements from other websites and present them to you in one convenient location. \n\n'),
-              const TextSpan(
-                  text:
-                      'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the '),
-              TextSpan(
-                  text: 'Material You',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w200,
-                      fontStyle: FontStyle.italic,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant)),
-              const TextSpan(
-                  text:
-                      ' design language, ensuring a modern and intuitive interface for our users. \n\n'),
-              const TextSpan(
-                  text:
-                      'Whether you\'re a seasoned professional or just starting out, the Vacancies app is the perfect tool to help you land your dream job. Give it a try today!'),
-            ],
-          ),
-        )
-      ],
-    );
   }
 }

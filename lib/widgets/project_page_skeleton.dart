@@ -90,13 +90,13 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                             ? BorderRadius.circular(6 + 90 * animation.value)
                             : BorderRadius.only(
                                 topLeft:
-                                    Radius.circular(6 + 42 * animation.value),
+                                    Radius.circular(24 + 24 * animation.value),
                                 topRight:
-                                    Radius.circular(6 + 42 * animation.value),
-                                bottomLeft:
-                                    Radius.circular((6 - 6 * animation.value)),
-                                bottomRight:
-                                    Radius.circular((6 - 6 * animation.value)),
+                                    Radius.circular(24 + 24 * animation.value),
+                                bottomLeft: Radius.circular(
+                                    (24 - 24 * animation.value)),
+                                bottomRight: Radius.circular(
+                                    (24 - 24 * animation.value)),
                               ),
                         child: mdof.size.aspectRatio > 0.5625
                             ? Material(
@@ -202,7 +202,20 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                                 ),
                               ));
                   },
-                  child: fromHeroContext.widget,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color.fromRGBO(0, 0, 0, 0.0197),
+                              spreadRadius: 0,
+                              offset: Offset(0, 2.77),
+                              blurRadius: 2.21),
+                        ],
+                        image: DecorationImage(
+                          image: AssetImage(widget.bgImageUrl),
+                          fit: BoxFit.cover,
+                        )),
+                  ),
                 );
               },
               child: SmoothClipRRect(
@@ -324,47 +337,5 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
         ],
       ),
     ));
-  }
-
-  Column _buildDescription() {
-    return Column(
-      children: [
-        const HeaderWidget(
-          title: 'DESCRIPTION.',
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        RichText(
-          text: TextSpan(
-            style: const TextStyle(
-                fontFamily: 'Neue', color: Colors.white, fontSize: 16),
-            children: [
-              const TextSpan(
-                  text:
-                      'The Vacancies app is a mobile application that can be downloaded from the Google Play Store for Android users. It\'s designed to help you find and apply to your dream job with ease. \n\n'),
-              const TextSpan(
-                  text:
-                      'The app supports automatic resume attachments, allowing you to apply to multiple job openings without having to search through multiple websites. The app uses web scraping technology to gather all the latest job advertisements from other websites and present them to you in one convenient location. \n\n'),
-              const TextSpan(
-                  text:
-                      'It\'s built with Flutter and uses BLoC (Business Logic Component) and Stateful state management to provide a smooth and seamless experience. The app is integrated with Firebase Crash Analytics and Performance Monitoring. It\'s designed with the '),
-              TextSpan(
-                  text: 'Material You',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w200,
-                      fontStyle: FontStyle.italic,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant)),
-              const TextSpan(
-                  text:
-                      ' design language, ensuring a modern and intuitive interface for our users. \n\n'),
-              const TextSpan(
-                  text:
-                      'Whether you\'re a seasoned professional or just starting out, the Vacancies app is the perfect tool to help you land your dream job. Give it a try today!'),
-            ],
-          ),
-        )
-      ],
-    );
   }
 }
