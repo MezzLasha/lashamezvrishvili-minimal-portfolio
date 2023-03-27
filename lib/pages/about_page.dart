@@ -262,7 +262,7 @@ class _AboutMePageState extends State<AboutMePage>
                                   labelPadding: const EdgeInsets.all(0),
                                   onPressed: () {
                                     launch(
-                                        'https://www.upwork.com/freelancers/~01815ca2791a9c33fc');
+                                        'https://www.upwork.com/freelancers/mezvrishvililasha');
                                   },
                                 ),
                               ),
