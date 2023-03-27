@@ -23,9 +23,8 @@ class DelauneyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mdof = MediaQuery.of(context);
     return ProjectPageSkeleton(
-        bgImageUrl: 'assets/images/delauneymx.png',
-        headerUrl:
-            'https://play.google.com/store/apps/details?id=com.delauney.mx',
+        bgImageUrl: 'assets/images/delauneymx_images/bg_image.png',
+        headerUrl: 'Delauney.mx',
         name: 'Delauney.mx',
         url: '/delauneymx',
         body: Column(
@@ -151,7 +150,7 @@ class DelauneyPage extends StatelessWidget {
                 child: InkWell(
                   onTap: () async {
                     await launch(
-                        'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy');
+                        'https://play.google.com/store/apps/details?id=com.delauney.mx');
                   },
                   customBorder: SmoothRectangleBorder(
                     smoothness: 0.6,

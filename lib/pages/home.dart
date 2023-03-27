@@ -288,7 +288,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   borderRadius: BorderRadius.circular(6),
                                   image: DecorationImage(
                                     image: AssetImage(
-                                        'assets/images${MyApp.routes_list.elementAt(index)}.png'),
+                                        'assets/images${MyApp.routes_list.elementAt(index)}_images/bg_image.png'),
                                     fit: BoxFit.cover,
                                   )),
                             ),

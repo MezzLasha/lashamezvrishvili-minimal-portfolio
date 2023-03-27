@@ -25,7 +25,7 @@ class AggregatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mdof = MediaQuery.of(context);
     return ProjectPageSkeleton(
-        bgImageUrl: 'assets/images/aggregate.png',
+        bgImageUrl: 'assets/images/aggregate_images/bg_image.png',
         headerUrl: 'test',
         name: 'Aggregate',
         url: '/aggregate',

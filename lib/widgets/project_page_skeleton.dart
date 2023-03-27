@@ -4,16 +4,6 @@ import 'package:smooth_corner/smooth_corner.dart';
 
 import '../widgets/project_widgets.dart';
 
-const vacanciesScreenshots = {
-  'assets/images/vacancies_images/1.png',
-  'assets/images/vacancies_images/2.png',
-  'assets/images/vacancies_images/3.png',
-  'assets/images/vacancies_images/4.png',
-  'assets/images/vacancies_images/5.png',
-  'assets/images/vacancies_images/6.png',
-  'assets/images/vacancies_images/7.png',
-};
-
 class ProjectPageSkeleton extends StatefulWidget {
   const ProjectPageSkeleton({
     super.key,

@@ -22,7 +22,7 @@ class VacanciesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mdof = MediaQuery.of(context);
     return ProjectPageSkeleton(
-        bgImageUrl: 'assets/images/vacancies.png',
+        bgImageUrl: 'assets/images/vacancies_images/bg_image.png',
         headerUrl:
             'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy',
         name: 'Vacancies',
