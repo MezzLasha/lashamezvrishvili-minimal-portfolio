@@ -20,9 +20,9 @@ class BackButtonProjectAnimating extends StatelessWidget {
             Future.delayed(const Duration(milliseconds: 200))
                 .then((value) => Navigator.pop(context));
           },
-          child: Row(
+          child: const Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Icon(Icons.arrow_back_ios, color: Colors.white, size: 16),
               Text(
                 'Back',
@@ -122,7 +122,7 @@ class ScreenshotsListWidget extends StatelessWidget {
                                 image: DecorationImage(
                                     image: AssetImage(
                                         screenshots.elementAt(index)),
-                                    fit: BoxFit.cover)),
+                                    fit: BoxFit.fitHeight)),
                           ),
                         ),
                       ),
@@ -157,7 +157,6 @@ class ExpandedScreenshotWidget extends StatelessWidget {
       child: Center(
         child: SizedBox(
           height: MediaQuery.of(context).size.height / 1.2,
-          width: 400,
           child: Hero(
             tag: 'screenshot$index',
             createRectTween: (begin, end) {
@@ -176,7 +175,7 @@ class ExpandedScreenshotWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
                           image: AssetImage(screenshots.elementAt(index)),
-                          fit: BoxFit.cover)),
+                          fit: BoxFit.fitHeight)),
                 ),
               ),
             ),

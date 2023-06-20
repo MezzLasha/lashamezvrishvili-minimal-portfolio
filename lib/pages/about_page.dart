@@ -86,7 +86,7 @@ class _AboutMePageState extends State<AboutMePage>
                         ],
                         child: SelectionArea(
                           selectionControls: MaterialTextSelectionControls(),
-                          child: Column(children: const [
+                          child: const Column(children: [
                             Text.rich(
                               TextSpan(
                                 children: [

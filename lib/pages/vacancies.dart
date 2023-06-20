@@ -136,13 +136,13 @@ class VacanciesPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Align(
+                      const Align(
                         alignment: Alignment.bottomRight,
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.link,
                                 color: Colors.black,

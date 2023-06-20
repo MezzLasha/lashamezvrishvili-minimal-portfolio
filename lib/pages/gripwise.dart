@@ -1,33 +1,32 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:lashamezvrishvili/widgets/project_page_skeleton.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 import '../widgets/project_widgets.dart';
 
-const aggregateScreenshots = {
-  'assets/images/aggregate_images/1.jpg',
-  'assets/images/aggregate_images/2.jpg',
-  'assets/images/aggregate_images/3.jpg',
-  'assets/images/aggregate_images/4.jpg',
-  'assets/images/aggregate_images/5.jpg',
-  'assets/images/aggregate_images/6.jpg',
-  'assets/images/aggregate_images/7.jpg',
-  'assets/images/aggregate_images/8.jpg',
-  'assets/images/aggregate_images/9.jpg',
+const gripwiseScreenshots = {
+  'assets/images/gripwise_images/1.png',
+  'assets/images/gripwise_images/2.png',
+  'assets/images/gripwise_images/3.png',
+  'assets/images/gripwise_images/4.png',
+  'assets/images/gripwise_images/5.png',
+  'assets/images/gripwise_images/6.png',
+  'assets/images/gripwise_images/7.png',
 };
 
-class AggregatePage extends StatelessWidget {
-  const AggregatePage({super.key});
+class GripwisePage extends StatelessWidget {
+  const GripwisePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final mdof = MediaQuery.of(context);
     return ProjectPageSkeleton(
-        bgImageUrl: 'assets/images/aggregate_images/bg_image.png',
-        headerUrl: 'test',
-        name: 'Aggregate',
-        url: '/aggregate',
+        bgImageUrl: 'assets/images/gripwise_images/bg_image.png',
+        headerUrl: 'Delauney.mx',
+        name: 'Gripwise',
+        url: '/gripwise',
         body: Column(
           children: [
             SizedBox(
@@ -48,7 +47,7 @@ class AggregatePage extends StatelessWidget {
                         physics: const BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics()),
                         children:
-                            List.generate(aggregateScreenshots.length, (index) {
+                            List.generate(gripwiseScreenshots.length, (index) {
                           // print(index);
                           return Padding(
                             padding: const EdgeInsets.only(right: 8),
@@ -59,6 +58,7 @@ class AggregatePage extends StatelessWidget {
                                     begin: begin, end: end);
                               },
                               child: Material(
+                                color: Colors.transparent,
                                 shape: SmoothRectangleBorder(
                                     smoothness: 0.6,
                                     borderRadius: BorderRadius.circular(8)),
@@ -75,9 +75,9 @@ class AggregatePage extends StatelessWidget {
                                             initialPage: index,
                                             viewportFraction: 1),
                                         children: List.generate(
-                                          aggregateScreenshots.length,
+                                          gripwiseScreenshots.length,
                                           (index2) => ExpandedScreenshotWidget(
-                                              index2, aggregateScreenshots),
+                                              index2, gripwiseScreenshots),
                                         ),
                                       ),
                                     );
@@ -89,9 +89,9 @@ class AggregatePage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(8),
                                         image: DecorationImage(
                                             image: AssetImage(
-                                                aggregateScreenshots
+                                                gripwiseScreenshots
                                                     .elementAt(index)),
-                                            fit: BoxFit.cover)),
+                                            fit: BoxFit.fitHeight)),
                                   ),
                                 ),
                               ),
@@ -120,20 +120,23 @@ class AggregatePage extends StatelessWidget {
                     children: [
                       TextSpan(
                           text:
-                              'Aggregate is a mobile application for Android and iOS users. It\'s designed to help you trade your solana assets efficiently. \n\n'),
+                              'This app was developed for Netherlands company "Gripwise".  Project\'s scope is creating an easy to use equipment, work and timeframe management tools all in one, fitted to work with their workflows and procedures.\n\n'),
                       TextSpan(
                           text:
-                              'With Aggregate, you can easily explore new NFTs, track your favorite Collectibles, sell and buy NFTs and keep track of your wallet and your trading performance. \n\n'),
+                              'App was developed using Flutter for front-end and Firebase as back-end. \n\n'),
                       TextSpan(
                           text:
-                              'Built with Flutter, Aggregate is a cross-platform application that can be used on both Android and iOS devices. It integrates Phantom Solana mobile wallet with deep-linking. \n\n'),
-                      TextSpan(
-                          text:
-                              'App Uses firebase for crashalytics and performance monitoring, and CoralCube, MagicEden and Hyperspace Rest APIs for seamless user experience between different platforms.  \n\n'),
+                              'Product is field tested on usage for high quality production films and movies. \n'),
                     ],
                   ),
-                )
+                ),
               ],
+            ),
+            const SizedBox(
+              height: 48,
+            ),
+            const SizedBox(
+              height: 24,
             ),
           ],
         ));
