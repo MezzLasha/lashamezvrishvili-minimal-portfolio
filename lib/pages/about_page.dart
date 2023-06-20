@@ -37,7 +37,6 @@ class _AboutMePageState extends State<AboutMePage>
 
   @override
   Widget build(BuildContext context) {
-    final mdof = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const LogoWidget(),
@@ -61,148 +60,125 @@ class _AboutMePageState extends State<AboutMePage>
               )),
         ],
       ),
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 800),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Animate(
-                        effects: const [
-                          SlideEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              duration: Duration(milliseconds: 500)),
-                          FadeEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              delay: Duration(milliseconds: 100)),
-                        ],
-                        child: SelectionArea(
-                          selectionControls: MaterialTextSelectionControls(),
-                          child: const Column(children: [
-                            Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'Hi, I\'m ',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      color: Color(0xff1c1c1c),
-                                      letterSpacing: -1,
-                                      fontFamily: 'NeueMontreal',
+      body: Center(
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Animate(
+                          effects: const [
+                            SlideEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                duration: Duration(milliseconds: 500)),
+                            FadeEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                delay: Duration(milliseconds: 100)),
+                          ],
+                          child: SelectionArea(
+                            selectionControls: MaterialTextSelectionControls(),
+                            child: const Column(children: [
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Hi, I\'m ',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        color: Color(0xff1c1c1c),
+                                        letterSpacing: -1,
+                                        fontFamily: 'NeueMontreal',
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Lasha Mezvrishvili',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: -1,
-                                      color: Color(0xff1c1c1c),
-                                      fontFamily: 'Neue',
+                                    TextSpan(
+                                      text: 'Lasha Mezvrishvili',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: -1,
+                                        color: Color(0xff1c1c1c),
+                                        fontFamily: 'Neue',
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        ',\nA Flutter developer, with an eye for ',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      color: Color(0xff1c1c1c),
-                                      letterSpacing: -1,
-                                      fontFamily: 'NeueMontreal',
+                                    TextSpan(
+                                      text:
+                                          ',\nA Flutter developer, with an eye for ',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        color: Color(0xff1c1c1c),
+                                        letterSpacing: -1,
+                                        fontFamily: 'NeueMontreal',
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Visuals ',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      color: Color.fromARGB(255, 211, 67, 0),
-                                      letterSpacing: -1,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: 'Neue',
+                                    TextSpan(
+                                      text: 'Visuals ',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        color: Color.fromARGB(255, 211, 67, 0),
+                                        letterSpacing: -1,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Neue',
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: '& ',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      color: Color(0xff1c1c1c),
-                                      letterSpacing: -1,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: 'Neue',
+                                    TextSpan(
+                                      text: '& ',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        color: Color(0xff1c1c1c),
+                                        letterSpacing: -1,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Neue',
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Motion ',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      color: Color(0xff1c1c1c),
-                                      letterSpacing: -2,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: 'Neue',
-                                      fontStyle: FontStyle.italic,
+                                    TextSpan(
+                                      text: 'Motion ',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        color: Color(0xff1c1c1c),
+                                        letterSpacing: -2,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Neue',
+                                        fontStyle: FontStyle.italic,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: ',  from Tbilisi, Georgia.',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      color: Color(0xff1c1c1c),
-                                      letterSpacing: -1,
-                                      fontFamily: 'NeueMontreal',
+                                    TextSpan(
+                                      text: ',  from Tbilisi, Georgia.',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        color: Color(0xff1c1c1c),
+                                        letterSpacing: -1,
+                                        fontFamily: 'NeueMontreal',
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ]),
+                                  ],
+                                ),
+                              )
+                            ]),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 36),
-                      const Divider().animate(
-                        effects: const [
-                          SlideEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              duration: Duration(milliseconds: 500)),
-                          FadeEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              delay: Duration(milliseconds: 100)),
-                        ],
-                        delay: const Duration(milliseconds: 200),
-                      ),
-                      const SizedBox(height: 36),
-                      Animate(
-                        effects: const [
-                          SlideEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              duration: Duration(milliseconds: 500)),
-                          FadeEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              delay: Duration(milliseconds: 100)),
-                        ],
-                        delay: const Duration(milliseconds: 400),
-                        child: SelectionArea(
-                          selectionControls: MaterialTextSelectionControls(),
-                          child: const Text('GET IN TOUCH',
-                              style: TextStyle(
-                                fontSize: 86,
-                                color: Color(0xff1c1c1c),
-                                letterSpacing: -4,
-                                height: 0.8,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Neue',
-                              )),
+                        const SizedBox(height: 36),
+                        const Divider().animate(
+                          effects: const [
+                            SlideEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                duration: Duration(milliseconds: 500)),
+                            FadeEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                delay: Duration(milliseconds: 100)),
+                          ],
+                          delay: const Duration(milliseconds: 200),
                         ),
-                      ),
-                      const SizedBox(height: 36),
-                      Animate(
+                        const SizedBox(height: 36),
+                        Animate(
                           effects: const [
                             SlideEffect(
                                 curve: Curves.easeInOutCubicEmphasized,
@@ -212,79 +188,104 @@ class _AboutMePageState extends State<AboutMePage>
                                 delay: Duration(milliseconds: 100)),
                           ],
                           delay: const Duration(milliseconds: 400),
-                          child: const HoverableMailButton()),
-                      const SizedBox(height: 36),
-                      SizedBox(
-                        height: 100,
-                        child: Wrap(
-                            direction: Axis.horizontal,
-                            spacing: 15,
-                            children: [
-                              SizedBox(
-                                height: 48,
-                                width: 48,
-                                child: ActionChip(
-                                  label: const FaIcon(
-                                    FontAwesomeIcons.github,
-                                    color: Color(0xff171515),
+                          child: SelectionArea(
+                            selectionControls: MaterialTextSelectionControls(),
+                            child: const Text('GET IN TOUCH',
+                                style: TextStyle(
+                                  fontSize: 86,
+                                  color: Color(0xff1c1c1c),
+                                  letterSpacing: -4,
+                                  height: 0.8,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Neue',
+                                )),
+                          ),
+                        ),
+                        const SizedBox(height: 36),
+                        Animate(
+                            effects: const [
+                              SlideEffect(
+                                  curve: Curves.easeInOutCubicEmphasized,
+                                  duration: Duration(milliseconds: 500)),
+                              FadeEffect(
+                                  curve: Curves.easeInOutCubicEmphasized,
+                                  delay: Duration(milliseconds: 100)),
+                            ],
+                            delay: const Duration(milliseconds: 400),
+                            child: const HoverableMailButton()),
+                        const SizedBox(height: 36),
+                        SizedBox(
+                          height: 100,
+                          child: Wrap(
+                              direction: Axis.horizontal,
+                              spacing: 15,
+                              children: [
+                                SizedBox(
+                                  height: 48,
+                                  width: 48,
+                                  child: ActionChip(
+                                    label: const FaIcon(
+                                      FontAwesomeIcons.github,
+                                      color: Color(0xff171515),
+                                    ),
+                                    padding: const EdgeInsets.all(12),
+                                    labelPadding: const EdgeInsets.all(0),
+                                    onPressed: () {
+                                      launch('https://github.com/MezzLasha');
+                                    },
                                   ),
-                                  padding: const EdgeInsets.all(12),
-                                  labelPadding: const EdgeInsets.all(0),
-                                  onPressed: () {
-                                    launch('https://github.com/MezzLasha');
-                                  },
                                 ),
-                              ),
-                              SizedBox(
-                                height: 48,
-                                width: 48,
-                                child: ActionChip(
-                                  label: const FaIcon(
-                                    FontAwesomeIcons.linkedin,
-                                    color: Color(0xff0077b5),
+                                SizedBox(
+                                  height: 48,
+                                  width: 48,
+                                  child: ActionChip(
+                                    label: const FaIcon(
+                                      FontAwesomeIcons.linkedin,
+                                      color: Color(0xff0077b5),
+                                    ),
+                                    padding: const EdgeInsets.all(12),
+                                    labelPadding: const EdgeInsets.all(0),
+                                    onPressed: () {
+                                      launch(
+                                          'https://www.linkedin.com/in/lasha-mezvrishvili-1b23b9187/');
+                                    },
                                   ),
-                                  padding: const EdgeInsets.all(12),
-                                  labelPadding: const EdgeInsets.all(0),
-                                  onPressed: () {
-                                    launch(
-                                        'https://www.linkedin.com/in/lasha-mezvrishvili-1b23b9187/');
-                                  },
                                 ),
-                              ),
-                              SizedBox(
-                                height: 48,
-                                width: 48,
-                                child: ActionChip(
-                                  label: Image.network(
-                                    'https://play-lh.googleusercontent.com/y4bswMT02OROjzOPa5zDGsnXX5-cBABjF93j26seJH2cEHD4PuBW1d5VvwfYleeKf4_X',
+                                SizedBox(
+                                  height: 48,
+                                  width: 48,
+                                  child: ActionChip(
+                                    label: Image.network(
+                                      'https://play-lh.googleusercontent.com/y4bswMT02OROjzOPa5zDGsnXX5-cBABjF93j26seJH2cEHD4PuBW1d5VvwfYleeKf4_X',
+                                    ),
+                                    padding: const EdgeInsets.all(1),
+                                    labelPadding: const EdgeInsets.all(0),
+                                    onPressed: () {
+                                      launch(
+                                          'https://www.upwork.com/freelancers/mezvrishvililasha');
+                                    },
                                   ),
-                                  padding: const EdgeInsets.all(1),
-                                  labelPadding: const EdgeInsets.all(0),
-                                  onPressed: () {
-                                    launch(
-                                        'https://www.upwork.com/freelancers/mezvrishvililasha');
-                                  },
                                 ),
-                              ),
-                            ]),
-                      ).animate(
-                        effects: const [
-                          SlideEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              duration: Duration(milliseconds: 500)),
-                          FadeEffect(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              delay: Duration(milliseconds: 100)),
-                        ],
-                        delay: const Duration(milliseconds: 600),
-                      )
-                    ],
+                              ]),
+                        ).animate(
+                          effects: const [
+                            SlideEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                duration: Duration(milliseconds: 500)),
+                            FadeEffect(
+                                curve: Curves.easeInOutCubicEmphasized,
+                                delay: Duration(milliseconds: 100)),
+                          ],
+                          delay: const Duration(milliseconds: 600),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
