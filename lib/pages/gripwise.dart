@@ -1,6 +1,5 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:lashamezvrishvili/widgets/project_page_skeleton.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
