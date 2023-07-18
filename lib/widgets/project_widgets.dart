@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'dart:ui';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -89,7 +92,7 @@ class ScreenshotsListWidget extends StatelessWidget {
                                     // padEnds: true,
                                     controller: PageController(
                                         initialPage: index,
-                                        viewportFraction: 1),
+                                        viewportFraction: 2),
                                     children: List.generate(
                                       screenshots.length,
                                       (index2) => ExpandedScreenshotWidget(
@@ -140,49 +143,89 @@ class ExpandedScreenshotWidget extends StatelessWidget {
   const ExpandedScreenshotWidget(
     this.index,
     this.screenshots, {
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
+
   final Set<String> screenshots;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    return DismissiblePage(
-      onDismissed: () {
-        Navigator.pop(context);
-      },
-      startingOpacity: 0.5,
-      isFullScreen: false,
-      backgroundColor: Colors.black,
-      child: Center(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 1.2,
-          child: Hero(
-            tag: 'screenshot$index',
-            createRectTween: (begin, end) {
-              return MaterialRectCenterArcTween(begin: begin, end: end);
-            },
-            child: Material(
-              color: Colors.transparent,
-              shape: SmoothRectangleBorder(
-                  smoothness: 0.6, borderRadius: BorderRadius.circular(8)),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
+    return FutureBuilder(
+        future: getImageAspectRatio(screenshots.elementAt(index)),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return DismissiblePage(
+              onDismissed: () {
+                Navigator.pop(context);
+              },
+              startingOpacity: 0.5,
+              isFullScreen: false,
+              backgroundColor: Colors.black,
+              child: Center(
+                  child: Hero(
+                tag: 'screenshot$index',
+                createRectTween: (begin, end) {
+                  return MaterialRectCenterArcTween(begin: begin, end: end);
                 },
-                child: Ink(
-                  decoration: BoxDecoration(
+                child: Material(
+                  color: Colors.transparent,
+                  shape: SmoothRectangleBorder(
+                    smoothness: 0.6,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+              )),
+            );
+          }
+          return DismissiblePage(
+            onDismissed: () {
+              Navigator.pop(context);
+            },
+            startingOpacity: 0.5,
+            isFullScreen: false,
+            backgroundColor: Colors.black,
+            child: Center(
+                child: Hero(
+              tag: 'screenshot$index',
+              createRectTween: (begin, end) {
+                return MaterialRectCenterArcTween(begin: begin, end: end);
+              },
+              child: Material(
+                color: Colors.transparent,
+                shape: SmoothRectangleBorder(
+                  smoothness: 0.6,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Ink(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
-                          image: AssetImage(screenshots.elementAt(index)),
-                          fit: BoxFit.fitHeight)),
+                        image: AssetImage(screenshots.elementAt(index)),
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                    child: AspectRatio(
+                      aspectRatio: snapshot.data as double,
+                      child: Container(),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
-      ),
-    );
+            )),
+          );
+        });
+  }
+
+  Future<double> getImageAspectRatio(String imageUri) async {
+    File image = File(imageUri); // Or any other way to get a File instance.
+    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    return decodedImage.width / decodedImage.height;
   }
 }
 

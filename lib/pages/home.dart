@@ -1,6 +1,7 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lashamezvrishvili/main.dart';
 import 'package:lashamezvrishvili/pages/about_page.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -477,7 +478,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                     ],
                                                     image: DecorationImage(
                                                       image: AssetImage(
-                                                          'assets/images${MyApp.routes_list.elementAt(index)}.png'),
+                                                          'assets/images${MyApp.routes_list.elementAt(index)}_images/bg_image.png'),
                                                       fit: BoxFit.cover,
                                                     )),
                                               ),
@@ -535,7 +536,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     borderRadius: BorderRadius.circular(24),
                                     image: DecorationImage(
                                       image: AssetImage(
-                                          'assets/images${MyApp.routes_list.elementAt(index)}.png'),
+                                          'assets/images${MyApp.routes_list.elementAt(index)}_images/bg_image.png'),
                                       fit: BoxFit.cover,
                                     )),
                               ),
