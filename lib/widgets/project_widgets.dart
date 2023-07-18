@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'dart:ui';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -76,6 +73,7 @@ class ScreenshotsListWidget extends StatelessWidget {
                             begin: begin, end: end);
                       },
                       child: Material(
+                        color: Colors.transparent,
                         shape: SmoothRectangleBorder(
                             smoothness: 0.6,
                             borderRadius: BorderRadius.circular(8)),
@@ -92,7 +90,7 @@ class ScreenshotsListWidget extends StatelessWidget {
                                     // padEnds: true,
                                     controller: PageController(
                                         initialPage: index,
-                                        viewportFraction: 2),
+                                        viewportFraction: 1),
                                     children: List.generate(
                                       screenshots.length,
                                       (index2) => ExpandedScreenshotWidget(
@@ -143,9 +141,8 @@ class ExpandedScreenshotWidget extends StatelessWidget {
   const ExpandedScreenshotWidget(
     this.index,
     this.screenshots, {
-    Key? key,
-  }) : super(key: key);
-
+    super.key,
+  });
   final Set<String> screenshots;
   final int index;
 
@@ -159,40 +156,34 @@ class ExpandedScreenshotWidget extends StatelessWidget {
       isFullScreen: false,
       backgroundColor: Colors.black,
       child: Center(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height / 1.2,
           child: Hero(
-        tag: 'screenshot$index',
-        createRectTween: (begin, end) {
-          return MaterialRectCenterArcTween(begin: begin, end: end);
-        },
-        child: Material(
-          color: Colors.transparent,
-          shape: SmoothRectangleBorder(
-            smoothness: 0.6,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: InkWell(
-            onTap: () {
-              Navigator.pop(context);
+            tag: 'screenshot$index',
+            createRectTween: (begin, end) {
+              return MaterialRectCenterArcTween(begin: begin, end: end);
             },
-            child: Ink(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: AssetImage(screenshots.elementAt(index)),
-                  fit: BoxFit.fitHeight,
+            child: Material(
+              color: Colors.transparent,
+              shape: SmoothRectangleBorder(
+                  smoothness: 0.6, borderRadius: BorderRadius.circular(8)),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Ink(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                          image: AssetImage(screenshots.elementAt(index)),
+                          fit: BoxFit.fitHeight)),
                 ),
               ),
             ),
           ),
         ),
-      )),
+      ),
     );
-  }
-
-  Future<double> getImageAspectRatio(String imageUri) async {
-    File image = File(imageUri); // Or any other way to get a File instance.
-    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    return decodedImage.width / decodedImage.height;
   }
 }
 
