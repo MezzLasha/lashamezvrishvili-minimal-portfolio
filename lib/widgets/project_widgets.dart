@@ -151,75 +151,42 @@ class ExpandedScreenshotWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getImageAspectRatio(screenshots.elementAt(index)),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return DismissiblePage(
-              onDismissed: () {
-                Navigator.pop(context);
-              },
-              startingOpacity: 0.5,
-              isFullScreen: false,
-              backgroundColor: Colors.black,
-              child: Center(
-                  child: Hero(
-                tag: 'screenshot$index',
-                createRectTween: (begin, end) {
-                  return MaterialRectCenterArcTween(begin: begin, end: end);
-                },
-                child: Material(
-                  color: Colors.transparent,
-                  shape: SmoothRectangleBorder(
-                    smoothness: 0.6,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-              )),
-            );
-          }
-          return DismissiblePage(
-            onDismissed: () {
+    return DismissiblePage(
+      onDismissed: () {
+        Navigator.pop(context);
+      },
+      startingOpacity: 0.5,
+      isFullScreen: false,
+      backgroundColor: Colors.black,
+      child: Center(
+          child: Hero(
+        tag: 'screenshot$index',
+        createRectTween: (begin, end) {
+          return MaterialRectCenterArcTween(begin: begin, end: end);
+        },
+        child: Material(
+          color: Colors.transparent,
+          shape: SmoothRectangleBorder(
+            smoothness: 0.6,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: InkWell(
+            onTap: () {
               Navigator.pop(context);
             },
-            startingOpacity: 0.5,
-            isFullScreen: false,
-            backgroundColor: Colors.black,
-            child: Center(
-                child: Hero(
-              tag: 'screenshot$index',
-              createRectTween: (begin, end) {
-                return MaterialRectCenterArcTween(begin: begin, end: end);
-              },
-              child: Material(
-                color: Colors.transparent,
-                shape: SmoothRectangleBorder(
-                  smoothness: 0.6,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                        image: AssetImage(screenshots.elementAt(index)),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                    child: AspectRatio(
-                      aspectRatio: snapshot.data as double,
-                      child: Container(),
-                    ),
-                  ),
+            child: Ink(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: AssetImage(screenshots.elementAt(index)),
+                  fit: BoxFit.fitHeight,
                 ),
               ),
-            )),
-          );
-        });
+            ),
+          ),
+        ),
+      )),
+    );
   }
 
   Future<double> getImageAspectRatio(String imageUri) async {
