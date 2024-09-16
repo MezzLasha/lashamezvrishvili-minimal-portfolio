@@ -40,9 +40,10 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
     _controller =
         AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     _animation = CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOutCubicEmphasized,
-        reverseCurve: Curves.easeInOutCubicEmphasized);
+      parent: _controller,
+      curve: Easing.standard,
+      reverseCurve: Easing.standard,
+    );
     _controller.forward();
     super.initState();
   }
@@ -129,8 +130,7 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
           flightShuttleBuilder: (flightContext, animation, flightDirection,
               fromHeroContext, toHeroContext) {
             return AnimatedBuilder(
-              animation: CurvedAnimation(
-                  parent: animation, curve: Curves.easeInOutCubicEmphasized),
+              animation: CurvedAnimation(parent: animation, curve: Easing.standard),
               builder: (context, child) {
                 return SmoothClipRRect(
                     smoothness: 0.6,
@@ -183,12 +183,12 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                                   ),
                                 ),
                                 Center(
-                                  child: DefaultTextStyle(
+                                  child: DefaultTextStyle.merge(
                                       style: const TextStyle(
-                                          fontFamily: 'Neue',
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 50),
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 50,
+                                      ),
                                       child: Text(
                                         " ${widget.name}",
                                         softWrap: false,
@@ -222,12 +222,12 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                                   ),
                                 ),
                                 Center(
-                                  child: DefaultTextStyle(
+                                  child: DefaultTextStyle.merge(
                                       style: const TextStyle(
-                                          fontFamily: 'Neue',
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 50),
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 50,
+                                      ),
                                       child: Text(
                                         " ${widget.name}",
                                         softWrap: false,
@@ -272,12 +272,12 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                   fit: StackFit.expand,
                   children: [
                     Center(
-                      child: DefaultTextStyle(
+                      child: DefaultTextStyle.merge(
                           style: const TextStyle(
-                              fontFamily: 'Neue',
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 50),
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 50,
+                          ),
                           child: Text(
                             " ${widget.name}",
                             maxLines: 2,

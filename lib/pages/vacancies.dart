@@ -48,7 +48,9 @@ class VacanciesPage extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     style: const TextStyle(
-                        fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                     children: [
                       const TextSpan(
                           text:
@@ -82,10 +84,10 @@ class VacanciesPage extends StatelessWidget {
             const HeaderWidget(
               title: 'Check it out on\nGoogle Play Store.',
               style: TextStyle(
-                  fontFamily: 'Neue',
-                  color: Color(0xffd5fcc1),
-                  fontSize: 30,
-                  fontWeight: FontWeight.w900),
+                color: Color(0xffd5fcc1),
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+              ),
             ),
             const SizedBox(
               height: 16,
@@ -150,11 +152,11 @@ class VacanciesPage extends StatelessWidget {
                               Text(
                                 'play.google.com',
                                 style: TextStyle(
-                                    fontFamily: 'Neue',
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FontStyle.italic),
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic,
+                                ),
                               ),
                             ],
                           ),

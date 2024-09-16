@@ -110,8 +110,10 @@ class AggregatePage extends StatelessWidget {
                 ),
                 RichText(
                   text: const TextSpan(
-                    style:
-                        TextStyle(fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                     children: [
                       TextSpan(
                           text:

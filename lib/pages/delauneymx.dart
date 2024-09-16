@@ -109,8 +109,10 @@ class DelauneyPage extends StatelessWidget {
                 ),
                 RichText(
                   text: const TextSpan(
-                    style:
-                        TextStyle(fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                     children: [
                       TextSpan(
                           text:
@@ -132,10 +134,7 @@ class DelauneyPage extends StatelessWidget {
             const HeaderWidget(
               title: 'Check it out on\nGoogle Play Store.',
               style: TextStyle(
-                  fontFamily: 'Neue',
-                  color: Color(0xffd5fcc1),
-                  fontSize: 30,
-                  fontWeight: FontWeight.w900),
+                  color: Color(0xffd5fcc1), fontSize: 30, fontWeight: FontWeight.w900),
             ),
             const SizedBox(
               height: 16,
@@ -200,11 +199,11 @@ class DelauneyPage extends StatelessWidget {
                               Text(
                                 'play.google.com',
                                 style: TextStyle(
-                                    fontFamily: 'Neue',
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FontStyle.italic),
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic,
+                                ),
                               ),
                             ],
                           ),
@@ -219,10 +218,10 @@ class DelauneyPage extends StatelessWidget {
             HeaderWidget(
               title: 'Check it out on\nApp Store.',
               style: TextStyle(
-                  fontFamily: 'Neue',
-                  color: Colors.blue[100],
-                  fontSize: 30,
-                  fontWeight: FontWeight.w900),
+                color: Colors.blue[100],
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+              ),
             ),
             const SizedBox(
               height: 16,
@@ -286,11 +285,11 @@ class DelauneyPage extends StatelessWidget {
                               Text(
                                 'apps.apple.com',
                                 style: TextStyle(
-                                    fontFamily: 'Neue',
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FontStyle.italic),
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic,
+                                ),
                               ),
                             ],
                           ),

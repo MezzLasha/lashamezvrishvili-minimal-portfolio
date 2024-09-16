@@ -27,7 +27,6 @@ class BackButtonProjectAnimating extends StatelessWidget {
               Text(
                 'Back',
                 style: TextStyle(
-                  fontFamily: 'Neue',
                   color: Colors.white,
                   fontSize: 16,
                 ),
@@ -76,41 +75,35 @@ class ScreenshotsListWidget extends StatelessWidget {
                         shape: SmoothRectangleBorder(
                             smoothness: 0.6, borderRadius: BorderRadius.circular(8)),
                         child: InkWell(
-                          onTap: () {
-                            // print(index);
-                            context.pushTransparentRoute(
-                              Stack(
-                                children: [
-                                  PageView(
-                                    physics: const BouncingScrollPhysics(
-                                        parent: AlwaysScrollableScrollPhysics()),
-                                    // padEnds: true,
-                                    controller: PageController(
-                                        initialPage: index, viewportFraction: 1),
-                                    children: List.generate(
-                                      screenshots.length,
-                                      (index2) =>
-                                          ExpandedScreenshotWidget(index2, screenshots),
+                          onTap: () => context.pushTransparentRoute(
+                            Stack(
+                              children: [
+                                PageView(
+                                  physics: const BouncingScrollPhysics(
+                                      parent: AlwaysScrollableScrollPhysics()),
+                                  controller: PageController(
+                                      initialPage: index, viewportFraction: 1),
+                                  children: List.generate(
+                                    screenshots.length,
+                                    (index2) =>
+                                        ExpandedScreenshotWidget(index2, screenshots),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 20,
+                                  right: 20,
+                                  child: IconButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    icon: const Icon(
+                                      Icons.close,
+                                      color: Colors.white,
+                                      size: 30,
                                     ),
                                   ),
-                                  Positioned(
-                                    top: 20,
-                                    right: 20,
-                                    child: IconButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      icon: const Icon(
-                                        Icons.close,
-                                        color: Colors.white,
-                                        size: 30,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                                ),
+                              ],
+                            ),
+                          ),
                           borderRadius: BorderRadius.circular(8),
                           child: Ink(
                             width: 150,
@@ -201,10 +194,10 @@ class HeaderWidget extends StatelessWidget {
           child: Text(title,
               style: style ??
                   const TextStyle(
-                      fontFamily: 'Neue',
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 80)),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 80,
+                  )),
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),

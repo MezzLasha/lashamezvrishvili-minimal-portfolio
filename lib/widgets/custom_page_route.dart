@@ -12,8 +12,8 @@ class CustomRoute extends PageRouteBuilder {
             return FadeTransition(
               opacity: CurvedAnimation(
                   parent: animation,
-                  curve: Curves.easeInOutCubicEmphasized,
-                  reverseCurve: Curves.easeInOutCubicEmphasized.flipped),
+                  curve: Easing.standard,
+                  reverseCurve: Easing.standard.flipped),
               child: child,
             );
           },
@@ -31,9 +31,9 @@ class CustomRoute extends PageRouteBuilder {
 
 //   @override
 //   Rect lerp(double t) {
-//     Curves.easeInOutCubicEmphasized.transform(t);
+//     Easing.standard.transform(t);
 //     //any curve can be applied here e.g. Curve.elasticOut.transform(t);
-//     final verticalDist = Curves.easeInOutCubicEmphasized.transform(t);
+//     final verticalDist = Easing.standard.transform(t);
 
 //     final top = lerpDouble(a.top, b.top, t)! * (1 - verticalDist);
 //     return Rect.fromLTRB(
