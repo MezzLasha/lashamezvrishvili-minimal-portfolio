@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lashamezvrishvili/pages/home.dart';
 import 'dart:math' as math;
 
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '/pages/home.dart';
 
 class AboutMePage extends StatefulWidget {
   const AboutMePage(this.controller, {super.key});
@@ -17,20 +18,9 @@ class AboutMePage extends StatefulWidget {
   State<AboutMePage> createState() => _AboutMePageState();
 }
 
-class _AboutMePageState extends State<AboutMePage>
-// with SingleTickerProviderStateMixin
-{
-  // late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    // _controller = AnimationController(vsync: this);
-  }
-
+class _AboutMePageState extends State<AboutMePage> {
   @override
   void dispose() {
-    // _controller.dispose();
     widget.controller.forward();
     super.dispose();
   }
@@ -46,18 +36,15 @@ class _AboutMePageState extends State<AboutMePage>
         automaticallyImplyLeading: false,
         actions: [
           Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 24.0, right: 24),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                  ),
-                ),
-              )),
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24.0, right: 24),
+              child: IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: const Icon(Icons.close),
+              ),
+            ),
+          ),
         ],
       ),
       body: Center(
@@ -110,8 +97,7 @@ class _AboutMePageState extends State<AboutMePage>
                                       ),
                                     ),
                                     TextSpan(
-                                      text:
-                                          ',\nA Flutter developer, with an eye for ',
+                                      text: ',\nA Flutter developer, with an eye for ',
                                       style: TextStyle(
                                         fontSize: 36,
                                         color: Color(0xff1c1c1c),
@@ -216,57 +202,51 @@ class _AboutMePageState extends State<AboutMePage>
                         const SizedBox(height: 36),
                         SizedBox(
                           height: 100,
-                          child: Wrap(
-                              direction: Axis.horizontal,
-                              spacing: 15,
-                              children: [
-                                SizedBox(
-                                  height: 48,
-                                  width: 48,
-                                  child: ActionChip(
-                                    label: const FaIcon(
-                                      FontAwesomeIcons.github,
-                                      color: Color(0xff171515),
-                                    ),
-                                    padding: const EdgeInsets.all(12),
-                                    labelPadding: const EdgeInsets.all(0),
-                                    onPressed: () {
-                                      launch('https://github.com/MezzLasha');
-                                    },
-                                  ),
+                          child: Wrap(direction: Axis.horizontal, spacing: 15, children: [
+                            SizedBox(
+                              height: 48,
+                              width: 48,
+                              child: ActionChip(
+                                label: const FaIcon(
+                                  FontAwesomeIcons.github,
+                                  color: Color(0xff171515),
                                 ),
-                                SizedBox(
-                                  height: 48,
-                                  width: 48,
-                                  child: ActionChip(
-                                    label: const FaIcon(
-                                      FontAwesomeIcons.linkedin,
-                                      color: Color(0xff0077b5),
-                                    ),
-                                    padding: const EdgeInsets.all(12),
-                                    labelPadding: const EdgeInsets.all(0),
-                                    onPressed: () {
-                                      launch(
-                                          'https://www.linkedin.com/in/lasha-mezvrishvili-1b23b9187/');
-                                    },
-                                  ),
+                                padding: const EdgeInsets.all(12),
+                                labelPadding: const EdgeInsets.all(0),
+                                onPressed: () => launch('https://github.com/MezzLasha'),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 48,
+                              width: 48,
+                              child: ActionChip(
+                                label: const FaIcon(
+                                  FontAwesomeIcons.linkedin,
+                                  color: Color(0xff0077b5),
                                 ),
-                                SizedBox(
-                                  height: 48,
-                                  width: 48,
-                                  child: ActionChip(
-                                    label: Image.network(
-                                      'https://play-lh.googleusercontent.com/y4bswMT02OROjzOPa5zDGsnXX5-cBABjF93j26seJH2cEHD4PuBW1d5VvwfYleeKf4_X',
-                                    ),
-                                    padding: const EdgeInsets.all(1),
-                                    labelPadding: const EdgeInsets.all(0),
-                                    onPressed: () {
-                                      launch(
-                                          'https://www.upwork.com/freelancers/mezvrishvililasha');
-                                    },
-                                  ),
+                                padding: const EdgeInsets.all(12),
+                                labelPadding: const EdgeInsets.all(0),
+                                onPressed: () => launch(
+                                  'https://www.linkedin.com/in/lasha-mezvrishvili-1b23b9187/',
                                 ),
-                              ]),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 48,
+                              width: 48,
+                              child: ActionChip(
+                                label: Image.network(
+                                  'https://play-lh.googleusercontent.com/y4bswMT02OROjzOPa5zDGsnXX5-cBABjF93j26seJH2cEHD4PuBW1d5VvwfYleeKf4_X',
+                                ),
+                                padding: const EdgeInsets.all(1),
+                                labelPadding: const EdgeInsets.all(0),
+                                onPressed: () {
+                                  launch(
+                                      'https://www.upwork.com/freelancers/mezvrishvililasha');
+                                },
+                              ),
+                            ),
+                          ]),
                         ).animate(
                           effects: const [
                             SlideEffect(
@@ -342,8 +322,7 @@ class _HoverableMailButtonState extends State<HoverableMailButton>
               return Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Transform.translate(
-                      offset: const Offset(30, 0), child: child!),
+                  Transform.translate(offset: const Offset(30, 0), child: child!),
                   Transform.rotate(
                     angle: _animation.value * math.pi / 4,
                     child: const Icon(

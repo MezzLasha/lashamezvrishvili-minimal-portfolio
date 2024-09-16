@@ -37,8 +37,8 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
 
   @override
   void initState() {
-    _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     _animation = CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOutCubicEmphasized,
@@ -55,8 +55,7 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 800),
         child: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           slivers: [
             SliverAppBar(
               automaticallyImplyLeading: false,
@@ -139,12 +138,9 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                         ? BorderRadius.circular(6 + 90 * animation.value)
                         : BorderRadius.only(
                             topLeft: Radius.circular(24 + 24 * animation.value),
-                            topRight:
-                                Radius.circular(24 + 24 * animation.value),
-                            bottomLeft:
-                                Radius.circular((24 - 24 * animation.value)),
-                            bottomRight:
-                                Radius.circular((24 - 24 * animation.value)),
+                            topRight: Radius.circular(24 + 24 * animation.value),
+                            bottomLeft: Radius.circular((24 - 24 * animation.value)),
+                            bottomRight: Radius.circular((24 - 24 * animation.value)),
                           ),
                     child: mdof.size.aspectRatio > 0.5625
                         ? Material(
@@ -160,12 +156,10 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                                 Opacity(
                                   opacity: animation.value,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 48.0),
+                                        padding: const EdgeInsets.only(left: 48.0),
                                         child: IconButton(
                                             onPressed: () {
                                               Navigator.pop(context);
@@ -176,15 +170,13 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                                       const Spacer(),
                                       Flexible(
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 48.0),
+                                          padding: const EdgeInsets.only(right: 48.0),
                                           child: IconButton(
                                               onPressed: () {
                                                 //copy link to clipboard
                                               },
                                               color: Colors.black,
-                                              icon: const Icon(
-                                                  Icons.open_in_new)),
+                                              icon: const Icon(Icons.open_in_new)),
                                         ),
                                       )
                                     ],
@@ -214,18 +206,15 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                                 Opacity(
                                   opacity: animation.value,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Flexible(
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 16.0),
+                                          padding: const EdgeInsets.only(left: 16.0),
                                           child: IconButton(
                                               onPressed: () {},
                                               color: Colors.black,
-                                              icon:
-                                                  const Icon(Icons.arrow_back)),
+                                              icon: const Icon(Icons.arrow_back)),
                                         ),
                                       ),
                                       const Spacer(),
@@ -301,13 +290,11 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
-                              left:
-                                  mdof.size.aspectRatio > 0.5625 ? 48.0 : 16.0),
+                              left: mdof.size.aspectRatio > 0.5625 ? 48.0 : 16.0),
                           child: IconButton(
                               onPressed: () async {
                                 _controller.reverse();
-                                await Future.delayed(
-                                    const Duration(milliseconds: 200));
+                                await Future.delayed(const Duration(milliseconds: 200));
                                 Navigator.pop(context);
                               },
                               color: Colors.black,
@@ -318,9 +305,7 @@ class _ProjectPageSkeletonState extends State<ProjectPageSkeleton>
                         mdof.size.aspectRatio > 0.5625
                             ? Padding(
                                 padding: EdgeInsets.only(
-                                    right: mdof.size.aspectRatio > 0.5625
-                                        ? 48.0
-                                        : 16.0),
+                                    right: mdof.size.aspectRatio > 0.5625 ? 48.0 : 16.0),
                                 child: IconButton(
                                     onPressed: () async {
                                       await launch(widget.headerUrl);

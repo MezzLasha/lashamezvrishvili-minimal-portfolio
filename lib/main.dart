@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:lashamezvrishvili/pages/aggregate.dart';
+import 'package:lashamezvrishvili/pages/delauneymx.dart';
 import 'package:lashamezvrishvili/pages/gripwise.dart';
 import 'package:lashamezvrishvili/pages/home.dart';
-import 'package:lashamezvrishvili/pages/delauneymx.dart';
 import 'package:lashamezvrishvili/pages/vacancies.dart';
 import 'package:lashamezvrishvili/widgets/custom_page_route.dart';
 
@@ -15,7 +15,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const routes_list = {
+  static const routesList = {
     '/vacancies',
     '/aggregate',
     '/delauneymx',
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
   //Names of the routes
 
-  static const routes_names = {
+  static const routesNames = {
     'Vacancies',
     'Aggregate',
     'Delauney.mx',
@@ -49,38 +49,15 @@ class MyApp extends StatelessWidget {
           PointerDeviceKind.stylus,
         },
       ),
-
-      onGenerateRoute: (RouteSettings settings) {
-        Widget page;
-        switch (settings.name) {
-          case '/':
-            page = const HomePage();
-            break;
-          case '/vacancies':
-            page = const VacanciesPage();
-            break;
-          case '/aggregate':
-            page = const AggregatePage();
-            break;
-          case '/delauneymx':
-            page = const DelauneyPage();
-            break;
-          case '/gripwise':
-            page = const GripwisePage();
-            break;
-
-          // Add more cases for additional named routes
-          default:
-            return null;
-        }
-        return CustomRoute(page: page);
-      },
-      // routes: {
-      //   '/': (context) => const HomePage(),
-      //   '/vacancies': (context) => const VacanciesPage(),
-      //   '/aggregate': (context) => const AggregatePage(),
-      //   '/terminal': (context) => const TerminalPage(),
-      // },
+      onGenerateRoute: (RouteSettings settings) => CustomRoute(
+          page: switch (settings.name) {
+        '/' => const HomePage(),
+        '/vacancies' => const VacanciesPage(),
+        '/aggregate' => const AggregatePage(),
+        '/delauneymx' => const DelauneyPage(),
+        '/gripwise' => const GripwisePage(),
+        _ => const Placeholder(),
+      }),
     );
   }
 }

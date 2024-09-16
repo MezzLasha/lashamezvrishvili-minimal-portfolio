@@ -1,10 +1,10 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lashamezvrishvili/main.dart';
 import 'package:lashamezvrishvili/pages/about_page.dart';
 import 'package:smooth_corner/smooth_corner.dart';
+
 import '../widgets/misc.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,8 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  List<bool> hovering =
-      List.generate(MyApp.routes_list.length, (index) => false);
+  List<bool> hovering = List.generate(MyApp.routesList.length, (index) => false);
 
   late AnimationController _controller;
 
@@ -49,8 +48,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: ListView(
               shrinkWrap: true,
               clipBehavior: Clip.none,
-              physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics:
+                  const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               children: [
                 mdof.size.aspectRatio > 0.5625
                     ? buildDesktopVersion(context, mdof)
@@ -77,8 +76,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 700),
                     curve: Curves.easeInOutCubicEmphasized,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                     decoration: BoxDecoration(
                         color: const Color(0xff1c1c1c),
                         borderRadius: BorderRadius.circular(24),
@@ -108,7 +106,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       padding: const EdgeInsets.only(bottom: 96.0),
       child: Center(
         child: Wrap(spacing: 10, runSpacing: 10, children: [
-          ...List.generate(MyApp.routes_list.length, (index) {
+          ...List.generate(MyApp.routesList.length, (index) {
             return Animate(
               effects: [
                 ScaleEffect(
@@ -125,8 +123,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   padding: const EdgeInsets.all(10),
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(
-                          context, MyApp.routes_list.elementAt(index));
+                      Navigator.pushNamed(context, MyApp.routesList.elementAt(index));
                     },
                     onHover: (value) {
                       setState(() {
@@ -142,16 +139,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       child: Stack(
                         children: [
                           Hero(
-                            tag: MyApp.routes_list.elementAt(index),
+                            tag: MyApp.routesList.elementAt(index),
                             createRectTween: (begin, end) {
-                              return MaterialRectCenterArcTween(
-                                  begin: begin, end: end);
+                              return MaterialRectCenterArcTween(begin: begin, end: end);
                             },
-                            flightShuttleBuilder: (flightContext,
-                                animation,
-                                flightDirection,
-                                fromHeroContext,
-                                toHeroContext) {
+                            flightShuttleBuilder: (flightContext, animation,
+                                flightDirection, fromHeroContext, toHeroContext) {
                               return AnimatedBuilder(
                                 animation: CurvedAnimation(
                                     parent: animation,
@@ -159,8 +152,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 builder: (context, child) {
                                   return SmoothClipRRect(
                                       smoothness: 0.6,
-                                      borderRadius: mdof.size.aspectRatio >
-                                              0.5625
+                                      borderRadius: mdof.size.aspectRatio > 0.5625
                                           ? BorderRadius.circular(
                                               6 + 90 * animation.value)
                                           : BorderRadius.only(
@@ -183,37 +175,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                     opacity: animation.value,
                                                     child: Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                          MainAxisAlignment.spaceBetween,
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 48.0),
+                                                          padding: const EdgeInsets.only(
+                                                              left: 48.0),
                                                           child: IconButton(
                                                               onPressed: () {},
-                                                              color:
-                                                                  Colors.black,
-                                                              icon: const Icon(Icons
-                                                                  .arrow_back)),
+                                                              color: Colors.black,
+                                                              icon: const Icon(
+                                                                  Icons.arrow_back)),
                                                         ),
                                                         const Spacer(),
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    right:
-                                                                        48.0),
+                                                                const EdgeInsets.only(
+                                                                    right: 48.0),
                                                             child: IconButton(
-                                                                onPressed:
-                                                                    () {},
-                                                                color: Colors
-                                                                    .black,
+                                                                onPressed: () {},
+                                                                color: Colors.black,
                                                                 icon: const Icon(
-                                                                    Icons
-                                                                        .open_in_new)),
+                                                                    Icons.open_in_new)),
                                                           ),
                                                         )
                                                       ],
@@ -232,20 +215,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                     opacity: animation.value,
                                                     child: Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                          MainAxisAlignment.spaceBetween,
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 16.0),
+                                                          padding: const EdgeInsets.only(
+                                                              left: 16.0),
                                                           child: IconButton(
                                                               onPressed: () {},
-                                                              color:
-                                                                  Colors.black,
-                                                              icon: const Icon(Icons
-                                                                  .arrow_back)),
+                                                              color: Colors.black,
+                                                              icon: const Icon(
+                                                                  Icons.arrow_back)),
                                                         ),
                                                         const Spacer(),
                                                       ],
@@ -264,7 +243,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           fontWeight: FontWeight.bold,
                                           fontSize: 50),
                                       child: Text(
-                                        " ${MyApp.routes_names.elementAt(index)}",
+                                        " ${MyApp.routesNames.elementAt(index)}",
                                         softWrap: false,
                                         overflow: TextOverflow.fade,
                                       )),
@@ -280,8 +259,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       ? darkSmoothBoxShadow
                                       : const [
                                           BoxShadow(
-                                              color: Color.fromRGBO(
-                                                  0, 0, 0, 0.0197),
+                                              color: Color.fromRGBO(0, 0, 0, 0.0197),
                                               spreadRadius: 0,
                                               offset: Offset(0, 2.77),
                                               blurRadius: 2.21),
@@ -289,7 +267,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   borderRadius: BorderRadius.circular(6),
                                   image: DecorationImage(
                                     image: AssetImage(
-                                        'assets/images${MyApp.routes_list.elementAt(index)}_images/bg_image.png'),
+                                        'assets/images${MyApp.routesList.elementAt(index)}_images/bg_image.png'),
                                     fit: BoxFit.cover,
                                   )),
                             ),
@@ -302,7 +280,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 50),
                                 child: Text(
-                                  ' ${MyApp.routes_names.elementAt(index)}',
+                                  ' ${MyApp.routesNames.elementAt(index)}',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
                                 )),
@@ -317,13 +295,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             effects: [
               ScaleEffect(
                 curve: Curves.easeInOutCubicEmphasized,
-                delay: Duration(
-                    milliseconds: 100 * (MyApp.routes_list.length + 1)),
+                delay: Duration(milliseconds: 100 * (MyApp.routesList.length + 1)),
               ),
               FlipEffect(
                 curve: Curves.easeInOutCubicEmphasized,
-                delay: Duration(
-                    milliseconds: 100 * (MyApp.routes_list.length + 1)),
+                delay: Duration(milliseconds: 100 * (MyApp.routesList.length + 1)),
               )
             ],
             controller: _controller,
@@ -349,16 +325,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Hero(
                           tag: 'AddProjectHero',
                           createRectTween: (begin, end) {
-                            return MaterialRectCenterArcTween(
-                                begin: begin, end: end);
+                            return MaterialRectCenterArcTween(begin: begin, end: end);
                           },
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 1000),
                             curve: Curves.easeInOutCubicEmphasized,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color:
-                                    const Color.fromARGB(255, 241, 241, 241)),
+                                color: const Color.fromARGB(255, 241, 241, 241)),
                           ),
                         ),
                         const Center(
@@ -407,7 +381,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     )),
               ),
             ),
-            ...List.generate(MyApp.routes_list.length, (index) {
+            ...List.generate(MyApp.routesList.length, (index) {
               return Animate(
                 effects: [
                   ScaleEffect(
@@ -424,8 +398,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(
-                            context, MyApp.routes_list.elementAt(index));
+                        Navigator.pushNamed(context, MyApp.routesList.elementAt(index));
                       },
                       // borderRadius: BorderRadius.circular(24),
                       child: SizedBox(
@@ -434,16 +407,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: Stack(
                           children: [
                             Hero(
-                              tag: MyApp.routes_list.elementAt(index),
+                              tag: MyApp.routesList.elementAt(index),
                               createRectTween: (begin, end) {
-                                return MaterialRectCenterArcTween(
-                                    begin: begin, end: end);
+                                return MaterialRectCenterArcTween(begin: begin, end: end);
                               },
-                              flightShuttleBuilder: (flightContext,
-                                  animation,
-                                  flightDirection,
-                                  fromHeroContext,
-                                  toHeroContext) {
+                              flightShuttleBuilder: (flightContext, animation,
+                                  flightDirection, fromHeroContext, toHeroContext) {
                                 return AnimatedBuilder(
                                   animation: CurvedAnimation(
                                       parent: animation,
@@ -452,10 +421,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     return SmoothClipRRect(
                                         smoothness: 0.6,
                                         borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(
-                                              24 + 24 * animation.value),
-                                          topRight: Radius.circular(
-                                              24 + 24 * animation.value),
+                                          topLeft:
+                                              Radius.circular(24 + 24 * animation.value),
+                                          topRight:
+                                              Radius.circular(24 + 24 * animation.value),
                                           bottomLeft: Radius.circular(
                                               (24 - 24 * animation.value)),
                                           bottomRight: Radius.circular(
@@ -472,13 +441,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                           color: Color.fromRGBO(
                                                               0, 0, 0, 0.0197),
                                                           spreadRadius: 0,
-                                                          offset:
-                                                              Offset(0, 2.77),
+                                                          offset: Offset(0, 2.77),
                                                           blurRadius: 2.21),
                                                     ],
                                                     image: DecorationImage(
                                                       image: AssetImage(
-                                                          'assets/images${MyApp.routes_list.elementAt(index)}_images/bg_image.png'),
+                                                          'assets/images${MyApp.routesList.elementAt(index)}_images/bg_image.png'),
                                                       fit: BoxFit.cover,
                                                     )),
                                               ),
@@ -486,18 +454,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                 opacity: animation.value,
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                      MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 16.0),
+                                                      padding: const EdgeInsets.only(
+                                                          left: 16.0),
                                                       child: IconButton(
                                                           onPressed: () {},
                                                           color: Colors.black,
-                                                          icon: const Icon(Icons
-                                                              .arrow_back)),
+                                                          icon: const Icon(
+                                                              Icons.arrow_back)),
                                                     ),
                                                     const Spacer(),
                                                   ],
@@ -516,7 +482,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             fontWeight: FontWeight.bold,
                                             fontSize: 50),
                                         child: Text(
-                                          " ${MyApp.routes_names.elementAt(index)}",
+                                          " ${MyApp.routesNames.elementAt(index)}",
                                           softWrap: false,
                                           overflow: TextOverflow.fade,
                                         )),
@@ -527,8 +493,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 decoration: BoxDecoration(
                                     boxShadow: const [
                                       BoxShadow(
-                                          color:
-                                              Color.fromRGBO(0, 0, 0, 0.0197),
+                                          color: Color.fromRGBO(0, 0, 0, 0.0197),
                                           spreadRadius: 0,
                                           offset: Offset(0, 2.77),
                                           blurRadius: 2.21),
@@ -536,7 +501,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     borderRadius: BorderRadius.circular(24),
                                     image: DecorationImage(
                                       image: AssetImage(
-                                          'assets/images${MyApp.routes_list.elementAt(index)}_images/bg_image.png'),
+                                          'assets/images${MyApp.routesList.elementAt(index)}_images/bg_image.png'),
                                       fit: BoxFit.cover,
                                     )),
                               ),
@@ -549,7 +514,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 50),
                                   child: Text(
-                                    ' ${MyApp.routes_names.elementAt(index)}',
+                                    ' ${MyApp.routesNames.elementAt(index)}',
                                     softWrap: false,
                                     overflow: TextOverflow.fade,
                                   )),
@@ -564,13 +529,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               effects: [
                 ScaleEffect(
                   curve: Curves.easeInOutCubicEmphasized,
-                  delay: Duration(
-                      milliseconds: 100 * (MyApp.routes_list.length + 1)),
+                  delay: Duration(milliseconds: 100 * (MyApp.routesList.length + 1)),
                 ),
                 FlipEffect(
                   curve: Curves.easeInOutCubicEmphasized,
-                  delay: Duration(
-                      milliseconds: 100 * (MyApp.routes_list.length + 1)),
+                  delay: Duration(milliseconds: 100 * (MyApp.routesList.length + 1)),
                 )
               ],
               controller: _controller,
@@ -594,16 +557,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           Hero(
                             tag: 'AddProjectHero',
                             createRectTween: (begin, end) {
-                              return MaterialRectCenterArcTween(
-                                  begin: begin, end: end);
+                              return MaterialRectCenterArcTween(begin: begin, end: end);
                             },
                             child: AnimatedContainer(
                               duration: const Duration(milliseconds: 1000),
                               curve: Curves.easeInOutCubicEmphasized,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(24),
-                                  color:
-                                      const Color.fromARGB(255, 241, 241, 241)),
+                                  color: const Color.fromARGB(255, 241, 241, 241)),
                             ),
                           ),
                           const Center(
@@ -637,7 +598,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void openAboutMePage() async {
     _controller.reverse();
     await Future.delayed(const Duration(milliseconds: 300));
-    // print('sdf');
     context.pushTransparentRoute(AboutMePage(_controller));
   }
 }
@@ -651,8 +611,7 @@ class LogoWidget extends StatefulWidget {
   State<LogoWidget> createState() => _LogoWidgetState();
 }
 
-class _LogoWidgetState extends State<LogoWidget>
-    with SingleTickerProviderStateMixin {
+class _LogoWidgetState extends State<LogoWidget> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -687,8 +646,8 @@ class _LogoWidgetState extends State<LogoWidget>
                 children: [
                   Center(
                     child: Transform.translate(
-                      offset: Offset(0 + (-28 * _animation.value),
-                          -15 + (15 * _animation.value)),
+                      offset: Offset(
+                          0 + (-28 * _animation.value), -15 + (15 * _animation.value)),
                       child: Text(
                         'ME',
                         maxLines: 2,
@@ -705,8 +664,8 @@ class _LogoWidgetState extends State<LogoWidget>
                   ),
                   Center(
                     child: Transform.translate(
-                      offset: Offset(0 + (28 * _animation.value),
-                          15 + (-15 * _animation.value)),
+                      offset: Offset(
+                          0 + (28 * _animation.value), 15 + (-15 * _animation.value)),
                       child: const Text(
                         'ZZ',
                         maxLines: 2,

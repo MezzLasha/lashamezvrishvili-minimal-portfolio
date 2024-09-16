@@ -7,10 +7,8 @@ class CustomRoute extends PageRouteBuilder {
       : super(
           transitionDuration: const Duration(milliseconds: 500),
           reverseTransitionDuration: const Duration(milliseconds: 500),
-          transitionsBuilder: (BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child) {
+          transitionsBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation, Widget child) {
             return FadeTransition(
               opacity: CurvedAnimation(
                   parent: animation,

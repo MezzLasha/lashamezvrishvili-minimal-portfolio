@@ -47,16 +47,14 @@ class AggregatePage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics()),
-                        children:
-                            List.generate(aggregateScreenshots.length, (index) {
+                        children: List.generate(aggregateScreenshots.length, (index) {
                           // print(index);
                           return Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: Hero(
                               tag: 'screenshot$index',
                               createRectTween: (begin, end) {
-                                return MaterialRectCenterArcTween(
-                                    begin: begin, end: end);
+                                return MaterialRectCenterArcTween(begin: begin, end: end);
                               },
                               child: Material(
                                 shape: SmoothRectangleBorder(
@@ -68,12 +66,10 @@ class AggregatePage extends StatelessWidget {
                                     context.pushTransparentRoute(
                                       PageView(
                                         physics: const BouncingScrollPhysics(
-                                            parent:
-                                                AlwaysScrollableScrollPhysics()),
+                                            parent: AlwaysScrollableScrollPhysics()),
                                         // padEnds: true,
                                         controller: PageController(
-                                            initialPage: index,
-                                            viewportFraction: 1),
+                                            initialPage: index, viewportFraction: 1),
                                         children: List.generate(
                                           aggregateScreenshots.length,
                                           (index2) => ExpandedScreenshotWidget(
@@ -89,8 +85,7 @@ class AggregatePage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(8),
                                         image: DecorationImage(
                                             image: AssetImage(
-                                                aggregateScreenshots
-                                                    .elementAt(index)),
+                                                aggregateScreenshots.elementAt(index)),
                                             fit: BoxFit.cover)),
                                   ),
                                 ),
@@ -115,8 +110,8 @@ class AggregatePage extends StatelessWidget {
                 ),
                 RichText(
                   text: const TextSpan(
-                    style: TextStyle(
-                        fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                    style:
+                        TextStyle(fontFamily: 'Neue', color: Colors.white, fontSize: 16),
                     children: [
                       TextSpan(
                           text:

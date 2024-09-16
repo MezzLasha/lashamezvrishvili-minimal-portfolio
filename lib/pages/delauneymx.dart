@@ -46,16 +46,14 @@ class DelauneyPage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics()),
-                        children:
-                            List.generate(delauneyScreenshots.length, (index) {
+                        children: List.generate(delauneyScreenshots.length, (index) {
                           // print(index);
                           return Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: Hero(
                               tag: 'screenshot$index',
                               createRectTween: (begin, end) {
-                                return MaterialRectCenterArcTween(
-                                    begin: begin, end: end);
+                                return MaterialRectCenterArcTween(begin: begin, end: end);
                               },
                               child: Material(
                                 shape: SmoothRectangleBorder(
@@ -67,12 +65,10 @@ class DelauneyPage extends StatelessWidget {
                                     context.pushTransparentRoute(
                                       PageView(
                                         physics: const BouncingScrollPhysics(
-                                            parent:
-                                                AlwaysScrollableScrollPhysics()),
+                                            parent: AlwaysScrollableScrollPhysics()),
                                         // padEnds: true,
                                         controller: PageController(
-                                            initialPage: index,
-                                            viewportFraction: 1),
+                                            initialPage: index, viewportFraction: 1),
                                         children: List.generate(
                                           delauneyScreenshots.length,
                                           (index2) => ExpandedScreenshotWidget(
@@ -88,8 +84,7 @@ class DelauneyPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(8),
                                         image: DecorationImage(
                                             image: AssetImage(
-                                                delauneyScreenshots
-                                                    .elementAt(index)),
+                                                delauneyScreenshots.elementAt(index)),
                                             fit: BoxFit.cover)),
                                   ),
                                 ),
@@ -114,8 +109,8 @@ class DelauneyPage extends StatelessWidget {
                 ),
                 RichText(
                   text: const TextSpan(
-                    style: TextStyle(
-                        fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                    style:
+                        TextStyle(fontFamily: 'Neue', color: Colors.white, fontSize: 16),
                     children: [
                       TextSpan(
                           text:
@@ -236,8 +231,7 @@ class DelauneyPage extends StatelessWidget {
                 aspectRatio: 1.934,
                 child: InkWell(
                   onTap: () async {
-                    await launch(
-                        'https://apps.apple.com/us/app/delauney/id6446408684');
+                    await launch('https://apps.apple.com/us/app/delauney/id6446408684');
                   },
                   customBorder: SmoothRectangleBorder(
                     smoothness: 0.6,

@@ -45,16 +45,14 @@ class GripwisePage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics()),
-                        children:
-                            List.generate(gripwiseScreenshots.length, (index) {
+                        children: List.generate(gripwiseScreenshots.length, (index) {
                           // print(index);
                           return Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: Hero(
                               tag: 'screenshot$index',
                               createRectTween: (begin, end) {
-                                return MaterialRectCenterArcTween(
-                                    begin: begin, end: end);
+                                return MaterialRectCenterArcTween(begin: begin, end: end);
                               },
                               child: Material(
                                 color: Colors.transparent,
@@ -67,12 +65,10 @@ class GripwisePage extends StatelessWidget {
                                     context.pushTransparentRoute(
                                       PageView(
                                         physics: const BouncingScrollPhysics(
-                                            parent:
-                                                AlwaysScrollableScrollPhysics()),
+                                            parent: AlwaysScrollableScrollPhysics()),
                                         // padEnds: true,
                                         controller: PageController(
-                                            initialPage: index,
-                                            viewportFraction: 1),
+                                            initialPage: index, viewportFraction: 1),
                                         children: List.generate(
                                           gripwiseScreenshots.length,
                                           (index2) => ExpandedScreenshotWidget(
@@ -88,8 +84,7 @@ class GripwisePage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(8),
                                         image: DecorationImage(
                                             image: AssetImage(
-                                                gripwiseScreenshots
-                                                    .elementAt(index)),
+                                                gripwiseScreenshots.elementAt(index)),
                                             fit: BoxFit.fitHeight)),
                                   ),
                                 ),
@@ -114,8 +109,8 @@ class GripwisePage extends StatelessWidget {
                 ),
                 RichText(
                   text: const TextSpan(
-                    style: TextStyle(
-                        fontFamily: 'Neue', color: Colors.white, fontSize: 16),
+                    style:
+                        TextStyle(fontFamily: 'Neue', color: Colors.white, fontSize: 16),
                     children: [
                       TextSpan(
                           text:

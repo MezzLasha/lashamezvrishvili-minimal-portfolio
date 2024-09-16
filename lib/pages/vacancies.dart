@@ -23,8 +23,7 @@ class VacanciesPage extends StatelessWidget {
     final mdof = MediaQuery.of(context);
     return ProjectPageSkeleton(
         bgImageUrl: 'assets/images/vacancies_images/bg_image.png',
-        headerUrl:
-            'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy',
+        headerUrl: 'https://play.google.com/store/apps/details?id=com.mezzlasha.vacancy',
         name: 'Vacancies',
         url: '/vacancies',
         body: Column(
@@ -65,9 +64,7 @@ class VacanciesPage extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w200,
                               fontStyle: FontStyle.italic,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant)),
+                              color: Theme.of(context).colorScheme.onSurfaceVariant)),
                       const TextSpan(
                           text:
                               ' design language, ensuring a modern and intuitive interface for our users. \n\n'),

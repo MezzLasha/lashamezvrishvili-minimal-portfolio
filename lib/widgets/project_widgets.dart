@@ -60,8 +60,8 @@ class ScreenshotsListWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: ListView(
                 scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
+                physics:
+                    const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                 children: List.generate(screenshots.length, (index) {
                   // print(index);
                   return Padding(
@@ -69,14 +69,12 @@ class ScreenshotsListWidget extends StatelessWidget {
                     child: Hero(
                       tag: 'screenshot$index',
                       createRectTween: (begin, end) {
-                        return MaterialRectCenterArcTween(
-                            begin: begin, end: end);
+                        return MaterialRectCenterArcTween(begin: begin, end: end);
                       },
                       child: Material(
                         color: Colors.transparent,
                         shape: SmoothRectangleBorder(
-                            smoothness: 0.6,
-                            borderRadius: BorderRadius.circular(8)),
+                            smoothness: 0.6, borderRadius: BorderRadius.circular(8)),
                         child: InkWell(
                           onTap: () {
                             // print(index);
@@ -85,16 +83,14 @@ class ScreenshotsListWidget extends StatelessWidget {
                                 children: [
                                   PageView(
                                     physics: const BouncingScrollPhysics(
-                                        parent:
-                                            AlwaysScrollableScrollPhysics()),
+                                        parent: AlwaysScrollableScrollPhysics()),
                                     // padEnds: true,
                                     controller: PageController(
-                                        initialPage: index,
-                                        viewportFraction: 1),
+                                        initialPage: index, viewportFraction: 1),
                                     children: List.generate(
                                       screenshots.length,
-                                      (index2) => ExpandedScreenshotWidget(
-                                          index2, screenshots),
+                                      (index2) =>
+                                          ExpandedScreenshotWidget(index2, screenshots),
                                     ),
                                   ),
                                   Positioned(
@@ -121,8 +117,7 @@ class ScreenshotsListWidget extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 image: DecorationImage(
-                                    image: AssetImage(
-                                        screenshots.elementAt(index)),
+                                    image: AssetImage(screenshots.elementAt(index)),
                                     fit: BoxFit.fitHeight)),
                           ),
                         ),
