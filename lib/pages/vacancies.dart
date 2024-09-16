@@ -64,9 +64,10 @@ class VacanciesPage extends StatelessWidget {
                       TextSpan(
                           text: 'Material You',
                           style: TextStyle(
-                              fontWeight: FontWeight.w200,
-                              fontStyle: FontStyle.italic,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant)),
+                            fontWeight: FontWeight.w300,
+                            fontStyle: FontStyle.italic,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                          )),
                       const TextSpan(
                           text:
                               ' design language, ensuring a modern and intuitive interface for our users. \n\n'),
