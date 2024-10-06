@@ -1,51 +1,25 @@
 import 'package:flutter/material.dart';
 
-class CustomRoute extends PageRouteBuilder {
-  final Widget page;
+class CustomRoute extends PageTransitionsBuilder {
+  const CustomRoute();
 
-  CustomRoute({required this.page})
-      : super(
-          transitionDuration: const Duration(milliseconds: 500),
-          reverseTransitionDuration: const Duration(milliseconds: 500),
-          transitionsBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation, Widget child) {
-            return FadeTransition(
-              opacity: CurvedAnimation(
-                  parent: animation,
-                  curve: Easing.standard,
-                  reverseCurve: Easing.standard.flipped),
-              child: child,
-            );
-          },
-          pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return page;
-          },
-        );
+  @override
+  Widget buildTransitions<T>(route, context, animation, secondaryAnimation, child) {
+    return
+        //  ScaleTransition(
+        //   scale: animation.drive(
+        //     Tween<double>(
+        //       begin: 0.0,
+        //       end: 1.0,
+        //     ).chain(
+        //       CurveTween(curve: Easing.standard),
+        //     ),
+        //   ),
+        // child:
+        FadeTransition(
+      opacity: animation,
+      child: child,
+      // ),
+    );
+  }
 }
-
-// class CustomRectTween extends RectTween {
-//   CustomRectTween({required this.a, required this.b}) : super(begin: a, end: b);
-//   final Rect a;
-//   final Rect b;
-
-//   @override
-//   Rect lerp(double t) {
-//     Easing.standard.transform(t);
-//     //any curve can be applied here e.g. Curve.elasticOut.transform(t);
-//     final verticalDist = Easing.standard.transform(t);
-
-//     final top = lerpDouble(a.top, b.top, t)! * (1 - verticalDist);
-//     return Rect.fromLTRB(
-//       lerpDouble(a.left, b.left, t)!,
-//       top,
-//       lerpDouble(a.right, b.right, t)!,
-//       lerpDouble(a.bottom, b.bottom, t)!,
-//     );
-//   }
-
-//   double? lerpDouble(num a, num b, double t) {
-//     if (a == null && b == null) return null;
-//     return a + (b - a) * t;
-//   }
-// }

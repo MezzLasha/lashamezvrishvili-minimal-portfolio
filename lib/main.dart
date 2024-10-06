@@ -1,12 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:lashamezvrishvili/pages/aggregate.dart';
-import 'package:lashamezvrishvili/pages/delauneymx.dart';
-import 'package:lashamezvrishvili/pages/gripwise.dart';
-import 'package:lashamezvrishvili/pages/home/home.dart';
-import 'package:lashamezvrishvili/pages/vacancies.dart';
+import 'package:lashamezvrishvili/pages_config.dart';
 import 'package:lashamezvrishvili/widgets/custom_page_route.dart';
+import 'package:lashamezvrishvili/widgets/page_skeleton/page_skeleton.dart';
+
+import '/pages/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,22 +14,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const routesList = {
-    '/vacancies',
-    '/aggregate',
-    '/delauneymx',
-    '/gripwise',
-  };
-
-  //Names of the routes
-
-  static const routesNames = {
-    'Vacancies',
-    'Aggregate',
-    'Delauney.mx',
-    'Gripwise',
-  };
-
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Lasha Mezvrishvili',
@@ -38,6 +21,15 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           textTheme: ThemeData.light().textTheme.apply(fontFamily: 'Neue'),
           fontFamily: 'Neue',
+          pageTransitionsTheme: const PageTransitionsTheme(
+            builders: {
+              TargetPlatform.android: CustomRoute(),
+              TargetPlatform.iOS: CustomRoute(),
+              TargetPlatform.linux: CustomRoute(),
+              TargetPlatform.macOS: CustomRoute(),
+              TargetPlatform.windows: CustomRoute(),
+            },
+          ),
         ),
         debugShowCheckedModeBanner: false,
         darkTheme: ThemeData.dark(useMaterial3: true),
@@ -47,16 +39,21 @@ class MyApp extends StatelessWidget {
             PointerDeviceKind.mouse,
             PointerDeviceKind.touch,
             PointerDeviceKind.stylus,
+            PointerDeviceKind.trackpad,
           },
         ),
-        onGenerateRoute: (RouteSettings settings) => CustomRoute(
-            page: switch (settings.name) {
-          '/' => const HomePage(),
-          '/vacancies' => const VacanciesPage(),
-          '/aggregate' => const AggregatePage(),
-          '/delauneymx' => const DelauneyPage(),
-          '/gripwise' => const GripwisePage(),
-          _ => const Placeholder(),
-        }),
+        routes: {
+          '/': (context) => const HomePage(),
+          ...{
+            for (final page in pagesConfig) page.path: (context) => PageSkeleton(page),
+          },
+        },
+        onUnknownRoute: (settings) => MaterialPageRoute(
+          builder: (context) => Scaffold(
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
+          ),
+        ),
       );
 }

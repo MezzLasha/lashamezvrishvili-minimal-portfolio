@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:lashamezvrishvili/pages_config.dart';
 
-import '/main.dart';
 import '/pages/about_page.dart';
 import '/widgets/misc.dart';
 
@@ -23,11 +23,11 @@ class _AddProjectTileState extends State<AddProjectTile> {
         effects: [
           ScaleEffect(
             curve: Easing.standard,
-            delay: Duration(milliseconds: 100 * (MyApp.routesList.length + 1)),
+            delay: Duration(milliseconds: 100 * (pagesConfig.length + 1)),
           ),
           FlipEffect(
             curve: Easing.standard,
-            delay: Duration(milliseconds: 100 * (MyApp.routesList.length + 1)),
+            delay: Duration(milliseconds: 100 * (pagesConfig.length + 1)),
           )
         ],
         controller: widget.controller,

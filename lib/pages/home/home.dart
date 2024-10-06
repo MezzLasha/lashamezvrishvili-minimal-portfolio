@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:lashamezvrishvili/pages_config.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-import '/main.dart';
 import '/pages/home/widgets/about_me_button.dart';
 import '/pages/home/widgets/add_project_tile.dart';
 import '/widgets/logo_widget.dart';
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     duration: const Duration(milliseconds: 500),
   );
 
-  List<bool> hovering = List.generate(MyApp.routesList.length, (index) => false);
+  List<bool> hovering = List.generate(pagesConfig.length, (index) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             runSpacing: 10,
             children: [
               ...List.generate(
-                MyApp.routesList.length,
+                pagesConfig.length,
                 (index) => _buildProjectTile(index, isDesktop: true),
               ),
               AddProjectTile(isDesktop: true, controller: _controller),
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
               ),
               ...List.generate(
-                MyApp.routesList.length,
+                pagesConfig.length,
                 (index) => _buildProjectTile(index, isDesktop: false),
               ),
               AddProjectTile(isDesktop: false, controller: _controller),
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               ? const EdgeInsets.all(10)
               : const EdgeInsets.fromLTRB(16, 0, 16, 16),
           child: InkWell(
-            onTap: () => Navigator.pushNamed(context, MyApp.routesList.elementAt(index)),
+            onTap: () => Navigator.pushNamed(context, pagesConfig.elementAt(index).path),
             onHover:
                 isDesktop ? (value) => setState(() => hovering[index] = value) : null,
             borderRadius: BorderRadius.circular(isDesktop ? 6 : 24),
@@ -129,9 +129,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       );
 
   Widget _buildHeroWidget(int index, bool isDesktop) {
-    final name = MyApp.routesNames.elementAt(index);
+    final config = pagesConfig.elementAt(index);
+    final name = config.title;
     return Hero(
-      tag: MyApp.routesList.elementAt(index),
+      tag: config.path,
       createRectTween: (begin, end) => MaterialRectCenterArcTween(begin: begin, end: end),
       flightShuttleBuilder: (fctx, animation, fdir, fromCtx, toCtx) => AnimatedBuilder(
         animation: CurvedAnimation(parent: animation, curve: Easing.standard),
@@ -160,9 +161,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       ),
                     ],
                     image: DecorationImage(
-                      image: AssetImage(
-                        'assets/images${MyApp.routesList.elementAt(index)}_images/bg_image.png',
-                      ),
+                      image: AssetImage(config.backgroundImage),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -231,9 +230,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ],
           borderRadius: BorderRadius.circular(isDesktop ? 6 : 24),
           image: DecorationImage(
-            image: AssetImage(
-              'assets/images${MyApp.routesList.elementAt(index)}_images/bg_image.png',
-            ),
+            image: AssetImage(config.backgroundImage),
             fit: BoxFit.cover,
           ),
         ),
