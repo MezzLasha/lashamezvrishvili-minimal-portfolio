@@ -114,8 +114,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               : const EdgeInsets.fromLTRB(16, 0, 16, 16),
           child: InkWell(
             onTap: () => Navigator.pushNamed(context, pagesConfig.elementAt(index).path),
-            onHover:
-                isDesktop ? (value) => setState(() => hovering[index] = value) : null,
+            splashFactory: NoSplash.splashFactory,
+            onHover: isDesktop ? (hov) => setState(() => hovering[index] = hov) : null,
             borderRadius: BorderRadius.circular(isDesktop ? 6 : 24),
             child: AnimatedContainer(
               width: isDesktop ? (hovering[index] ? 200 : 160) : double.infinity,
