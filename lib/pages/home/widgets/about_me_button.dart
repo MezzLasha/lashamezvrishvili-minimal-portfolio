@@ -1,4 +1,5 @@
 import 'package:dismissible_page/dismissible_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '/pages/about_page.dart';
@@ -24,6 +25,12 @@ class _AboutMeButtonState extends State<AboutMeButton> {
           child: InkWell(
             onTap: () => openAboutMePage(),
             onHover: (value) => setState(() => hoveringAbout = value),
+            onLongPress: () => ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Using Wasm? - $kIsWasm'),
+                duration: Duration(milliseconds: 500),
+              ),
+            ),
             borderRadius: BorderRadius.circular(24),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 700),
