@@ -20,9 +20,10 @@ class _LogoWidgetState extends State<LogoWidget> with SingleTickerProviderStateM
       duration: const Duration(milliseconds: 500),
     );
     _animation = CurvedAnimation(
-        parent: _controller,
-        curve: Easing.standard,
-        reverseCurve: Easing.standard.flipped);
+      parent: _controller,
+      curve: Easing.standard,
+      reverseCurve: Easing.standard.flipped,
+    );
 
     super.initState();
   }

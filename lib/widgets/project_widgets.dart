@@ -1,6 +1,5 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_corner/smooth_corner.dart';
 
 class BackButtonProjectAnimating extends StatelessWidget {
   const BackButtonProjectAnimating({
@@ -47,42 +46,26 @@ class ExpandedScreenshotWidget extends StatelessWidget {
   final int index;
 
   @override
-  Widget build(BuildContext context) {
-    return DismissiblePage(
-      onDismissed: () {
-        Navigator.pop(context);
-      },
-      startingOpacity: 0.5,
-      isFullScreen: false,
-      backgroundColor: Colors.black,
-      child: Center(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 1.2,
+  Widget build(BuildContext context) => DismissiblePage(
+        onDismissed: () => Navigator.pop(context),
+        startingOpacity: 0.5,
+        isFullScreen: false,
+        backgroundColor: Colors.black,
+        child: FractionallySizedBox(
+          heightFactor: 0.85,
           child: Hero(
-            tag: 'screenshot$index',
-            createRectTween: (begin, end) {
-              return MaterialRectCenterArcTween(begin: begin, end: end);
-            },
-            child: Material(
-              color: Colors.transparent,
-              shape: SmoothRectangleBorder(
-                  smoothness: 0.6, borderRadius: BorderRadius.circular(8)),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Ink(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                          image: AssetImage(screenshots.elementAt(index)),
-                          fit: BoxFit.fitHeight)),
+            tag: screenshots.elementAt(index),
+            child: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Material(
+                color: Colors.transparent,
+                child: Ink.image(
+                  image: AssetImage(screenshots.elementAt(index)),
+                  fit: BoxFit.fitHeight,
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

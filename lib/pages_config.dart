@@ -71,6 +71,7 @@ const pagesConfig = [
     actionLinkHint: 'Visit Delauney.mx',
     sections: [
       ImageListSection(
+        width: 400,
         images: [
           'assets/images/gripwise_images/1.png',
           'assets/images/gripwise_images/2.png',
@@ -111,6 +112,7 @@ const pagesConfig = [
     actionLinkHint: 'Visit Delauney.mx',
     sections: [
       ImageListSection(
+        width: 155,
         images: [
           'assets/images/delauneymx_images/1.png',
           'assets/images/delauneymx_images/2.png',
@@ -118,7 +120,6 @@ const pagesConfig = [
           'assets/images/delauneymx_images/4.png',
           'assets/images/delauneymx_images/5.png',
           'assets/images/delauneymx_images/6.png',
-          'assets/images/delauneymx_images/7.png',
         ],
       ),
       TitleSection('DESCRIPTION.'),
@@ -163,6 +164,7 @@ const pagesConfig = [
     actionLinkHint: 'Visit test link',
     sections: [
       ImageListSection(
+        width: 155,
         images: [
           'assets/images/aggregate_images/1.jpg',
           'assets/images/aggregate_images/2.jpg',
