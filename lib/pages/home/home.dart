@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lashamezvrishvili/pages_config.dart';
+import '/pages_config.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 import '/pages/home/widgets/about_me_button.dart';

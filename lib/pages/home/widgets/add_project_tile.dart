@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lashamezvrishvili/pages_config.dart';
+import '/pages_config.dart';
 
 import '/pages/about_page.dart';
 import '/widgets/misc.dart';

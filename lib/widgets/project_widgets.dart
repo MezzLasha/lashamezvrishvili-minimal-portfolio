@@ -36,8 +36,8 @@ class BackButtonProjectAnimating extends StatelessWidget {
   }
 }
 
-class ExpandedScreenshotWidget extends StatelessWidget {
-  const ExpandedScreenshotWidget(
+class DismissableGallery extends StatelessWidget {
+  const DismissableGallery(
     this.index,
     this.screenshots, {
     super.key,
@@ -51,21 +51,52 @@ class ExpandedScreenshotWidget extends StatelessWidget {
         startingOpacity: 0.5,
         isFullScreen: false,
         backgroundColor: Colors.black,
-        child: FractionallySizedBox(
-          heightFactor: 0.85,
-          child: Hero(
-            tag: screenshots.elementAt(index),
-            child: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Material(
-                color: Colors.transparent,
-                child: Ink.image(
-                  image: AssetImage(screenshots.elementAt(index)),
-                  fit: BoxFit.fitHeight,
-                ),
+        child: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: FractionallySizedBox(
+            heightFactor: 0.85,
+            child: Hero(
+              tag: screenshots.elementAt(index),
+              child: Image.asset(
+                screenshots.elementAt(index),
+                fit: BoxFit.fitHeight,
               ),
             ),
           ),
         ),
       );
+
+  static showModal(BuildContext context, List<String> images, int index) {
+    context.pushTransparentRoute(
+      Stack(
+        children: [
+          PageView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            controller: PageController(
+              initialPage: index,
+              viewportFraction: 1,
+            ),
+            children: List.generate(
+              images.length,
+              (i) => DismissableGallery(i, images),
+            ),
+          ),
+          Positioned(
+            top: 20,
+            right: 20,
+            child: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(
+                Icons.close,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

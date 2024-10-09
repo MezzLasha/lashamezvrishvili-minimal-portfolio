@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:lashamezvrishvili/pages_config.dart';
-import 'package:lashamezvrishvili/widgets/custom_page_route.dart';
-import 'package:lashamezvrishvili/widgets/page_skeleton/page_skeleton.dart';
 
 import '/pages/home/home.dart';
+import '/pages_config.dart';
+import '/widgets/custom_page_route.dart';
+import '/widgets/page_skeleton/page_skeleton.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        darkTheme: ThemeData.dark(useMaterial3: true),
         themeMode: ThemeMode.light,
         scrollBehavior: const MaterialScrollBehavior().copyWith(
           dragDevices: {

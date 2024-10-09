@@ -1,4 +1,3 @@
-import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
@@ -32,48 +31,30 @@ class ImageListSection extends PageSection {
                   smoothness: 0.6,
                   borderRadius: BorderRadius.circular(_radius),
                 ),
-                onTap: (value) => context.pushTransparentRoute(
-                  Stack(
-                    children: [
-                      PageView(
-                        physics: const BouncingScrollPhysics(
-                          parent: AlwaysScrollableScrollPhysics(),
-                        ),
-                        controller: PageController(
-                          initialPage: value,
-                          viewportFraction: 1,
-                        ),
-                        children: List.generate(
-                          images.length,
-                          (index) => ExpandedScreenshotWidget(index, images),
-                        ),
-                      ),
-                      Positioned(
-                        top: 20,
-                        right: 20,
-                        child: IconButton(
-                          onPressed: () => Navigator.pop(context),
-                          icon: const Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                backgroundColor: const Color(0xff0a0a0a),
+                onTap: (index) => DismissableGallery.showModal(context, images, index),
                 children: images
-                    .map((e) => Hero(
-                          tag: e,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Ink.image(
-                              image: AssetImage(e),
+                    .map(
+                      (e) => Hero(
+                        tag: e,
+                        flightShuttleBuilder: (_, anim, __, fHCtx, tHCtx) =>
+                            AnimatedBuilder(
+                          animation: anim,
+                          builder: (context, child) => SmoothClipRRect(
+                            smoothness: 0.6,
+                            borderRadius: BorderRadius.circular(_radius),
+                            child: Image.asset(
+                              e,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
-                        ))
+                        ),
+                        child: Image.asset(
+                          e,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    )
                     .toList(),
               ),
             ),
