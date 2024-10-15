@@ -15,7 +15,7 @@ class _HoverableMailButtonState extends State<HoverableMailButton> {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => launch('mailto:mezzlasha@gmail.com'),
+        onTap: () => launchUrl(Uri.parse('mailto:mezzlasha@gmail.com')),
         child: MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),

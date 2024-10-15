@@ -67,8 +67,8 @@ const pagesConfig = [
     title: 'Gripwise',
     path: '/gripwise',
     backgroundImage: 'assets/images/gripwise_images/bg_image.png',
-    actionLink: 'Delauney.mx',
-    actionLinkHint: 'Visit Delauney.mx',
+    actionLink: 'https://gripwise.vercel.app/',
+    actionLinkHint: 'Visit Gripwise',
     sections: [
       ImageListSection(
         width: 400,
@@ -105,21 +105,22 @@ const pagesConfig = [
     ],
   ),
   PageModel(
-    title: 'Delauney.mx',
-    path: '/delauneymx',
-    backgroundImage: 'assets/images/delauneymx_images/bg_image.png',
-    actionLink: 'Delauney.mx',
-    actionLinkHint: 'Visit Delauney.mx',
+    title: 'Echo',
+    path: '/echo',
+    backgroundImage: 'assets/images/echo_images/bg_image.png',
+    actionLink:
+        'https://balance.ge/%E1%83%9B%E1%83%94%E1%83%9C%E1%83%94%E1%83%AF%E1%83%94%E1%83%A0%E1%83%98%E1%83%A1-%E1%83%90%E1%83%9E%E1%83%9A%E1%83%98%E1%83%99%E1%83%90%E1%83%AA%E1%83%98%E1%83%90',
+    actionLinkHint: 'Visit Echo',
     sections: [
       ImageListSection(
-        width: 155,
+        width: 145,
         images: [
-          'assets/images/delauneymx_images/1.png',
-          'assets/images/delauneymx_images/2.png',
-          'assets/images/delauneymx_images/3.png',
-          'assets/images/delauneymx_images/4.png',
-          'assets/images/delauneymx_images/5.png',
-          'assets/images/delauneymx_images/6.png',
+          'assets/images/echo_images/1.webp',
+          'assets/images/echo_images/2.webp',
+          'assets/images/echo_images/3.webp',
+          'assets/images/echo_images/4.webp',
+          'assets/images/echo_images/5.webp',
+          'assets/images/echo_images/6.webp',
         ],
       ),
       TitleSection('DESCRIPTION.'),
@@ -131,28 +132,27 @@ const pagesConfig = [
           ),
           children: [
             TextSpan(
-                text:
-                    'This app was developed for Delauney.mx. A Shampoo and health-care company located in mexico. \n\n'),
-            TextSpan(
-                text:
-                    'App was developed using Flutter, Firebase and php(server/mysql). \n\n'),
-            TextSpan(
-                text:
-                    'TimeFrame: 1.5 months. \nDelivered Products: Mobile App for iOS and Android, Administrator panel, Backend made in php / mySQL on a dedicated VPS. \n'),
+              text:
+                  'Echo is a business intelligence (BI) application designed for small and medium-sized enterprises (SMEs). It enables business owners and managers to access real-time financial and operational reports from their mobile devices. \n\n'
+                  'The app provides powerful data analysis tools, including interactive charts, dashboards, and trend forecasting based on historical data using various statistical models (linear, exponential, logarithmic, etc.). \n\n'
+                  'Echo supports easy information sharing between departments, fostering transparency and collaboration within organizations. It also integrates with the Balance program for seamless access to critical business data, allowing users to monitor cash flows, sales, top products, and key financial metrics such as debtors and creditors. \n\n'
+                  'Built with Flutter, Echo ensures smooth performance, with a focus on usability and real-time insights.',
+            ),
           ],
         ),
       ),
       BannerSection(
         title: 'Check it out on\nGoogle Play Store.',
         actionText: 'play.google.com',
-        actionUrl: 'https://play.google.com/store/apps/details?id=com.delauney.mx',
-        image: 'assets/images/delauneymx_images/link_google_play_preview.png',
+        actionUrl:
+            'https://play.google.com/store/apps/details?id=ge.balance.echo&pcampaignid=web_share',
+        image: 'assets/images/echo_images/link_google_play_preview.png',
       ),
       BannerSection(
         title: 'Check it out on\nApp Store.',
         actionText: 'apps.apple.com',
-        actionUrl: 'https://apps.apple.com/us/app/delauney/id6446408684',
-        image: 'assets/images/delauneymx_images/link_appstore_preview.png',
+        actionUrl: 'https://apps.apple.com/us/app/balance-echo/id6478484955',
+        image: 'assets/images/echo_images/link_app_store_preview.png',
       ),
     ],
   ),
@@ -201,5 +201,5 @@ const pagesConfig = [
         ),
       ),
     ],
-  )
+  ),
 ];

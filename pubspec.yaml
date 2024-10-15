@@ -31,13 +31,13 @@ dependencies:
   dismissible_page: ^1.0.1
   flutter:
     sdk: flutter
-  flutter_animate: ^4.1.0
-  flutter_custom_tabs: ^1.0.4
-  font_awesome_flutter: ^10.4.0
+  flutter_animate: ^4.5.0
+  flutter_custom_tabs: ^2.1.0
+  font_awesome_flutter: ^10.7.0
   smooth_corner: ^1.1.0
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 
@@ -55,7 +55,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/aggregate_images/
-    - assets/images/delauneymx_images/
+    - assets/images/echo_images/
     - assets/images/vacancies_images/
     - assets/images/gripwise_images/
   # An image asset can refer to one or more resolution-specific "variants", see

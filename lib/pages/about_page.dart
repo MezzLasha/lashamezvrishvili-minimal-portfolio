@@ -196,8 +196,9 @@ class _AboutMePageState extends State<AboutMePage> {
                                     color: Color(0xff171515),
                                   ),
                                   padding: const EdgeInsets.all(12),
-                                  labelPadding: const EdgeInsets.all(0),
-                                  onPressed: () => launch('https://github.com/MezzLasha'),
+                                  labelPadding: EdgeInsets.zero,
+                                  onPressed: () => launchUrl(
+                                      Uri.parse('https://github.com/MezzLasha')),
                                 ),
                               ),
                               SizedBox(
@@ -209,10 +210,10 @@ class _AboutMePageState extends State<AboutMePage> {
                                     color: Color(0xff0077b5),
                                   ),
                                   padding: const EdgeInsets.all(12),
-                                  labelPadding: const EdgeInsets.all(0),
-                                  onPressed: () => launch(
+                                  labelPadding: EdgeInsets.zero,
+                                  onPressed: () => launchUrl(Uri.parse(
                                     'https://www.linkedin.com/in/lasha-mezvrishvili-1b23b9187/',
-                                  ),
+                                  )),
                                 ),
                               ),
                               SizedBox(
@@ -223,11 +224,9 @@ class _AboutMePageState extends State<AboutMePage> {
                                     'https://play-lh.googleusercontent.com/y4bswMT02OROjzOPa5zDGsnXX5-cBABjF93j26seJH2cEHD4PuBW1d5VvwfYleeKf4_X',
                                   ),
                                   padding: const EdgeInsets.all(1),
-                                  labelPadding: const EdgeInsets.all(0),
-                                  onPressed: () {
-                                    launch(
-                                        'https://www.upwork.com/freelancers/mezvrishvililasha');
-                                  },
+                                  labelPadding: EdgeInsets.zero,
+                                  onPressed: () => launchUrl(Uri.parse(
+                                      'https://www.upwork.com/freelancers/mezvrishvililasha')),
                                 ),
                               ),
                             ]),

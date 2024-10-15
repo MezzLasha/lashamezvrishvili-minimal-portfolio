@@ -33,7 +33,7 @@ class BannerSection extends PageSection {
           AspectRatio(
             aspectRatio: 1.734,
             child: InkWell(
-              onTap: () => launch(actionUrl),
+              onTap: () => launchUrl(Uri.parse(actionUrl)),
               customBorder: SmoothRectangleBorder(
                 smoothness: 0.6,
                 borderRadius: BorderRadius.circular(12),

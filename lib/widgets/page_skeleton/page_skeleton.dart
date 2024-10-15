@@ -161,8 +161,9 @@ class _PageSkeletonState extends State<PageSkeleton> with SingleTickerProviderSt
                                           padding: const EdgeInsets.only(right: 48.0),
                                           child: IconButton(
                                             tooltip: widget.pageModel.actionLinkHint,
-                                            onPressed: () =>
-                                                launch(widget.pageModel.actionLink),
+                                            onPressed: () => launchUrl(
+                                              Uri.parse(widget.pageModel.actionLink),
+                                            ),
                                             color: Colors.black,
                                             icon: const Icon(Icons.open_in_new),
                                           ),
@@ -299,8 +300,9 @@ class _PageSkeletonState extends State<PageSkeleton> with SingleTickerProviderSt
                                     padding:
                                         EdgeInsets.only(right: isDesktop ? 48.0 : 16.0),
                                     child: IconButton(
-                                      onPressed: () =>
-                                          launch(widget.pageModel.actionLink),
+                                      onPressed: () => launchUrl(
+                                        Uri.parse(widget.pageModel.actionLink),
+                                      ),
                                       color: Colors.black,
                                       icon: const Icon(Icons.open_in_new),
                                     ),

@@ -6,7 +6,7 @@ import '/pages/about_page.dart';
 import '/widgets/misc.dart';
 
 class AboutMeButton extends StatefulWidget {
-  const AboutMeButton({super.key, required this.controller});
+  const AboutMeButton(this.controller, {super.key});
 
   final AnimationController controller;
 

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '/pages_config.dart';
+import 'package:lashamezvrishvili/widgets/custom_table.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 import '/pages/home/widgets/about_me_button.dart';
 import '/pages/home/widgets/add_project_tile.dart';
+import '/pages_config.dart';
 import '/widgets/logo_widget.dart';
 import '/widgets/misc.dart';
 
@@ -16,9 +17,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  static const _defaultWidth = 160.0;
+  static const _hoverWidth = 200.0;
+
   late final _controller = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 500),
+    duration: Durations.medium4,
   );
 
   List<bool> hovering = List.generate(pagesConfig.length, (index) => false);
@@ -44,7 +48,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               children: [isMobile ? buildMobileVersion() : buildDesktopVersion()],
             ),
           ),
-          AboutMeButton(controller: _controller),
+          AboutMeButton(_controller),
         ],
       ),
     );
@@ -53,9 +57,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   Widget buildDesktopVersion() => Padding(
         padding: const EdgeInsets.only(bottom: 96.0),
         child: Center(
-          child: Wrap(
+          child: CustomTable(
             spacing: 10,
-            runSpacing: 10,
+            defaultItemWidth: _defaultWidth,
+            expandedItemWidth: _hoverWidth,
             children: [
               ...List.generate(
                 pagesConfig.length,
@@ -118,10 +123,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             onHover: isDesktop ? (hov) => setState(() => hovering[index] = hov) : null,
             borderRadius: BorderRadius.circular(isDesktop ? 6 : 24),
             child: AnimatedContainer(
-              width: isDesktop ? (hovering[index] ? 200 : 160) : double.infinity,
+              width: isDesktop
+                  ? (hovering[index] ? _hoverWidth : _defaultWidth)
+                  : double.infinity,
               duration: const Duration(milliseconds: 700),
               curve: Easing.standard,
-              height: 160,
+              height: _defaultWidth,
               child: _buildHeroWidget(index, isDesktop),
             ),
           ),
